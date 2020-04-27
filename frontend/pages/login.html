@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+        body, * {
+            margin: 0;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+        }
+        .login-container{
+            max-width: 100%;
+            max-height:100%;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            background-color: #C9F2E8;
+        }
+        .login-container .back {
+            color: #FF7A00;
+            font-size: 18px;
+            line-height: 21px;
+            padding: 25px;
+        }
+
+        .login-container .formulario{
+            padding: 25px 0 0 0;
+            align-self: center;
+            margin: auto;
+            width: 25%;
+            min-height: 45%;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-container .formulario img {
+            margin-bottom: 30px;
+        }
+
+        .login-container .formulario input {
+            width: 250px;
+            height: 40px;
+            font-size: 22px;
+            line-height: 26px;
+            background: #FFFFFF;
+            border: 1px solid #C8C5CC;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        .login-container .formulario input::placeholder {
+            padding: 5px;
+        }
+
+        .login-container .formulario button {
+            font-size: 22px;
+            line-height: 26px;
+            width: 250px;
+            height: 40px;
+            border: 0;
+            background: #FF7A00;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 16px;
+            color: #576D7E;
+        }
+        p a {
+            color: #FF7A00;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="back">
+            <img src="../assets/back.png" alt="Imagem voltar">
+            <span>HOME</span>
+        </div>
+        <div class="formulario">
+            <img src="../assets/Sensiders.svg">
+
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Senha">
+
+            <button>Entrar</button>
+
+            <p>Ainda não é cadastrado? <a href="registrar.html">Registre-se</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
