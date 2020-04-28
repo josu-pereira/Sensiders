@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.button-s{
+    background-color:#ff7300;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px; 
+}
+
+.header{
+    background-color: #232323;
+    color: #ffffff;
+    position: sticky;
+}
+/* menu fixado */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .showcase {
+    padding-top: 60px;
+  }
+/* ----- */
+.header a{
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.header li {
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.header .title-header h1{
+    margin-right: 150px;
+    margin-top: 25px;
+    float: left;
+}
+
+.nav{
+    float: right;
+    margin-top: 25px;
+}
+
+.header .highlight, .header .current a {
+    color: #ff7300;
+    font-weight: bold;
+    
+}
+
+.highlight img {
+    padding-bottom: 5px;
+}
+
+.showcase{
+    min-height: 600px;
+    background: url('../images/superm.png') no-repeat;
+    text-align: center;
+    color: #ffffff;
+}
+
+.showcase h1{
+    font-size: 55px;
+    margin-top: 150px;
+    margin-bottom: 10px;
+}
+
+.showcase p{
+    font-size: 20px;
+
+}
+
+.contextualizacao {
+    min-height: 500px;
+    background: url('../images/context.png') no-repeat;
+    text-align: left;
+    color: #FAFAFA;
+    background-color: #ffffff;
+}
+
+.context h4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    margin-left: 750px;
+    font-weight: bold;
+}
+.context p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    margin-left: 750px;
+    font-weight: bold;
+}
+
+.conhecendo {
+    min-height: 500px;
+    background: url('../images/conhecendo.png') no-repeat;
+    text-align: left;
+    color: #ffffff;
+    margin-left: 800px;
+    margin-bottom: 50px;
+
+}
+
+.conhecendo h4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    margin-left: -720px;
+    font-weight: bold;
+
+}
+
+.conhecendo p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    margin-left: -720px;
+    font-weight: bold;
+}
+
+
+
+
+
