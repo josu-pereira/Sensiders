@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     line-height: 1.5;
     margin: 0;
@@ -110,7 +112,6 @@ body {
 }
 
 .context h4 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     margin-top: 80px;
     margin-bottom: 10px;
@@ -121,7 +122,6 @@ body {
 }
 
 .context p {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -142,7 +142,6 @@ body {
 }
 
 .conhecendo h4 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     margin-top: 100px;
     margin-bottom: 10px;
@@ -154,7 +153,6 @@ body {
 }
 
 .conhecendo p {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
