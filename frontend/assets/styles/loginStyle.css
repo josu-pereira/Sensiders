@@ -20,6 +20,12 @@ body, * {
     font-size: 18px;
     line-height: 21px;
     padding: 25px;
+    display:flex;
+    align-items: center;
+}
+
+.login-container .back img{
+    padding-right: 5px;
 }
 
 .login-container .back a {
