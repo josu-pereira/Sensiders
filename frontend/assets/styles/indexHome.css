@@ -34,18 +34,9 @@ body {
 .header {
     background-color: #232323;
     color: #ffffff;
-    position: sticky;
-}
-
-/* menu fixado */
-.sticky {
     position: fixed;
-    top: 0;
     width: 100%;
-}
-
-.sticky+.showcase {
-    padding-top: 60px;
+    margin-top: -80px;
 }
 
 /* ----- */
@@ -90,6 +81,7 @@ body {
     background: url('../images/superm.png') no-repeat;
     text-align: center;
     color: #ffffff;
+    margin-top: 80px;
 }
 
 .showcase h1 {
