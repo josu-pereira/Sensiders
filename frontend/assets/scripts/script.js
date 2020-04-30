@@ -1,13 +1,25 @@
-// sticky menu
-window.onscroll = function() {myFunction()};
+// scroll suave
+$(function () {
+  $('a[href*="#"]:not([href="#"])').click(function () {
 
-var header = document.getElementById('header');
-var sticky = header.offsetTop;
+    var target = $(this.hash);
 
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    header.classList.add('sticky');
-  } else {
-    header.classList.remove('sticky');
-  }
-}
+    if (target.length) {
+      $('html, body').animate({
+        scrollTop: target.offset().top
+      }, 500);
+      $('.header').css('margin-top', "-80px");
+      $('.showcase').css('margin-bottom', "180px");
+      // $('.contextualizacao').css('margin-bottom', "180px");
+      // $('.conhecendo').css('margin-bottom', "180px");
+      // $('#sobreNos').css('margin-bottom', "180px");
+      return false;
+    }
+
+    // if (url.indexOf('#header') >= 0) {
+    //   $('#header').css('margin-top',120);
+    //   $('#home').css('margin-top',"-120px");
+    //   }
+
+  });
+});
