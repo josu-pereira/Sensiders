@@ -1,0 +1,251 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/*Global*/
+.container{
+    width:80%;
+    margin:auto;
+    overflow: hidden;
+}
+
+.button-s {
+    background-color: #e8491d;
+    height: 38px;
+    width: 100px;
+    border: none;
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+
+/*HEADER*/
+.header{
+    background: #232323;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+.header a{
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.header li{
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.header .title-header{
+    float: left;
+}
+
+.header .title-header h1{
+    margin: 0;
+}
+
+.nav{
+    float: right;
+    margin-top: 10px;
+}
+
+.header .highlight, .header .current a{
+    color: #e8491d;
+    font-weight: bold;
+}
+
+/* SHOWCASE */
+.showcase {
+    text-align: center;
+    color: #ffffff;
+    min-height: 400px;
+    background-image: url('../img/team.png');
+    background-repeat: no-repeat;
+}
+
+.showcase h1{
+    font-size: 55px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.showcase p {
+    font-size: 20px;
+}
+
+/* NEW */
+.new {
+    background-color: #232323;
+    padding: 15px;
+    color: #ffffff;
+}
+
+.new h1 {
+    float: left;
+}
+
+.new form {
+    float: right;
+    padding: 15px;
+    height: 25px;
+    width: 350px;
+}
+
+.new form input {
+    height: 25px;
+    padding: 4px;
+    width: 250px;
+}
+
+/* SOBRE */
+/* HOBBY */
+.meus-hobbys {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+.hobby-containers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.meus-hobbys .hobby-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 27%;
+    background-color: #ffffff;
+    height: 270px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.meus-hobbys .hobby-container img{
+    width: 90%;
+    border-radius: 10px;
+}
+
+/* CONHECIMENTOS */
+.conhecimentos {
+    text-align: center;
+    margin-top: 40px
+}
+.conhecimento-container {
+    width: 200px;
+    height: 200px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+.conhecimentos-container {
+    display: flex;
+    justify-content: center;
+}
+
+.conhecimento-container img{
+    width: 80%;
+}
+
+/* SERVIÇOS */
+/* INTRO */
+
+.intro {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.intro-container {
+    width: 40%;
+}
+ /* OPTIONS */
+.options {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.option-container {
+    width: 45%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.option-container img, p {
+    width: 80%;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #e8491d;
+    color: #ffffff;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+}
+.form-component {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: solid 1px #f0f0f0;
+    padding: 10px;
+    justify-content: center;
+}
+
+.button-form {
+    background-color: #fafafa;
+    border: none;
+    color: #e8491d;
+    font-weight: bold;
+}
