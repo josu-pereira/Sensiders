@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/styles/register.css">
     <title>Cadastro | Sensiders</title>
+    <script defer src="../assets/scripts/cep.js"></script>
 </head>
 <body>
     <div class="menu">
@@ -21,9 +22,9 @@
                 <option value="Dia">Dia</option>
                 <option value="Carrefour">Carrefour</option>
             </select>
-            <form>
+            <form action="">
                 <div class="endereco">
-                    <input type="text" placeholder="CEP" id="cep">
+                    <input type="text" placeholder="CEP" id="cep" maxlength="9">
                     <input type="text" placeholder="nº" id="numero">
                 </div>
                 <input type="text" id="rua" placeholder="Rua">
@@ -36,7 +37,7 @@
                 <input type="password" id="confirm_senha" placeholder="Confirme a senha">
                 <input class="button-submit" type="submit" value="Cadastrar">
             </form>
-            <p>Voltar para a página de <a href="login.html" class="back-page">login</a></p>
+            <p>Voltar para a página de <a href="login.html" >login</a></p>
         </div>
     </div>
 </body>
