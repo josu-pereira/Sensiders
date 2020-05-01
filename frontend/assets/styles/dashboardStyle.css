@@ -38,6 +38,12 @@ body, * {
     color: #FF7A00;
 }
 
+.dashboard-container .container select, input {
+    background-color: white;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+}
+
 .dashboard-container .container .grafico {
     margin-top: 25px;
     height: 60vh;
@@ -55,19 +61,59 @@ body, * {
 }
 
 .dashboard-container .container.middle :nth-child(1) {
+    width: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    padding-left: 25px;
+    align-items: flex-start;
 }
 
 .dashboard-container .container.middle :nth-child(1) h2 {
     color: #FF7A00;
-    margin-bottom: 15px;
+    width: 100%;
 }
 
-.dashboard-container .container.middle :nth-child(1) select {
-    width: 100%;
-    background-color: white;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
+.dashboard-container .container.middle :nth-child(1) select, input {
+    padding-left: 10px;
+    margin-left: 25px;
+    margin-top: 15px;
+    width: 65%;
+    height: 40px;
+}
+
+.dashboard-container .container.middle .grafico {
+    width: 50%;
+}
+
+.dashboard-container .container.last {
+    margin-bottom: 50px;
+}
+
+.dashboard-container .container.last h2 {
+    color: #FF7A00;
+    margin-bottom: 10px;
+}
+
+.dashboard-container .container.last > select {
+    align-self: flex-end;
+    margin-right: 20%;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    width: 20%;
+    height: 40px;
+}
+
+.dashboard-container .container.last > .grafico {
+    margin: 0 0 10px 0;
+}
+
+.dashboard-container .container.last :nth-last-child(1) {
+    display:flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.dashboard-container .container.last :nth-last-child(1) select, input, button {
+    width: auto;
 }
