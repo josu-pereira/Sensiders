@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Cadastro | Sensiders</title>
+</head>
+<body>
+    <div class="menu">
+        <a href="../home/index.html" class="back-page">
+            <img src="../img/Left-arrow.png" alt="Voltar para a página inicial">
+            <p>HOME</p>
+        </a>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <select id="supermercado">
+                <option value="Escolha">Escolha um supermercado</option>
+                <option value="Extra">Extra</option>
+                <option value="Dia">Dia</option>
+                <option value="Carrefour">Carrefour</option>
+            </select>
+            <form>
+                <div class="endereco">
+                    <input type="text" placeholder="CEP" id="cep">
+                    <input type="text" placeholder="nº" id="numero">
+                </div>
+                <input type="text" id="rua" placeholder="Rua">
+                <div class="endereco">
+                    <input type="text" placeholder="Cidade" id="cidade">
+                    <input type="text" placeholder="UF" id="uf">
+                </div>
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="senha" placeholder="Senha">
+                <input type="password" id="confirm_senha" placeholder="Confirme a senha">
+                <input class="button-submit" type="submit" value="Cadastrar">
+            </form>
+            <p>Voltar para a página de <a href="login.html" class="back-page">login</a></p>
+        </div>
+    </div>
+</body>
+</html>
