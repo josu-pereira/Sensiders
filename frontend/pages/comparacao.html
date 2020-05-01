@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparação</title>
-    <link rel="stylesheet" href="../assets/styles/dashboardStyle.css">
+	<meta charset="UTF-8">
+	<title>Gráfico de 1 linha com Chart.js</title>
+	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<link rel="stylesheet" href="../assets/styles/dashboardStyle.css">
+	<style>
+	canvas{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
 </head>
+
 <body>
-    <div class="dashboard-container">
+	<div class="dashboard-container">
         <div class="header">
             <button>Novo setor</button>
             <div class="button-set">
@@ -31,8 +41,148 @@
                     <option>Selecione o tipo de dado</option>
                 </select>
             </div>
-            <div class="grafico">Gráfico</div>
+            <div style="width: 65%;" class="grafico">
+				<canvas id="c_grafico"></canvas>
+			</div>
         </div>
     </div>
+
 </body>
+
 </html>
+
+<script>
+
+	var config = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: 'Movimentação',
+				backgroundColor: window.chartColors.blue,
+				borderColor: window.chartColors.blue,
+				data: [],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: ''
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Horário'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Percentual de movimento'
+					}
+				}]
+			}
+		}
+	};
+
+	// esse "sortearTemperatura()" será desnecessário quando usarmos o backend futuramente
+	function sortearTemperatura() {
+		var limiteMin = 0;
+		var limiteMax = 100;
+		var minimoAbsoluto = Math.abs(limiteMin);
+		return (Math.random() * (minimoAbsoluto+limiteMax) - minimoAbsoluto).toFixed(1);
+	}
+
+	function recuperarDadosIniciais() {
+
+		// esse "registros" será recuperado do backend futuramente
+		var registros = [
+			{
+				momento: '13:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '14:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '15:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '16:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '17:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '18:00',
+				leitura: sortearTemperatura()
+			},
+			{
+				momento: '19:00',
+				leitura: sortearTemperatura()
+			},{
+				momento: '20:00',
+				leitura: sortearTemperatura()
+			},{
+				momento: '21:00',
+				leitura: sortearTemperatura()
+			},{
+				momento: '22:00',
+				leitura: sortearTemperatura()
+			}
+		];
+
+		var contador = 0;
+
+		// registros.length é a quantidade de itens em "registros"
+		while (contador < registros.length) {
+
+			config.data.labels.push(registros[contador].momento);  // incluir um novo momento
+			config.data.datasets[0].data.push(registros[contador].leitura);  // incluir uma nova leitura
+
+			contador++;
+		}
+
+	}
+
+	function mudarDados () {
+		config.data.datasets.forEach(function(dataset) {
+			dataset.data = dataset.map(function(){
+				return sortearTemperatura();
+			})
+		})
+	}
+
+	function plotarGrafico() {
+		// chamar os 7 últimos registros de leitura
+		recuperarDadosIniciais();
+
+		// criação do gráfico na página
+		var ctx = document.getElementById('c_grafico').getContext('2d');
+		window.graficoLinha = new Chart(ctx, config);
+
+		// função que agenda a recuperação da última leitura para daqui a 7 segundos
+		// receberNovasLeituras(); // anulei a função de receber novos dados para o gráfico ficar parado
+	}
+
+	// indicando que a função "plotarGrafico" será invocada assim que a página carregar
+	window.onload = plotarGrafico;
+
+</script>
