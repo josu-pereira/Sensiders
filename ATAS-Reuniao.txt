@@ -1,0 +1,74 @@
+ATAS de Reunião
+
+data: 01/04/20
+falta: ninguém
+presente: todos
+Fizemos: como o site vai ser (One page), Ferramenta de gestão definida (Quire), Tipo gráfico - Chart definido (Area, Column)
+
+Data da Reunião: 03/04/2019
+Membros presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor
+Sobre: Discutimos e produzimos a HLD.
+
+Data de Reunião: 06/04/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Organizar e realizar o processo de montagem do modelo conceitual de dados, para com a implementação no Banco do projeto vigente.
+	Status do Objetivo: Concluído, o modelo conceitual foi feito de forma conjunta entre os membros do grupo, todos tiveram participação na decisão do resultado final.
+
+Data de Reunião: 07/04/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Definir um modelo para que seja feito a criação do LLD (Low Level Design) e feito isso implementa-lo com a opinião geral do grupo, após feito o LLD, encaminhar para a matéria de T.I (Tecnologia da Informação), para a aprovação do Professor responsável.
+	Status do Objetivo: Concluído, a criação e delimitação do LLD foi um sucesso, destaca-se a participação mútua do grupo que vêm sendo de grande aproveitamento, o arquivo foi postado e encaminhado para avaliação e aprovação.
+
+Data de Reunião: 08/04/2020
+    Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+    Objetivo:  Discutir e desenvolver protótipo do dashboard do site.
+    Status do Objetivo: Concluído. Cada integrante apresentou um protótipo de dashboard, e então o protótipo final foi feito com as características comuns entre eles.
+
+Data de Reunião: 09/04/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Definir os próximos objetivos que serão feitos durante a próxima semana.
+	Status do Objetivo: Os afazeres foram definidos com êxito e as dificuldades foram colocadas a tona para a distribuição de objetivos, abaixo estará o que deve ser feito.
+	Objetivos:
+	- Revisão Integral da Contextualização de negócio
+	- Alterar o modelo conceitual, colocando as exigências do professor Fernando (tempo real)
+	- Finalizar o protótipo do site, incluindo todo conteúdo, após isso, definir como será feita a distribuição das páginas para a aplicação do HTML/CSS
+	- Começar o Script do Banco de Dados.
+	- Alteração no HDL: preencher espaço e padronizar o tamanho das setas.
+
+Data: 10/04/2020
+	Presente: todos
+	Objetivos: reavaliar modelagem conceitual, redefinição da paleta de cores do site, atualização do HLD & LLD do projeto, Inicialização da estrutura da prototipação do site institucional.
+	Status: Concluído conforme as instruções dos professores e com a colaboração dos integrantes do grupo.
+
+Data de Reunião: 13/04/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Realizar as tarefas principais e dividir o grupo em duas vertentes para a realização dos objetivos, a princípio: o protótipo do site e o script inicial do Banco de Dados .
+	Status do Objetivo: O script inicial foi concluído com sucesso, apenas faltando alguns "inserts" na tabela dados, contudo todas as tabelas foram criadas e testadas provando a eficiência do banco, sobre o protótipo do site, foi feito a tela de login com êxito e um rascunho do que irá se tornar o site também foi terminado.
+
+Data de Reunião: 15/04/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Atualizar o protótipo do site e fazer o ppt com o que irá ser mostrado ao professor do que foi feito na semana, alteração no protótipo do Dashboard a visualizar status ao vivo dos dados e alteração da Utilização do tipo de gráfico (Gauge,Column & Line Chart), criação da Sprint Backlog, alteração na modelagem conceitual.
+	Status do Objetivo: Todos participaram de forma unânime	nas decisões conforme as alterações feitas.
+
+Data: 20/04
+	Presença: todos
+	Discussão: Arrumar modelagem conceitual (Adicionar Entidade Filial), Protótipo do Site no Figma - Para esta quarta feira (22/04)
+
+Data de Reunião: 24/04/2020
+    Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+    Objetivo: 
+Discutir e construir uma tabela de riscos referentes a Sprint 2, tendo uma discussão de cunho profissional e muito abrangente.
+    Status do Objetivo:
+A tabela foi construída com referência ao modelo presenciado na aula de Pesquisa e Inovação do dia 22/04/2020, houve uma discussão muito abrangente de todos os integrantes, contudo ao término da atividade, foi posto a indagação ao grupo, se os riscos eram referentes a somente a Sprint 2 ou se também ao projeto como um todo, sendo a primeira opção a correta, o grupo deverá fazer as devidas alterações na tabela.
+
+Data de Reunião: 27/04/2020
+    Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+    Objetivo: 
+Definir como seria feito o relatório de grupo da atividade referente a matéria de Arquitetura Computacional, incluindo a contextualização, explicação do funcionamento do projeto, tabela referente a leitura dos sinais emitidos e uma explicação da mesma
+    Status do Objetivo:
+O documento final ainda precisa ser modificado para com todas as informações referentes, contudo os dados que ainda precisam ser implementados já foram coletados.
+
+Data: 29/04/2020
+	Presentes: todos
+	Objetivo: Terminar a planilha de riscos conforme orientações dadas pelo Brandão por e-mail.
+	Status: Concluído, a planilha foi terminada com diferenciais únicos do nosso grupo, trazendo 9 riscos possíveis ao projeto até sua entrega das sprints.
