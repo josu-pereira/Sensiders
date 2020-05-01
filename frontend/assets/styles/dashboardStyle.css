@@ -34,7 +34,7 @@ body, * {
 }
 
 .dashboard-container .container span {
-    margin-top: 30px;
+    margin: 10px 0;
     color: #FF7A00;
 }
 
@@ -45,10 +45,9 @@ body, * {
 }
 
 .dashboard-container .container .grafico {
-    margin-top: 25px;
+    margin-top: 35px;
     height: 60vh;
     width: 60%;
-    background-color: #a0a0a0;
     display:flex;
     justify-content: center;
     align-items:center;
