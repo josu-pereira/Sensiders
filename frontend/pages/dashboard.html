@@ -6,6 +6,7 @@
 	<title>Gráfico de 1 linha com Chart.js</title>
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<link rel="shortcut icon" href="../assets/images/Logo.ico">
 	<link rel="stylesheet" href="../assets/styles/dashboardStyle.css">
 	<title>Dashboard</title>
 	<style>
@@ -35,7 +36,7 @@
         <div class="container">
 			<h2>Atual movimentação nos setores</h1>
 			<span id="numero_pessoas">100 pessoas no supermercado atualmente</span>
-			<select id="setores">
+			<select id="setor" onchange="novoSetor()">
 				<option value="Padaria">Padaria</option>
 				<option value="Eletrônicos">Eletrônicos</option>
 				<option value="Açougue">Açougue</option>
@@ -185,18 +186,22 @@
 			numero_pessoas.innerHTML = `${pessoas} pessoas no mercado atualmente`;
 
 			//Mudando a cor do gráfico de acordo com o valor da movimentação
-			if (valor > 46 && valor <=77) {
+			if (valor > 77 && valor <=85) {
 				grafico.borderColor = window.chartColors.yellow;
 				grafico.backgroundColor = window.chartColors.yellow;
 				grafico.label = 'Alerta';
-			} else if (valor > 22 && valor <=46) {
+			} else if (valor >= 40 && valor <= 77) {
 				grafico.borderColor = window.chartColors.green;
 				grafico.backgroundColor = window.chartColors.green;
 				grafico.label = 'Ideal';
-			} else {
+			} else if (valor > 85) {
 				grafico.borderColor = window.chartColors.red;
 				grafico.backgroundColor = window.chartColors.red;
 				grafico.label = 'Crítico';
+			} else {
+				grafico.borderColor = window.chartColors.blue;
+				grafico.backgroundColor = window.chartColors.blue;
+				grafico.label = 'Fraco';
 			}
 			// Atualiza o gráfico
 			window.graficoLinha.update();
@@ -208,6 +213,8 @@
 		}, 3000); // 30000 ms -> 30 segundos
 	}
 
+	
+
 	function plotarGrafico() {
 		// chamar os 7 últimos registros de leitura
 		recuperarDadosIniciais();
@@ -218,6 +225,17 @@
 
 		// função que agenda a recuperação da última leitura para daqui a 7 segundos
 		receberNovasLeituras();
+	}
+
+	function novoSetor() {
+		config.data.datasets.forEach(function(dataset) {
+			dataset.data = dataset.data.map(function() {
+				return sortearTemperatura();
+			});
+
+		});
+
+		window.myLine.update();
 	}
 
 	// indicando que a função "plotarGrafico" será invocada assim que a página carregar
