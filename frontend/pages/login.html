@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Sensiders</title>
     <link rel="stylesheet" href="../assets/styles/loginStyle.css">
+    <script src="../assets/scripts/validationForm.js"></script>
 </head>
+
 <body>
     <div class="login-container">
         <div class="back">
@@ -14,16 +17,17 @@
         </div>
         <div class="formulario">
             <img src="../assets/images/Sensiders.svg">
+            <form action="" onsubmit="return loginValidationForm()">
+                <input type="email" placeholder="Email" id="emailInp" required>
+                <input type="password" placeholder="Senha" id="senhaInp" required>
 
-            <input type="text" placeholder="Email">
-            <input type="text" placeholder="Senha">
-
-            <button>Entrar</button>
-
+                <button>Entrar</button>
+            </form>
             <p><a href="password.html">Esqueceu a senha?</a></p>
             <p>Ainda não é cadastrado? <a href="register.html">Registre-se</a></p>
         </div>
 
     </div>
 </body>
+
 </html>

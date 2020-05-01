@@ -16,25 +16,25 @@
     </div>
     <div class="container">
         <div class="form-container">
-            <select id="supermercado">
-                <option value="Escolha">Escolha um supermercado</option>
+            <select id="supermercado" required>
+                <option value="Escolha" selected disabled>-- Escolha um supermercado --</option>
                 <option value="Extra">Extra</option>
                 <option value="Dia">Dia</option>
                 <option value="Carrefour">Carrefour</option>
             </select>
-            <form action="">
+            <form action="" onsubmit="return registerForm()">
                 <div class="endereco">
-                    <input type="text" placeholder="CEP" id="cep" maxlength="9">
-                    <input type="text" placeholder="nº" id="numero">
+                    <input type="text" placeholder="CEP" id="cep" maxlength="9" required>
+                    <input type="text" placeholder="nº" id="numero" required>
                 </div>
-                <input type="text" id="rua" placeholder="Rua">
+                <input type="text" id="rua" placeholder="Rua" required>
                 <div class="endereco">
-                    <input type="text" placeholder="Cidade" id="cidade">
-                    <input type="text" placeholder="UF" id="uf">
+                    <input type="text" placeholder="Cidade" id="cidade" required>
+                    <input type="text" placeholder="UF" id="uf" required>
                 </div>
-                <input type="email" id="email" placeholder="Email">
-                <input type="password" id="senha" placeholder="Senha">
-                <input type="password" id="confirm_senha" placeholder="Confirme a senha">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="password" id="confirm_senha" placeholder="Confirme a senha" required>
                 <input class="button-submit" type="submit" value="Cadastrar">
             </form>
             <p>Voltar para a página de <a href="login.html" >login</a></p>
