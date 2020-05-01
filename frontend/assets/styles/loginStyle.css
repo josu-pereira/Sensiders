@@ -74,13 +74,21 @@ body, * {
     background: #FF7A00;
     color: #FFFFFF;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 p {
     font-size: 14px;
     line-height: 16px;
     color: #576D7E;
+    padding-top: 5px;
 }
+
 p a {
     color: #FF7A00;
+}
+
+.forgot {
+    font-weight: 600;
+    padding: 0 0 15px 0;
 }
