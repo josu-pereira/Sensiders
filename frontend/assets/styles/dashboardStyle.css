@@ -11,10 +11,11 @@ body, * {
     background-color: #FFBE55;
     height: 7vh;
     display:flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .dashboard-container .header button {
+    margin: 0 20px;
     border: 0;
     background-color: transparent;
     color: white;
@@ -23,10 +24,12 @@ body, * {
     cursor: pointer;
 }
 
-#new {
-    justify-self: flex-start;
-    margin-left: 25px;
+.dashboard-container .header > .button-set {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .dashboard-container .container {
     height: 80vh;
