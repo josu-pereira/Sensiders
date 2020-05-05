@@ -38,7 +38,7 @@ body, * {
     align-self: center;
     margin: auto;
     width: 25%;
-    min-height: 45%;
+    height: 45vh;
     background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 
@@ -60,8 +60,6 @@ body, * {
     border: 1px solid #C8C5CC;
     box-sizing: border-box;
     margin-bottom: 15px;
-}
-.login-container .formulario input::placeholder {
     padding: 5px;
 }
 
