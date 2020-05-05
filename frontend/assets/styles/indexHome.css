@@ -154,6 +154,44 @@ body {
     font-weight: bold;
 }
 
+/* nosso papel */
+.negocio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.negocio h2 {
+    padding: 20px 0;
+    text-align: center;
+    margin: 0;
+    font-size: 28px;
+}
+.negocio-div {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+
+.q1 {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+    height: 200px;
+    width: 30%;
+    text-align: center;
+}   
+
+
 .titsobre {
     padding: 25px;
     margin: 0;
