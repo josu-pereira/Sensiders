@@ -72,3 +72,13 @@ Data: 29/04/2020
 	Presentes: todos
 	Objetivo: Terminar a planilha de riscos conforme orientações dadas pelo Brandão por e-mail.
 	Status: Concluído, a planilha foi terminada com diferenciais únicos do nosso grupo, trazendo 9 riscos possíveis ao projeto até sua entrega das sprints.
+
+Data de Reunião: 01/05/2020
+    Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+    Objetivo: Realizar a constatação de tudo que deveríamos entregar até o dado momento, criar um documento de apresentação que demonstrasse o que foi feito para o professor e após a apresentação, definir o que será feito para aprimorar os conceitos e entregáveis deficientes.
+    Status do Objetivo: A apresentação foi feita e creditada pelo professor, os pontos a serem modificados foram devidamente enumerados e serão pontuados na próxima reunião.
+
+Data de Reunião: 04/05/2020
+	Presentes: Alexandre, Anderson, Felipe, Theodoro, Victor, Ygor.
+	Objetivo: Se preparar para a Sprint, revisando os entregáveis feitos e a apresentação que irá ser usada no dia 06/04/2020, também tirar dúvidas entre os integrantes para que todos estejam confiantes o bastante para realizar uma ótima apresentação e validação técnica.
+	Status do Objetivo: A apresentação foi revisada e avaliada pelos integrantes, foi decidido que será feito uma revisão da Sprint 2 e treino de apresentação no dia 05/04/2020.
