@@ -32,11 +32,12 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p> Valor de cada sensor: R$50:00  <br>
+            <p> Valor de cada sensor: <i id="iPrecoSensor"></i>  <br>
                 Quantidade dos sensores multiplicado pelo valor: <i id="iValorSensor"></i> <br>
                 Quantidade de setores por mercado: <i id="iSetor"></i> <br>
                 Numeros de entrada e saida do mercado: <i id="iMercado"></i> <br>
                 Numeros de caixas no mercado: <i id="iCaixas"></i> <br>
+                Valor total: <i id="iTotal"></i>
             </p>
         </div>
     </div>
@@ -47,15 +48,17 @@
 <script>
         function calcular() {
         var dois = 2;
-        var sensorValor = 50;        
-        var sensor = parseInt(document.getElementById('sensorInp').value) *sensorValor;
+        var sensorPreco = 3;        
+        var sensor = parseInt(document.getElementById('sensorInp').value) *sensorPreco;
         var setor = parseInt(document.getElementById('setorInp').value);
         var entradaSaida = parseInt(document.getElementById('entradaInp').value);
         var caixas = parseInt(document.getElementById('caixasInp').value);
 
+        iPrecoSensor.innerHTML = `R$ ${sensorPreco}`;
         iValorSensor.innerHTML = `R$ ${sensor.toFixed(2)}`;
         iSetor.innerHTML = `${setor}`;
-        iMercado.innerHTML = `${entradaSaida}, dois sensores  por cada dá: R$ ${((dois*sensorValor)*entradaSaida).toFixed(2)}`;
-        iCaixas.innerHTML = `${caixas}, um sensor por caixa: R$ ${(caixas*sensorValor).toFixed(2)}`;
+        iMercado.innerHTML = `${entradaSaida}, dois sensores  por cada dá: R$ ${((dois*sensorPreco)*entradaSaida).toFixed(2)}`;
+        iCaixas.innerHTML = `${caixas}, um sensor por caixa: R$ ${(caixas*sensorPreco).toFixed(2)}`;
+        iTotal.innerHTML = `R$ ${(sensor + (caixas * sensorPreco) + (dois*sensorPreco) * entradaSaida).toFixed(2)}`;
     }
 </script>
