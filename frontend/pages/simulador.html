@@ -47,8 +47,7 @@
 <script src="../assets/scripts/simulador.js"></script>
 <script>
         function calcular() {
-        var dois = 2;
-        var sensorPreco = 3;        
+        var sensorPreco = 30;        
         var sensor = parseInt(document.getElementById('sensorInp').value) *sensorPreco;
         var setor = parseInt(document.getElementById('setorInp').value);
         var entradaSaida = parseInt(document.getElementById('entradaInp').value);
@@ -57,8 +56,8 @@
         iPrecoSensor.innerHTML = `R$ ${sensorPreco}`;
         iValorSensor.innerHTML = `R$ ${sensor.toFixed(2)}`;
         iSetor.innerHTML = `${setor}`;
-        iMercado.innerHTML = `${entradaSaida}, dois sensores  por cada dá: R$ ${((dois*sensorPreco)*entradaSaida).toFixed(2)}`;
+        iMercado.innerHTML = `${entradaSaida}, dois sensores  por cada dá: R$ ${((2*sensorPreco)*entradaSaida).toFixed(2)}`;
         iCaixas.innerHTML = `${caixas}, um sensor por caixa: R$ ${(caixas*sensorPreco).toFixed(2)}`;
-        iTotal.innerHTML = `R$ ${(sensor + (caixas * sensorPreco) + (dois*sensorPreco) * entradaSaida).toFixed(2)}`;
+        iTotal.innerHTML = `R$ ${(sensor + (caixas * sensorPreco) + (2*sensorPreco) * entradaSaida).toFixed(2)}`;
     }
 </script>
