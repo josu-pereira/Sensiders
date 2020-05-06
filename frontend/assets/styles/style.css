@@ -5,6 +5,10 @@ body, * {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
+
+html {
+    scroll-behavior: smooth;
+}
 /* ESTILOS GLOBAIS */
 .bg1{
     background-color: #fafafa;
