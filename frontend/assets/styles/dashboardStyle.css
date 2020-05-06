@@ -69,6 +69,36 @@ body, * {
     align-items:center;
 }
 
+/* */
+ul {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+}
+
+ul li {
+    background: #aaa;
+    padding:10px;
+    border: 1px solid #3f3f3f;
+    position: relative;
+    display:flex;
+    justify-content: center;
+}
+
+ul li:nth-child(1), ul li:nth-child(2),
+ul li:nth-child(9), ul li:nth-child(10) {
+    background: rgb(255,99,132);
+/*    background: rgb(53,158,230);*/
+}
+ul li:nth-child(3), ul li:nth-child(4),
+ul li:nth-child(7), ul li:nth-child(8) {
+    background: rgb(255, 205,86);
+}
+ul li:nth-child(5), ul li:nth-child(6) {
+    background: rgb(97,201,94);
+}
+
+
 .dashboard-container .container.last {
     margin-bottom: 50px;
 }
