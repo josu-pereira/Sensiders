@@ -1,7 +1,7 @@
 var configuracoes = {
     banco: {
-        server: "serversendiers.database.windows.net",
-        user: "201grupo11c@bandtec.com.br",
+        server: "serversensiders.database.windows.net",
+        user: "adminlocal",
         password: "#Gfgrupo11c",
         database: "bdProjetoSensiders",
         options: {
