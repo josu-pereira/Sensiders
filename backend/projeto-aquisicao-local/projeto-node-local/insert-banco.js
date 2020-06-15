@@ -14,6 +14,7 @@ const intervalo_geracao_aleatoria_segundos = 5; // intervalo, em segundos, no qu
 const porta_serial = require('serialport');
 const leitura_recebida = porta_serial.parsers.Readline;
 const banco = require(`./banco`);
+const { log } = require('console');
 
 // prevenir problemas com muitos recebimentos de dados do Arduino
 require('events').EventEmitter.defaultMaxListeners = 15;
@@ -86,24 +87,27 @@ function registrar_leitura(presenca) {
     // console.log(`temperatura: ${temperatura}`);
     console.log(`presenca: ${presenca}`);
 
-    banco.conectar().then(() => {
+    if(presenca == 1) {
+        banco.conectar().then(() => {
 
-        return banco.sql.query(`
-        INSERT into dado (dataHora, fkSensor, statusSensor)
-        values (CONVERT(Datetime, '${agora()}', 120), 1, ${presenca});
-        `);
-        
-        /*delete from dado where id not in 
-        (select top ${registros_mantidos_tabela_leitura} id from dado order by id desc);*/
-    }).catch(erro => {
+            return banco.sql.query(`
+            INSERT into dado (dataHora, fkSensor, statusSensor)
+            values (CONVERT(Datetime, '${agora()}', 120), 1, ${presenca});
+            `);
+            
+            /*delete from dado where id not in 
+            (select top ${registros_mantidos_tabela_leitura} id from dado order by id desc);*/
+        }).catch(erro => {
 
-        console.error(`Erro ao tentar registrar aquisição na base: ${erro}`);
+            console.error(`Erro ao tentar registrar aquisição na base: ${erro}`);
 
-    }).finally(() => {
-		console.log('Registro inserido com sucesso! \n');
-        banco.sql.close();
-    });
-
+        }).finally(() => {
+            console.log('Registro inserido com sucesso! \n');
+            banco.sql.close();
+        });
+    }else {
+        console.log('Nenhuma movimentação encontrada');
+    }
 }
 
 // função que retorna data e hora atual no formato aaaa-mm-dd HH:mm:ss
