@@ -36,8 +36,11 @@ router.get('/tempo-real', function (req, res, next) {
 	
 	console.log(`Recuperando a última leitura`);
 
-	const instrucaoSql = `select top 1 statusSensor, dataHora, FORMAT(dataHora,'HH:mm:ss') as momento_grafico 
-	from dado order by dataHora desc`;
+	const instrucaoSql = `select top 1
+	((count(distinct fkSensor) * 100) / 
+	(select count(idSensor) from sensor where fkSetor = 1)) as porcentagem,
+	dataHora from dado, sensor
+	where fkSetor = 1 group by dataHora order by dataHora desc;`;
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
 		.then(resultado => {
