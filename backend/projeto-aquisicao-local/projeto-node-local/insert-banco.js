@@ -81,19 +81,34 @@ function iniciar_escuta() {
 
 // função que recebe valores de temperatura e umidade
 // e faz um insert no banco de dados
-function registrar_leitura(presenca) {
+function registrar_leitura() {
 
     console.log('Iniciando inclusão de novo registro...');
     // console.log(`temperatura: ${temperatura}`);
-    console.log(`presenca: ${presenca}`);
-
-    if(presenca == 1) {
-        banco.conectar().then(() => {
+    
+    
+    banco.conectar().then(() => {
+        const momentoagora = agora();
+        let valorsql = '';
+        for (let contador = 1; contador <= 10; contador++) {
+            let presenca = Math.floor(Math.random()*2)
+            console.log(contador)
+            console.log(`presenca: ${presenca}`);
+            if (presenca == 1) {
+                console.log("Inserido!");
+                valorsql += `(CONVERT(Datetime, '${momentoagora}', 120), ${contador}, 1),`;
+            } else {
+                console.log("Não inserido")
+            }
+        }
+        const valoresInserts = (valorsql.substring(0, valorsql.length - 1)) + ';';
+        console.log(valoresInserts)
 
             return banco.sql.query(`
             INSERT into dado (dataHora, fkSensor, statusSensor)
-            values (CONVERT(Datetime, '${agora()}', 120), 1, ${presenca});
+            values ${valoresInserts}
             `);
+            
             
             /*delete from dado where id not in 
             (select top ${registros_mantidos_tabela_leitura} id from dado order by id desc);*/
@@ -105,9 +120,6 @@ function registrar_leitura(presenca) {
             console.log('Registro inserido com sucesso! \n');
             banco.sql.close();
         });
-    }else {
-        console.log('Nenhuma movimentação encontrada');
-    }
 }
 
 // função que retorna data e hora atual no formato aaaa-mm-dd HH:mm:ss
@@ -126,7 +138,7 @@ if (gerar_dados_aleatorios) {
 	setInterval(function() {
 		console.log('Gerando valores aleatórios!');
 		// registrar_leitura(Math.min(Math.random()*100, 60), Math.min(Math.random()*200, 100))
-		registrar_leitura(Math.floor(Math.random()*2))
+		registrar_leitura()
 	}, intervalo_geracao_aleatoria_segundos * 1000);
 } else {
 	// iniciando a "escuta" de dispositivos Arduino.
