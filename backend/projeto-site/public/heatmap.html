@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="heatmap.js"></script>
+  </head>
+  <body>
+    <style>
+      .heatmap {
+        height: 550px;
+        width: 550px;
+        background-image: url("planta.jpg");
+        background-size: cover;
+      }
+    </style>
+
+    <div class="heatmap">
+      <!-- AQUI VAI SER CRIADO O MAPA -->
+    </div>
+
+    <form id="heatmap_form">
+      <input type="time" name="hora_ini" min="00:00" max="23:59" required />
+      <input type="time" name="hora_fim" min="00:00" max="23:59" required />
+    </form>
+
+    <button type="submit" onclick="buscarPresencas()">Buscar</button>
+
+    <script>
+      function buscarPresencas() {
+        var formulario = new URLSearchParams(new FormData(heatmap_form));
+        fetch("/leituras/presenca-hora", {
+          method: "POST",
+          body: formulario,
+        }).then((resposta) => {
+          if (resposta.ok) {
+            resposta.json().then((json) => {
+              console.log("JSON AQUI", json);
+
+              // Configuração minima, container padrão
+              var heatmapInstance = h337.create({
+                container: document.querySelector(".heatmap"),
+              });
+
+              var points = [];
+              var max = 100;
+              var min = 0;
+              var width = 850;
+              var height = 490;
+
+              //Gerando um ponto por local da planta
+              var local1 = {
+                x: 140,
+                y: 160,
+                value: json[1].total,
+                radius: 150,
+              };
+              var local2 = {
+                x: 430,
+                y: 110,
+                value: json[2].total,
+                radius: 120,
+              };
+              var local3 = {
+                x: 700,
+                y: 130,
+                value: json[3].total,
+                radius: 130,
+              };
+              var local4 = {
+                x: 80,
+                y: 380,
+                value: json[4].total,
+                radius: 100,
+              };
+              var local5 = {
+                x: 320,
+                y: 350,
+                value: json[5].total,
+                radius: 150,
+              };
+              var local6 = {
+                x: 670,
+                y: 380,
+                value: json[6].total,
+                radius: 180,
+              };
+
+              console.log("Local 1", local1);
+              console.log("Local 2", local2);
+              console.log("Local 3", local3);
+              console.log("Local 4", local4);
+              console.log("Local 5", local5);
+              console.log("Local 6", local6);
+
+              points = points.concat(
+                local1,
+                local2,
+                local3,
+                local4,
+                local5,
+                local6
+              );
+
+              // formato para gerar mapa
+              var data = {
+                max: max,
+                min: min,
+                data: points,
+              };
+
+              // Inicia pontos no mapa de calor
+              heatmapInstance.setData(data);
+            });
+          } else {
+            console.log("Erro ao buscar quantidade de presença!");
+
+            response.text().then((texto) => {
+              console.error(texto);
+            });
+          }
+        });
+        return false;
+      }
+    </script>
+  </body>
+</html>
