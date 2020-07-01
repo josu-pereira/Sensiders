@@ -9,8 +9,10 @@
   <body>
     <style>
       .heatmap {
-        height: 550px;
-        width: 550px;
+        /* height: 400px; */
+        /* width: 605px; */
+        height: 500px;
+        width: 500px;
         background-image: url("planta.jpg");
         background-size: cover;
       }
@@ -53,54 +55,54 @@
               var local1 = {
                 x: 140,
                 y: 160,
-                value: json[1].total,
+                value: json[0].media,
                 radius: 150,
               };
               var local2 = {
                 x: 430,
                 y: 110,
-                value: json[2].total,
+                value: json[1].media,
                 radius: 120,
               };
               var local3 = {
                 x: 700,
                 y: 130,
-                value: json[3].total,
+                value: json[2].media,
                 radius: 130,
               };
               var local4 = {
                 x: 80,
                 y: 380,
-                value: json[4].total,
+                value: json[3].media,
                 radius: 100,
               };
               var local5 = {
                 x: 320,
                 y: 350,
-                value: json[5].total,
+                value: json[4].media,
                 radius: 150,
               };
-              var local6 = {
-                x: 670,
-                y: 380,
-                value: json[6].total,
-                radius: 180,
-              };
+              // var local6 = {
+              //   x: 670,
+              //   y: 380,
+              //   value: json[5].media,
+              //   radius: 180,
+              // };
 
               console.log("Local 1", local1);
               console.log("Local 2", local2);
               console.log("Local 3", local3);
               console.log("Local 4", local4);
               console.log("Local 5", local5);
-              console.log("Local 6", local6);
+              // console.log("Local 6", local6);
 
               points = points.concat(
                 local1,
                 local2,
                 local3,
                 local4,
-                local5,
-                local6
+                local5
+                // local6
               );
 
               // formato para gerar mapa
