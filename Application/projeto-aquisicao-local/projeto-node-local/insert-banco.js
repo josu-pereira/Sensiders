@@ -141,7 +141,7 @@ if (gerar_dados_aleatorios) {
 		let instrucaoSQL = 'INSERT into dado (dataHora, fkSetor, grauMov) values ';
         let valuesInstrucaoSQL = '';
         
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 12; i++) {
             const qtdSensores = 10;
             let somaSensores = 0;
 
