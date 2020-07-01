@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../assets/images/Logo.ico">
     <title>Cadastro | Sensiders</title>
     <script defer src="../assets/scripts/cep.js"></script>
+    <script src="../assets/scripts/validationForm.js"></script>
 </head>
 <body>
     <div class="menu">
@@ -17,29 +18,82 @@
     </div>
     <div class="container">
         <div class="form-container">
-            <select id="supermercado" required>
+            <form id="form_cadastro" method="POST" onsubmit="return cadastrar()">
+            <select id="supermercado" name="mercado" required>
                 <option value="Escolha" selected disabled>-- Escolha um supermercado --</option>
+                <option value="Sonda">Sonda</option>
+                <option value="Dias">Dias</option>
                 <option value="Extra">Extra</option>
-                <option value="Dia">Dia</option>
-                <option value="Carrefour">Carrefour</option>
             </select>
-            <form action="" onsubmit="return registerForm()">
                 <div class="endereco">
-                    <input type="text" placeholder="CEP" id="cep" maxlength="9" required>
-                    <input type="text" placeholder="nº" id="numero" required>
+                    <input type="text" placeholder="CEP" name="cep" id="cep" maxlength="9" required>
+                    <input type="text" placeholder="nº" name="numero" id="numero" required>
                 </div>
                 <input type="text" id="rua" placeholder="Rua" required>
                 <div class="endereco">
                     <input type="text" placeholder="Cidade" id="cidade" required>
                     <input type="text" placeholder="UF" id="uf" required>
                 </div>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="text" id="nome" placeholder="Nome" name="nome" required>
+                <input type="email" id="email" placeholder="Email" name="email" required>
+                <input type="password" id="senha" placeholder="Senha" name="senha" required>
                 <input type="password" id="confirm_senha" placeholder="Confirme a senha" required>
-                <input class="button-submit" type="submit" value="Cadastrar">
+                <input 
+                    class="button-submit" 
+                    onsubmit="return loginValidationForm()" 
+                    type="submit" 
+                    id="btn_entrar" 
+                    value="Cadastrar"
+                >
             </form>
+            <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
+    
+            <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                Erro no cadastro
+            </div>
             <p>Voltar para a página de <a href="login.html" >login</a></p>
         </div>
     </div>
 </body>
 </html>
+<script>
+
+     function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.display='block';
+        div_erro.style.display='none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        img_aguarde.style.display='none';
+        div_erro.style.display='block';
+    }
+
+
+</script>
