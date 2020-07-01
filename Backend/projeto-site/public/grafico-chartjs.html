@@ -40,21 +40,14 @@
         labels: [],
         datasets: [
             {
-                yAxisID: 'y-temperatura',
-                label: 'Temperatura',
+                yAxisID: 'y-media',
+                label: 'Media de Movomentação/Min',
                 borderColor: window.chartColors.red,
                 backgroundColor: window.chartColors.red,
                 fill: false,
                 data: []
             },
-            {
-                yAxisID: 'y-umidade',
-                label: 'Umidade',
-                borderColor: window.chartColors.blue,
-                backgroundColor: window.chartColors.blue,
-                fill: false,
-                data: []
-            }
+            
         ]
     };
 
@@ -63,7 +56,7 @@
     // ou se souber o que está fazendo!
     function atualizarGrafico() {
 
-        fetch('/leituras/tempo-real', { cache: 'no-store' }).then(function (response) {
+        fetch('/dado/ultima-media', { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -71,14 +64,12 @@
                     
                     // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                    dados.labels.push(novoRegistro.Horario); // incluir um novo momento
                     dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
-                    dados.datasets[1].data.push(novoRegistro.umidade); // incluir uma nova leitura de umidade
+                    dados.datasets[0].data.push(novoRegistro.MediaMinuto); // incluir uma nova leitura de temperatura
                     window.grafico_linha.update();
                     
-                    setTimeout(atualizarGrafico, 5000);
+                    setTimeout(atualizarGrafico, 60000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -108,18 +99,9 @@
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
-                    id: 'y-temperatura',
-                }, {
-                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: 'right',
-                    id: 'y-umidade',
-
-                    // grid line settings
-                    gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
-                    },
-                }],
+                    id: 'y-media',
+                }
+                ],
             }
         };
 
@@ -130,7 +112,7 @@
     // e como são recuperados do BackEnd
     function obterDadosGrafico() {
 
-        fetch('/leituras/ultimas', { cache: 'no-store' }).then(function (response) {
+        fetch('/dado/ultimas', { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
 
@@ -145,10 +127,9 @@
                         // dos atributos que vem no JSON 
                         // que gerou na consulta ao banco de dados
 
-                        dados.labels.push(registro.momento_grafico);
+                        dados.labels.push(registro.Horario);
 
-                        dados.datasets[0].data.push(registro.temperatura);
-                        dados.datasets[1].data.push(registro.umidade);
+                        dados.datasets[0].data.push(registro.MediaMinuto);
                     }
                     console.log(JSON.stringify(dados));
 
