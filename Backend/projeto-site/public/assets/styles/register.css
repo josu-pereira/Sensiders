@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    background-color: #C9F2E8;
+    margin: 0;
+}
+
+body * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.button-submit {
+    background-color: #FF7A00;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.back-page {
+    color: #FF7A00;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.menu {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.menu a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 10%;
+}
+
+.menu p {
+    margin-left: 10px;
+}
+
+/* .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 91vh;
+} */
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 27%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container form input {
+    height: 40px;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.form-container select {
+    width: 100%;
+    font-size: 14px;
+    padding: 11px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.form-container img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-container p {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.endereco {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#cep {
+    width: 65%;
+}
+
+#numero {
+    width: 30%;
+}
+
+#cidade {
+    width: 75%;
+}
+
+#uf {
+    width: 20%;
+}
+
+p a {
+    color: #FF7A00;
+    font-style: normal;
+    font-weight: 500;
+    text-decoration: none;
+}

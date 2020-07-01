@@ -1,30 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página com exemplo de Autenticação (Login)</title>
-
+    <link rel="shortcut icon" href="../assets/images/Logo.ico">
+    <title>Login | Sensiders</title>
+    <link rel="stylesheet" href="../assets/styles/loginStyle.css">
+    <script src="../assets/scripts/validationForm.js"></script>
 </head>
 
 <body>
+    <div class="login-container">
+        <div class="back">
+            <img src="../assets/images/back.png" alt="Imagem voltar">
+            <a href="index.html" style="font-weight: 600;">HOME</a>
+        </div>
+        <div class="formulario">
+            <img src="../assets/images/Sensiders.svg">
+            <form onsubmit="return entrar()" method="POST" id="form_login">
+                <input name="login" type="email" placeholder="Email" id="emailInp" required>
+                <input name="senha" type="password" placeholder="Senha" id="senhaInp" required>
 
-    <form id="form_login" method="post" onsubmit="return entrar()">
-        Usuário: <input type="text" name="login">
-        <br>
-        Senha: <input type="password" name="senha">
-        <br>
-        <button id="btn_entrar">Entrar</button>
-    </form>
-    
-    <img src="aguarde.gif" id="img_aguarde" style="display: none;">
-    
-    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-        
+                <button id="btn_entrar" onsubmit="return loginValidationForm()">Entrar</button>
+            </form>
+            <img src="aguarde.gif" id="img_aguarde" style="display: none;">
+
+            <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+
+            </div>
+            <p><a href="password.html">Esqueceu a senha?</a></p>
+            <p>Ainda não é cadastrado? <a href="register.html">Registre-se</a></p>
+        </div>
+
     </div>
-
 </body>
 
 </html>

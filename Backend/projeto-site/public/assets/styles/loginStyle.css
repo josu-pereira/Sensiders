@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body, * {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+}
+.login-container{
+    max-width: 100%;
+    max-height:100%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #C9F2E8;
+}
+.login-container .back {
+    color: #FF7A00;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 25px;
+    display:flex;
+    align-items: center;
+}
+
+.login-container .back img{
+    padding-right: 5px;
+}
+
+.login-container .back a {
+    text-decoration: none;
+    color: #FF7A00;
+}
+
+.login-container .formulario{
+    padding: 25px 0;
+    align-self: center;
+    margin: auto;
+    width: 25%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container .formulario img {
+    margin-bottom: 30px;
+}
+
+.login-container .formulario input {
+    width: 250px;
+    height: 40px;
+    font-size: 22px;
+    line-height: 26px;
+    background: #FFFFFF;
+    border: 1px solid #C8C5CC;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.login-container .formulario button {
+    font-size: 22px;
+    line-height: 26px;
+    width: 250px;
+    height: 40px;
+    border: 0;
+    background: #FF7A00;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+p {
+    font-size: 14px;
+    line-height: 16px;
+    color: #576D7E;
+    padding-top: 5px;
+    margin-bottom: 7px;
+}
+
+p a {
+    color: #FF7A00;
+    text-decoration: none;
+}
+
+.forgot {
+    font-weight: 600;
+    padding: 0 0 15px 0;
+}
+
+form {
+    width: min-content;
+}

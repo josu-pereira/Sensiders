@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body, * {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.dashboard-container .header {
+    background-color: #FFBE55;
+    height: 7vh;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-container .header button {
+    margin: 0 20px;
+    border: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.dashboard-container .header > .button-set {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dashboard-container .container {
+    height: 80vh;
+    width: 100%;
+    padding-top: 25px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-container .container button {
+    border: 0;
+    color: white;
+    font-size: 18px;
+    background: #FF7A00;
+}
+
+.dashboard-container .container span {
+    margin: 10px 0;
+    color: #FF7A00;
+}
+
+
+.dashboard-container .container select, input {
+    background-color: white;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+}
+
+.dashboard-container .container .grafico {
+    margin-top: 35px;
+    height: 60vh;
+    width: 60%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+/* */
+ul {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+}
+
+ul li {
+    background: #aaa;
+    padding:10px;
+    border: 1px solid #3f3f3f;
+    position: relative;
+    display:flex;
+    justify-content: center;
+}
+
+ul li:nth-child(1), ul li:nth-child(2),
+ul li:nth-child(9), ul li:nth-child(10) {
+    background: rgb(255,99,132);
+/*    background: rgb(53,158,230);*/
+}
+ul li:nth-child(3), ul li:nth-child(4),
+ul li:nth-child(7), ul li:nth-child(8) {
+    background: rgb(255, 205,86);
+}
+ul li:nth-child(5), ul li:nth-child(6) {
+    background: rgb(97,201,94);
+}
+
+
+.dashboard-container .container.last {
+    margin-bottom: 50px;
+}
+
+.dashboard-container .container h2 {
+    color: #FF7A00;
+    margin-bottom: 20px;
+}
+
+.dashboard-container .container .row {
+    margin-bottom: 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.dashboard-container .container .row select {
+    padding-left: 10px;
+    width: 30%;
+    height: 40px;
+}
+
+.dashboard-container .container.last .row button {
+    width: 30%;
+    height: 40px;
+}
+
+.dashboard-container .container.last > .grafico {
+    margin: 0 0 10px 0;
+}
+
+.dashboard-container .container.last  > :nth-last-child(1) {
+    display:flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.dashboard-container .container.last > :nth-last-child(1) > select,
+.dashboard-container .container.last > :nth-last-child(1) > input,
+.dashboard-container .container.last > :nth-last-child(1) > button {
+    padding-left: 10px;
+    width: 30%;
+    height: 40px;
+}
