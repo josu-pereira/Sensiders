@@ -138,7 +138,38 @@ if (gerar_dados_aleatorios) {
 	setInterval(function() {
 		console.log('Gerando valores aleatórios!');
 		// registrar_leitura(Math.min(Math.random()*100, 60), Math.min(Math.random()*200, 100))
-		registrar_leitura()
+		let instrucaoSQL = 'INSERT into dado (dataHora, fkSetor, grauMov) values ';
+        let valuesInstrucaoSQL = '';
+        
+        for (let i = 1; i <= 5; i++) {
+            const qtdSensores = 10;
+            let somaSensores = 0;
+
+            for (let j = 0; j < 10; j++) {
+                const status = parseInt(Math.random() * 2);
+                somaSensores += status;
+            }
+
+            const grauMov = (somaSensores * 100) / qtdSensores;
+            valuesInstrucaoSQL += `(CONVERT(Datetime, '${agora()}', 120), ${i}, ${grauMov}),`
+        }
+
+        instrucaoSQL += valuesInstrucaoSQL.substring(0, valuesInstrucaoSQL.length - 1);
+        instrucaoSQL += ';';
+
+        banco.conectar().then(() => {
+            return banco.sql.query(instrucaoSQL);
+            
+            /*delete from dado where id not in 
+            (select top ${registros_mantidos_tabela_leitura} id from dado order by id desc);*/
+        }).catch(erro => {
+
+            console.error(`Erro ao tentar registrar aquisição na base: ${erro}`);
+
+        }).finally(() => {
+            console.log('Registro inserido com sucesso! \n');
+            banco.sql.close();
+        });
 	}, intervalo_geracao_aleatoria_segundos * 1000);
 } else {
 	// iniciando a "escuta" de dispositivos Arduino.
