@@ -11,8 +11,8 @@
       .heatmap {
         /* height: 400px; */
         /* width: 605px; */
-        height: 500px;
-        width: 500px;
+        height: 400px;
+        width: 400px;
         background-image: url("planta.jpg");
         background-size: cover;
       }
@@ -32,7 +32,7 @@
     <script>
       function buscarPresencas() {
         var formulario = new URLSearchParams(new FormData(heatmap_form));
-        fetch("/leituras/presenca-hora", {
+        fetch("/dado/presenca-hora", {
           method: "POST",
           body: formulario,
         }).then((resposta) => {
@@ -53,56 +53,104 @@
 
               //Gerando um ponto por local da planta
               var local1 = {
-                x: 140,
-                y: 160,
+                x: 60,
+                y: 60,
                 value: json[0].media,
-                radius: 150,
+                radius: 70,
               };
               var local2 = {
-                x: 430,
-                y: 110,
+                x: 200,
+                y: 60,
                 value: json[1].media,
-                radius: 120,
+                radius: 60,
               };
               var local3 = {
-                x: 700,
-                y: 130,
+                x: 340,
+                y: 60,
                 value: json[2].media,
-                radius: 130,
+                radius: 70,
               };
               var local4 = {
-                x: 80,
-                y: 380,
+                x: 50,
+                y: 180,
                 value: json[3].media,
-                radius: 100,
+                radius: 50,
               };
               var local5 = {
-                x: 320,
-                y: 350,
+                x: 130,
+                y: 180,
                 value: json[4].media,
-                radius: 150,
+                radius: 55,
               };
-              // var local6 = {
-              //   x: 670,
-              //   y: 380,
-              //   value: json[5].media,
-              //   radius: 180,
-              // };
+              var local6 = {
+                x: 220,
+                y: 180,
+                value: json[5].media,
+                radius: 65,
+              };
+              var local7 = {
+                x: 330,
+                y: 200,
+                value: json[6].media,
+                radius: 65,
+              };
+              var local8 = {
+                x: 97,
+                y: 290,
+                value: json[7].media,
+                radius: 20,
+              };
+              var local9 = {
+                x: 140,
+                y: 290,
+                value: json[8].media,
+                radius: 20,
+              };
+              var local10 = {
+                x: 183,
+                y: 290,
+                value: json[9].media,
+                radius: 20,
+              };
+              var local11 = {
+                x: 227,
+                y: 290,
+                value: json[10].media,
+                radius: 20,
+              };
+              var local12 = {
+                x: 270,
+                y: 290,
+                value: json[11].media,
+                radius: 20,
+              };
 
               console.log("Local 1", local1);
               console.log("Local 2", local2);
               console.log("Local 3", local3);
               console.log("Local 4", local4);
               console.log("Local 5", local5);
-              // console.log("Local 6", local6);
+              console.log("Local 6", local6);
+              console.log("Local 7", local7);
+              console.log("Local 8", local7);
+              console.log("Local 9", local7);
+              console.log("Local 10", local7);
+              console.log("Local 11", local7);
+              console.log("Local 12", local7);
 
               points = points.concat(
                 local1,
                 local2,
                 local3,
                 local4,
-                local5
-                // local6
+                local5,
+                local6,
+                local7,
+                local8,
+                local9,
+                local10,
+                local11,
+                local12
               );
 
               // formato para gerar mapa
@@ -118,7 +166,7 @@
           } else {
             console.log("Erro ao buscar quantidade de presença!");
 
-            response.text().then((texto) => {
+            resposta.text().then((texto) => {
               console.error(texto);
             });
           }

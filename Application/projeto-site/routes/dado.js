@@ -3,6 +3,35 @@ var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Dado = require('../models').Dado;
 
+// Recuperar as ultimas n leituras
+router.post('/presenca-hora', function(req, res, next) {
+	
+	// quantas são as últimas leituras que quer? 8 está bom?
+	var hora_ini = req.body.hora_ini;
+	var hora_fim = req.body.hora_fim;
+
+	console.log(`Hora inicio: ${hora_ini}`);
+	console.log(`Hora fim: ${hora_fim}`);
+	
+	const instrucaoSql = `SELECT round(avg(grauMov), 1) as media, fkSetor
+							FROM dado, setor 
+							WHERE fkSetor = idSetor
+								AND CAST(dataHora as time) BETWEEN '${hora_ini}' AND '${hora_fim}'
+							GROUP BY fkSetor ORDER BY fkSetor;`;
+
+	sequelize.query(instrucaoSql, {
+		model: Dado,
+		mapToModel: true 
+	  })
+	  .then(resultado => {
+			console.log(`Encontrados: ${resultado.length}`);
+			res.json(resultado);
+	  }).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+	  });
+});
+
 /* Recuperar as últimas N leituras */
 router.get('/ultimas', function (req, res, next) {
 
