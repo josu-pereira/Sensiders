@@ -27,7 +27,16 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'senhaUsuario',
 			type: DataTypes.STRING,
 			allowNull: false
-		}
+		},
+		fkIdFilial: {
+			field: 'fkIdFilial',
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'Filial',
+				key: 'idFilial',
+			}
+		},
 	}, 
 	{
 		tableName: 'Usuario', 
