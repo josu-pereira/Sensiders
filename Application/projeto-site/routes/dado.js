@@ -69,7 +69,6 @@ router.get('/ultimas', function (req, res, next) {
 		});
 });
 
-
 // tempo real (último valor de cada leitura)
 router.get('/ultima-media', function (req, res, next) {
 
@@ -103,7 +102,20 @@ router.get('/tempo-real', function (req, res, next) {
 
 });
 
+//Pegar os últimos dados inseridos em cada setor
 
+router.get('/gauge-tempo-real', function (req, res, next) {
+	console.log('Recuperando as últimas leituras');
+	const instrucaoSql = "SELECT TOP 12 fkSetor,Setor.nome, dataHora AS 'Horario', grauMov AS 'MediaMinuto' FROM dado INNER JOIN Setor ON idSetor = fkSetor INNER JOIN Filial ON idFilial = fkFilial WHERE fkFilial = 1 ORDER BY dataHora DESC;";
+	
+	sequelize.query(instrucaoSql, {type: sequelize.QueryTypes.SELECT })
+		.then(resultado => {
+			res.json(resultado);
+		}).catch(erro => {
+			console.error(erro)
+			res.status(500).send(erro.message);
+		});
+});
 
 // estatísticas (max, min, média, mediana, quartis etc)
 router.get('/estatisticas', function (req, res, next) {
