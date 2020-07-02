@@ -25,7 +25,7 @@
 			/* width: 605px; */
 			height: 400px;
 			width: 400px;
-			background-image: url("planta.jpg");
+			background-image: url("planta.png");
 			background-size: cover;
 		}
 
@@ -68,11 +68,20 @@
 
 		<div class="container" style="flex-direction: row !important;justify-content: space-between">
 			<div class="graficosMaiores">
-				<h2>Atual movimentação nos setores</h1>
+				<div class="heatmap-container">
+					<h2>Atual movimentação nos setores</h1>
 					<div class="heatmap">
 						<!-- AQUI VAI SER CRIADO O MAPA -->
 					</div>
-					
+					<div class="heatmap-content">
+						<p class="title">Setor com maior movimentação</p>
+						<p class="desc" id="maiorMov_p"></p>
+						<p class="title">Setor com menor movimentação</p>
+						<p class="desc" id="menorMov_p"></p>
+						<p class="title">Média de movimentação geral</p>
+						<p class="desc" id="mediaMov_p"></p>
+					</div>
+				</div>
 			</div>
 			<div class="gaugesContainer" id="gaugesContainer">
 				<canvas id="gauge1"></canvas>
@@ -101,128 +110,124 @@
         container: document.querySelector(".heatmap"),
       });
       function buscarPresencas(json) {
-        // var formulario = new URLSearchParams(new FormData(heatmap_form));
-        // // Configuração minima, container padrão
-        // fetch("/dado/presenca-hora", {
-        //   method: "POST",
-        //   body: formulario,
-        // }).then((resposta) => {
-        //   if (resposta.ok) {
-        //     resposta.json().then((json) => {
-        //       console.log("JSON AQUI", json);
+		console.log(json);
+		var points = [];
+		var max = 100;
+		var min = 0;
+		var width = 850;
+		var height = 490;
+		let maiorMov = {
+			MediaMinuto: 0,
+			nome : ''
+		};
+		let menorMov = {
+			MediaMinuto: 100,
+			nome : ''
+		};
+		let mediaMov = 0;
+		
+		heatmapInstance.setData({data:[]});
+	
+		for(let i = 0; i < json.length;i++){
+			maiorMov = json[i].MediaMinuto > maiorMov.MediaMinuto ? json[i] : maiorMov;
+			menorMov = json[i].MediaMinuto < menorMov.MediaMinuto ? json[i] : menorMov;
+			mediaMov += json[i].MediaMinuto;
+		}
+		mediaMov = mediaMov / json.length;
 
+		maiorMov_p.innerHTML = maiorMov.nome;
+		menorMov_p.innerHTML = menorMov.nome;
+		mediaMov_p.innerHTML = mediaMov;
 
-              var points = [];
-              var max = 100;
-              var min = 0;
-              var width = 850;
-              var height = 490;
-              
-              heatmapInstance.setData({data:[]});
-            
+		//Gerando um ponto por local da planta
+		const locais = [
+		{
+			x: 60,
+			y: 60,
+			value: json[0].MediaMinuto,
+			radius: 70,
+		},
+		{
+			x: 200,
+			y: 60,
+			value: json[1].MediaMinuto,
+			radius: 60,
+		},
+		{
+			x: 340,
+			y: 60,
+			value: json[2].MediaMinuto,
+			radius: 70,
+		},
+		{
+			x: 50,
+			y: 180,
+			value: json[3].MediaMinuto,
+			radius: 50,
+		},
+		{
+			x: 130,
+			y: 180,
+			value: json[4].MediaMinuto,
+			radius: 55,
+		},
+		{
+			x: 220,
+			y: 180,
+			value: json[5].MediaMinuto,
+			radius: 65,
+		},
+		{
+			x: 330,
+			y: 200,
+			value: json[6].MediaMinuto,
+			radius: 65,
+		},
+		{
+			x: 97,
+			y: 290,
+			value: json[7].MediaMinuto,
+			radius: 20,
+		},
+		{
+			x: 140,
+			y: 290,
+			value: json[8].MediaMinuto,
+			radius: 20,
+		},
+		{
+			x: 183,
+			y: 290,
+			value: json[9].MediaMinuto,
+			radius: 20,
+		},
+		{
+			x: 227,
+			y: 290,
+			value: json[10].MediaMinuto,
+			radius: 20,
+		},
+		{
+			x: 270,
+			y: 290,
+			value: json[11].MediaMinuto,
+			radius: 20,
+		}
+		]; 
+		
 
-              //Gerando um ponto por local da planta
-              const locais = [
-				{
-					x: 60,
-					y: 60,
-					value: json[0].MediaMinuto,
-					radius: 70,
-				},
-				{
-					x: 200,
-					y: 60,
-					value: json[1].MediaMinuto,
-					radius: 60,
-				},
-				{
-					x: 340,
-					y: 60,
-					value: json[2].MediaMinuto,
-					radius: 70,
-				},
-				{
-					x: 50,
-					y: 180,
-					value: json[3].MediaMinuto,
-					radius: 50,
-				},
-				{
-					x: 130,
-					y: 180,
-					value: json[4].MediaMinuto,
-					radius: 55,
-				},
-				{
-					x: 220,
-					y: 180,
-					value: json[5].MediaMinuto,
-					radius: 65,
-				},
-				{
-					x: 330,
-					y: 200,
-					value: json[6].MediaMinuto,
-					radius: 65,
-				},
-				{
-					x: 97,
-					y: 290,
-					value: json[7].MediaMinuto,
-					radius: 20,
-				},
-				{
-					x: 140,
-					y: 290,
-					value: json[8].MediaMinuto,
-					radius: 20,
-				},
-				{
-					x: 183,
-					y: 290,
-					value: json[9].MediaMinuto,
-					radius: 20,
-				},
-				{
-					x: 227,
-					y: 290,
-					value: json[10].MediaMinuto,
-					radius: 20,
-				},
-				{
-					x: 270,
-					y: 290,
-					value: json[11].MediaMinuto,
-					radius: 20,
-				}
-              ]; 
-              
+		points = points.concat(locais);
 
-              points = points.concat(locais);
+		// formato para gerar mapa
+		var data = {
+			max: max,
+			min: min,
+			data: points,
+		};
 
-              // formato para gerar mapa
-              var data = {
-                max: max,
-                min: min,
-                data: points,
-              };
-              console.log(data);
-              // Inicia pontos no mapa de calor
-            
+		// Inicia pontos no mapa de calor
+		heatmapInstance.setData(data);
 
-          
-
-              heatmapInstance.setData(data);
-        //     });
-        //   } else {
-        //     console.log("Erro ao buscar quantidade de presença!");
-
-        //     resposta.text().then((texto) => {
-        //       console.error(texto);
-        //     });
-        //   }
-        // });
-        // return false;
       };
 
 	var randomScalingFactor = function () {
