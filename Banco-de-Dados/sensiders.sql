@@ -27,22 +27,16 @@ create table Setor (
 	idSetor int primary key auto_increment,
     nome varchar(30) not null,
     fkFilial int not null,
-    foreign key(fkFilial) references Filial(idFilial)
-);
-
-create table Sensor (
-	idSensor int primary key auto_increment,
-    fkSetor int not null,
-    foreign key(fkSetor) references Setor(idSetor)
+    foreign key(fkFilial) references Filial(idFilial),
+	qtdSensor int
 );
 
 create table dado (
 	dataHora datetime not null,
-    fkSensor int not null,
-    foreign key(fkSensor) references Sensor(idSensor),
-    primary key(dataHora, fkSensor),
-    statusSensor char(1) not null,
-    check (statusSensor = 's' or statusSensor = 'n')
+    fkSetor int not null,
+    foreign key(fkSetor) references Setor(idSetor),
+    primary key(dataHora, fkSetor),
+    grauMov decimal(4,1) not null
 );
 
 insert into Supermercado values
@@ -67,49 +61,27 @@ insert into Usuario values
 (null, 'carlinhos@htomail.com', 'z1x2c3w1e2','Gerente Carlos',4);
 
 insert into Setor values
-(null, 'Padaria', 1),
-(null, 'Padaria', 2),
-(null, 'Açougue', 2),
-(null, 'Açougue', 4),
-(null, 'Eletrônicos', 3);
+(null, 'Padaria', 1,10),
+(null, 'Padaria', 2,10),
+(null, 'Açougue', 2,10),
+(null, 'Açougue', 4,10),
+(null, 'Eletrônicos', 3,10);
 
 select * from setor;
-
-insert into sensor values
-(null, 1),
-(null, 1),
-(null, 1),
-(null, 4),
-(null, 4),
-(null, 4),
-(null, 2),
-(null, 2),
-(null, 2),
-(null, 3),
-(null, 3),
-(null, 3),
-(null, 5),
-(null, 5),
-(null, 5);
-
-select * from sensor;
-
-select * from setor, sensor where idSetor = fkSetor;
 select * from supermercado, setor where idSupermercado = fkFilial and idSupermercado = 1;
-select * from supermercado, setor, sensor where  idSupermercado = fkSetor and idSetor = fkSetor;
 
-insert into dado values('2020-04-05 10:34:09', 1, 's'),
-('2020-04-05 10:34:09', 2, 's'),
-('2020-04-05 10:34:09', 3, 's'),
-('2020-04-05 10:34:19', 1, 's'),
-('2020-04-05 10:34:19', 2, 'n'),
-('2020-04-05 10:34:19', 3, 's'),
-('2020-04-05 10:34:29', 1, 's'),
-('2020-04-05 10:34:29', 2, 'n'),
-('2020-04-05 10:34:29', 3, 'n'),
-('2020-04-05 10:34:39', 1, 'n'),
-('2020-04-05 10:34:39', 2, 'n'),
-('2020-04-05 10:34:39', 3, 'n');
+insert into dado values('2020-04-05 10:34:09', 1, 30),
+('2020-04-05 10:34:09', 2, 20),
+('2020-04-05 10:34:09', 3, 10),
+('2020-04-05 10:34:19', 1, 90),
+('2020-04-05 10:34:19', 2, 80),
+('2020-04-05 10:34:19', 3, 30),
+('2020-04-05 10:34:29', 1, 50),
+('2020-04-05 10:34:29', 2, 40),
+('2020-04-05 10:34:29', 3, 60),
+('2020-04-05 10:34:39', 1, 60),
+('2020-04-05 10:34:39', 2, 50),
+('2020-04-05 10:34:39', 3, 20);
 
 select * from dado;
 
