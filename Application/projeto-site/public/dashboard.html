@@ -151,7 +151,7 @@
 
 		maiorMov_p.innerHTML = maiorMov.nome;
 		menorMov_p.innerHTML = menorMov.nome;
-		mediaMov_p.innerHTML = mediaMov;
+		mediaMov_p.innerHTML = mediaMov.toFixed(1);
 
 		//Gerando um ponto por local da planta
 		const locais = [
@@ -313,7 +313,7 @@
 
 						dados.labels.push(horario);
 
-						dados.datasets[0].data.push(registro.MediaMinuto);
+						dados.datasets[0].data.push(registro.MediaMinuto.toFixed(1));
 					} 
 					plotarGrafico(dados);
 
