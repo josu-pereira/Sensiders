@@ -117,7 +117,7 @@
 	let setorCB = 1;
 	function mudarSetor() {
 		setorCB = setor_cb.value;
-		obterDadosGraficoLinha();
+	    mudarDadosGraficoLinha();
 	}
 	//Config. do heatmap
 	var heatmapInstance = h337.create({
@@ -275,56 +275,26 @@
 
 	// só mexer se quiser alterar o tempo de atualização
 	// ou se souber o que está fazendo!
-	
+	function atualizarGrafico() {
 
-	// altere aqui como os dados serão exibidos
-	// e como são recuperados do BackEnd
-	function obterDadosGraficoLinha() {
-
-		fetch(`/dado/ultimas/${setorCB}`, { cache: 'no-store' }).then(function (response) {
+		fetch(`/dado/ultima-media/${setorCB}`, { cache: 'no-store' }).then(function (response) {
 			if (response.ok) {
-				response.json().then(function (resposta) {
+				response.json().then(function (novoRegistro) {
 
-					console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+					console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
-					resposta.reverse();
-					dados.labels.shift();
-					dados.labels.shift();
-					dados.labels.shift();
-					dados.labels.shift();
-					dados.labels.shift();
-					dados.labels.shift();
-					dados.datasets[0].data.shift();
-					dados.datasets[0].data.shift();
-					dados.datasets[0].data.shift();
-					dados.datasets[0].data.shift();
-					dados.datasets[0].data.shift();
-					dados.datasets[0].data.shift();
-					
-					for (i = 0; i < resposta.length; i++) {
-						var registro = resposta[i];
+					// tirando e colocando valores no gráfico
+					dados.labels.shift(); // apagar o primeiro
+					dados.labels.push(novoRegistro.Horario); // incluir um novo momento
+					dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+					dados.datasets[0].data.push(novoRegistro.MediaMinuto); // incluir uma nova leitura de temperatura
+					window.grafico_linha.update();
 
-						
-
-						// aqui, após 'registro.' use os nomes 
-						// dos atributos que vem no JSON 
-						// que gerou na consulta ao banco de dados
-						let horario = registro.Horario.split('T')[1].split('.')[0];
-
-						dados.labels.push(horario);
-
-						dados.datasets[0].data.push(registro.MediaMinuto);
-					} 
-					plotarGrafico(dados);
-
-					//console.log(JSON.stringify(dados));
-
-					div_aguarde.style.display = 'none';
-
-				
+					setTimeout(atualizarGrafico, 60000);
 				});
 			} else {
 				console.error('Nenhum dado encontrado ou erro na API');
+				setTimeout(atualizarGrafico, 5000);
 			}
 		})
 			.catch(function (error) {
@@ -332,22 +302,9 @@
 			});
 
 	}
-	
 
-
-	// só altere aqui se souber o que está fazendo!
-	function plotarGrafico(dados) {
-		console.log('iniciando plotagem do gráfico...');
-
-		var ctx = canvas_grafico_linha1.getContext('2d');
-		window.grafico_linha = Chart.Line(ctx, {
-			data: dados,
-			options: configurarGrafico()
-		});
-
-		window.grafico_linha.update();
-	}	
-
+	// altere aqui as configurações do gráfico
+	// (tamanhos, cores, textos, etc)
 	function configurarGrafico() {
 		var configuracoes = {
 			responsive: true,
@@ -370,6 +327,93 @@
 		};
 
 		return configuracoes;
+	}
+
+	// altere aqui como os dados serão exibidos
+	// e como são recuperados do BackEnd
+	function obterDadosGraficoLinha() {
+
+		fetch(`/dado/ultimas/${setorCB}`, { cache: 'no-store' }).then(function (response) {
+			if (response.ok) {
+				response.json().then(function (resposta) {
+
+					console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+					resposta.reverse();
+
+					for (i = 0; i < resposta.length; i++) {
+						var registro = resposta[i];
+
+						// aqui, após 'registro.' use os nomes 
+						// dos atributos que vem no JSON 
+						// que gerou na consulta ao banco de dados
+
+						dados.labels.push(registro.Horario);
+
+						dados.datasets[0].data.push(registro.MediaMinuto);
+					}
+					console.log(JSON.stringify(dados));
+
+					div_aguarde.style.display = 'none';
+
+					plotarGrafico(dados);
+				});
+			} else {
+				console.error('Nenhum dado encontrado ou erro na API');
+			}
+		})
+			.catch(function (error) {
+				console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+			});
+
+	}
+	function mudarDadosGraficoLinha() {
+
+		fetch(`/dado/ultimas/${setorCB}`, { cache: 'no-store' }).then(function (response) {
+			if (response.ok) {
+				response.json().then(function (resposta) {
+
+					console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+					resposta.reverse();
+
+					for (i = 0; i < resposta.length; i++) {
+						var registro = resposta[i];
+
+						// aqui, após 'registro.' use os nomes 
+						// dos atributos que vem no JSON 
+						// que gerou na consulta ao banco de dados
+
+						dados.labels.push(registro.Horario);
+
+						dados.datasets[0].data.push(registro.MediaMinuto);
+					}
+					// console.log(JSON.stringify(dados));
+
+					div_aguarde.style.display = 'none';
+				});
+			} else {
+				console.error('Nenhum dado encontrado ou erro na API');
+			}
+		})
+			.catch(function (error) {
+				console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+			});
+
+	}
+
+
+	// só altere aqui se souber o que está fazendo!
+	function plotarGrafico(dados) {
+		console.log('iniciando plotagem do gráfico...');
+
+		var ctx = canvas_grafico_linha1.getContext('2d');
+		window.grafico_linha = Chart.Line(ctx, {
+			data: dados,
+			options: configurarGrafico()
+		});
+
+		setTimeout(atualizarGrafico, 5000);
 	}
 
 	//Todos os configs pros gauges
@@ -1075,7 +1119,7 @@
 		window.myGauge9 = new Chart(ctx10, config10);
 		window.myGauge10 = new Chart(ctx11, config11);
 		window.myGauge11 = new Chart(ctx12, config12);
-		atualizarGrafico();
+		//atualizarGrafico();
 
 
 	};
@@ -1189,6 +1233,4 @@
 			});
 
 	}
-
-
 </script>

@@ -33,10 +33,10 @@ router.post('/presenca-hora', function(req, res, next) {
 });
 
 /* Recuperar as últimas N leituras */
-router.get('/ultimas', function (req, res, next) {
-
+router.get('/ultimas/:idSetor', function (req, res, next) {
+	const idSetor = req.params.idSetor;
 	// quantas são as últimas leituras que quer? 8 está bom?
-	const limite_linhas = 5;
+	const limite_linhas = 6;
 
 	console.log(`Recuperando as últimas ${limite_linhas} leituras`);
 	let agora = new Date().getTime();
@@ -44,7 +44,7 @@ router.get('/ultimas', function (req, res, next) {
 	for (let index = 1; index <= limite_linhas; index++) {
 		const time = new Date(agora);
 		const timeBefore = new Date(agora - 1000 * 60);
-		instrucaoSql += `SELECT fkSetor, min(dataHora) as 'Horario', avg(grauMov) as 'MediaMinuto' from dado where (dataHora >= ('2020-${adicionarZero( timeBefore.getMonth() + 1)}-${adicionarZero( timeBefore.getDate())}T${adicionarZero( timeBefore.getHours())}:${adicionarZero( timeBefore.getMinutes())}:00') and (dataHora < '2020-${adicionarZero( time.getMonth() + 1)}-${adicionarZero( time.getDate())}T${adicionarZero( time.getHours())}:${adicionarZero( time.getMinutes())}:00')) and fkSetor = 1 group by fkSetor`;
+		instrucaoSql += `SELECT fkSetor, min(dataHora) as 'Horario', avg(grauMov) as 'MediaMinuto' from dado where (dataHora >= ('2020-${adicionarZero( timeBefore.getMonth() + 1)}-${adicionarZero( timeBefore.getDate())}T${adicionarZero( timeBefore.getHours())}:${adicionarZero( timeBefore.getMinutes())}:00') and (dataHora < '2020-${adicionarZero( time.getMonth() + 1)}-${adicionarZero( time.getDate())}T${adicionarZero( time.getHours())}:${adicionarZero( time.getMinutes())}:00')) and fkSetor = ${idSetor} group by fkSetor`;
 		agora = timeBefore;
 		if (index == limite_linhas) {
 			instrucaoSql += ';';
@@ -70,12 +70,14 @@ router.get('/ultimas', function (req, res, next) {
 });
 
 // tempo real (último valor de cada leitura)
-router.get('/ultima-media', function (req, res, next) {
+router.get('/ultima-media/:idSetor', function (req, res, next) {
+
+	const idSetor = req.params.idSetor;
 
 	console.log(`Recuperando a última leitura`);
 	const time = new Date();
 	const timeBefore = new Date(time.getTime() - 1000 * 60);
-	const instrucaoSql = `SELECT top 1 fkSetor, min(dataHora) as 'Horario', avg(grauMov) as 'MediaMinuto' from dado where (dataHora >= ('2020-${adicionarZero( timeBefore.getMonth() + 1)}-${adicionarZero( timeBefore.getDate())}T${adicionarZero( timeBefore.getHours())}:${adicionarZero( timeBefore.getMinutes())}:00') and (dataHora < '2020-${adicionarZero( time.getMonth() + 1)}-${adicionarZero( time.getDate())}T${adicionarZero( time.getHours())}:${adicionarZero( time.getMinutes())}:00')) and fkSetor = 1 group by fkSetor`;
+	const instrucaoSql = `SELECT top 1 fkSetor, min(dataHora) as 'Horario', avg(grauMov) as 'MediaMinuto' from dado where (dataHora >= ('2020-${adicionarZero( timeBefore.getMonth() + 1)}-${adicionarZero( timeBefore.getDate())}T${adicionarZero( timeBefore.getHours())}:${adicionarZero( timeBefore.getMinutes())}:00') and (dataHora < '2020-${adicionarZero( time.getMonth() + 1)}-${adicionarZero( time.getDate())}T${adicionarZero( time.getHours())}:${adicionarZero( time.getMinutes())}:00')) and fkSetor = ${idSetor} group by fkSetor`;
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
 		.then(resultado => {
