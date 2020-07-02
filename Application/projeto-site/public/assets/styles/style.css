@@ -167,6 +167,7 @@ html {
     margin-bottom: 30px;
     text-align: center;
     transition: transform 0.3s;
+    border-radius: 10px;
 }
 .dev:hover {
     transform: scale(1.1);
@@ -174,6 +175,7 @@ html {
 
 .dev img {
     width: 100%;
+    border-radius: 10px 10px 2px 2px;
 }
 
 .dev p {
