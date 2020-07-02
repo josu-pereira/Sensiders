@@ -7,6 +7,7 @@ var Dado = require('../models').Dado;
 router.post('/presenca-hora', function(req, res, next) {
 	
 	// quantas são as últimas leituras que quer? 8 está bom?
+	var dia = req.body.dia;
 	var hora_ini = req.body.hora_ini;
 	var hora_fim = req.body.hora_fim;
 
@@ -14,10 +15,10 @@ router.post('/presenca-hora', function(req, res, next) {
 	console.log(`Hora fim: ${hora_fim}`);
 	
 	const instrucaoSql = `SELECT round(avg(grauMov), 1) as media, fkSetor
-							FROM dado, setor 
-							WHERE fkSetor = idSetor
-								AND CAST(dataHora as time) BETWEEN '${hora_ini}' AND '${hora_fim}'
-							GROUP BY fkSetor ORDER BY fkSetor;`;
+	FROM dado, setor 
+	WHERE fkSetor = idSetor
+	AND dataHora >= '${dia}T${hora_ini}:00' and dataHora <= '${dia}T${hora_fim}:00'
+	GROUP BY fkSetor ORDER BY fkSetor;`;
 
 	sequelize.query(instrucaoSql, {
 		model: Dado,

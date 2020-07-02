@@ -32,6 +32,15 @@
 			background-size: cover;
 		}
 
+		.heatmap-tempo {
+			/* height: 400px; */
+			/* width: 605px; */
+			height: 400px;
+			width: 400px;
+			background-image: url("planta.png");
+			background-size: cover;
+		}
+
 		.graficosMaiores {
 			padding-left: 100px;
 			height: 100%;
@@ -90,6 +99,19 @@
 					<select onchange="mudarSetor()" id="setor_cb"></select>
 					<canvas id="canvas_grafico_linha1"></canvas>
 				</div>
+				<div class="heatmap-tempo-container">
+					<div class="heatmap-tempo">
+						<!-- AQUI VAI SER CRIADO O MAPA -->
+					  </div>
+				  
+					  <form id="heatmap_form">
+						<input type="date" name="dia" required />
+						<input type="time" name="hora_ini" min="00:00" max="23:59" required />
+						<input type="time" name="hora_fim" min="00:00" max="23:59" required />
+					  </form>
+				  
+					  <button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
+				</div>
 			</div>
 			<div class="gaugesContainer" id="gaugesContainer">
 				<canvas id="gauge1"></canvas>
@@ -122,6 +144,9 @@
 	//Config. do heatmap
 	var heatmapInstance = h337.create({
 		container: document.querySelector(".heatmap"),
+	});
+	var heatmapInstanceTempo = h337.create({
+		container: document.querySelector(".heatmap-tempo"),
 	});
 	function buscarPresencas(json) {
 		console.log(json);
@@ -371,6 +396,129 @@
 
 		return configuracoes;
 	}
+	function buscarPresencasTempo() {
+        var formulario = new URLSearchParams(new FormData(heatmap_form));
+        // Configuração minima, container padrão
+        fetch("/dado/presenca-hora", {
+          method: "POST",
+          body: formulario,
+        }).then((resposta) => {
+          if (resposta.ok) {
+            resposta.json().then((json) => {
+              console.log("JSON AQUI", json);
+
+
+              var points = [];
+              var max = 100;
+              var min = 0;
+              var width = 850;
+              var height = 490;
+              
+              heatmapInstance.setData({data:[]});
+            
+
+              //Gerando um ponto por local da planta
+              const locais = [
+              {
+                x: 60,
+                y: 60,
+                value:0,
+                radius: 70,
+              },
+              {
+                x: 200,
+                y: 60,
+                value:0,
+                radius: 60,
+              },
+              {
+                x: 340,
+                y: 60,
+                value:0,
+                radius: 70,
+              },
+              {
+                x: 50,
+                y: 180,
+                value:0,
+                radius: 50,
+              },
+              {
+                x: 130,
+                y: 180,
+                value:0,
+                radius: 55,
+              },
+              {
+                x: 220,
+                y: 180,
+                value:0,
+                radius: 65,
+              },
+              {
+                x: 330,
+                y: 200,
+                value:0,
+                radius: 65,
+              },
+              {
+                x: 97,
+                y: 290,
+                value:0,
+                radius: 20,
+              },
+              {
+                x: 140,
+                y: 290,
+                value:0,
+                radius: 20,
+              },
+              {
+                x: 183,
+                y: 290,
+                value:0,
+                radius: 20,
+              },
+              {
+                x: 227,
+                y: 290,
+                value: 0,
+                radius: 20,
+              },
+              {
+                x: 270,
+                y: 290,
+                value: 0,
+                radius: 20,
+              }
+              ]; 
+              
+              for(let i = 0; i < locais.length;i++) {
+                locais[i].value = json[i].media
+              };
+
+              points = points.concat(locais);
+
+              // formato para gerar mapa
+              var data = {
+                max: max,
+                min: min,
+                data: points,
+              };
+              console.log(data);
+              // Inicia pontos no mapa de calor
+              heatmapInstanceTempo.setData(data);
+            });
+          } else {
+            console.log("Erro ao buscar quantidade de presença!");
+
+            resposta.text().then((texto) => {
+              console.error(texto);
+            });
+          }
+        });
+        return false;
+      }
 
 	//Todos os configs pros gauges
 	const config = {
