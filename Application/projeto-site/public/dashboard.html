@@ -72,11 +72,7 @@
 					<div class="heatmap">
 						<!-- AQUI VAI SER CRIADO O MAPA -->
 					</div>
-					<form id="heatmap_form">
-						<input type="time" name="hora_ini" min="00:00" max="23:59" required />
-						<input type="time" name="hora_fim" min="00:00" max="23:59" required />
-					</form>
-					<button type="submit" onclick="buscarPresencas()">Buscar</button>
+					
 			</div>
 			<div class="gaugesContainer" id="gaugesContainer">
 				<canvas id="gauge1"></canvas>
@@ -101,149 +97,133 @@
 </html>
 
 <script>
-	function buscarPresencas() {
-		var formulario = new URLSearchParams(new FormData(heatmap_form));
-		fetch("/dado/presenca-hora", {
-			method: "POST",
-			body: formulario,
-		}).then((resposta) => {
-			if (resposta.ok) {
-				resposta.json().then((json) => {
-					console.log("JSON AQUI", json);
+     var heatmapInstance = h337.create({
+        container: document.querySelector(".heatmap"),
+      });
+      function buscarPresencas(json) {
+        // var formulario = new URLSearchParams(new FormData(heatmap_form));
+        // // Configuração minima, container padrão
+        // fetch("/dado/presenca-hora", {
+        //   method: "POST",
+        //   body: formulario,
+        // }).then((resposta) => {
+        //   if (resposta.ok) {
+        //     resposta.json().then((json) => {
+        //       console.log("JSON AQUI", json);
 
-					// Configuração minima, container padrão
-					var heatmapInstance = h337.create({
-						container: document.querySelector(".heatmap"),
-					});
 
-					var points = [];
-					var max = 100;
-					var min = 0;
-					var width = 850;
-					var height = 490;
+              var points = [];
+              var max = 100;
+              var min = 0;
+              var width = 850;
+              var height = 490;
+              
+              heatmapInstance.setData({data:[]});
+            
 
-					//Gerando um ponto por local da planta
-					var local1 = {
-						x: 60,
-						y: 60,
-						value: json[0].media,
-						radius: 70,
-					};
-					var local2 = {
-						x: 200,
-						y: 60,
-						value: json[1].media,
-						radius: 60,
-					};
-					var local3 = {
-						x: 340,
-						y: 60,
-						value: json[2].media,
-						radius: 70,
-					};
-					var local4 = {
-						x: 50,
-						y: 180,
-						value: json[3].media,
-						radius: 50,
-					};
-					var local5 = {
-						x: 130,
-						y: 180,
-						value: json[4].media,
-						radius: 55,
-					};
-					var local6 = {
-						x: 220,
-						y: 180,
-						value: json[5].media,
-						radius: 65,
-					};
-					var local7 = {
-						x: 330,
-						y: 200,
-						value: json[6].media,
-						radius: 65,
-					};
-					var local8 = {
-						x: 97,
-						y: 290,
-						value: json[7].media,
-						radius: 20,
-					};
-					var local9 = {
-						x: 140,
-						y: 290,
-						value: json[8].media,
-						radius: 20,
-					};
-					var local10 = {
-						x: 183,
-						y: 290,
-						value: json[9].media,
-						radius: 20,
-					};
-					var local11 = {
-						x: 227,
-						y: 290,
-						value: json[10].media,
-						radius: 20,
-					};
-					var local12 = {
-						x: 270,
-						y: 290,
-						value: json[11].media,
-						radius: 20,
-					};
+              //Gerando um ponto por local da planta
+              const locais = [
+				{
+					x: 60,
+					y: 60,
+					value: json[0].MediaMinuto,
+					radius: 70,
+				},
+				{
+					x: 200,
+					y: 60,
+					value: json[1].MediaMinuto,
+					radius: 60,
+				},
+				{
+					x: 340,
+					y: 60,
+					value: json[2].MediaMinuto,
+					radius: 70,
+				},
+				{
+					x: 50,
+					y: 180,
+					value: json[3].MediaMinuto,
+					radius: 50,
+				},
+				{
+					x: 130,
+					y: 180,
+					value: json[4].MediaMinuto,
+					radius: 55,
+				},
+				{
+					x: 220,
+					y: 180,
+					value: json[5].MediaMinuto,
+					radius: 65,
+				},
+				{
+					x: 330,
+					y: 200,
+					value: json[6].MediaMinuto,
+					radius: 65,
+				},
+				{
+					x: 97,
+					y: 290,
+					value: json[7].MediaMinuto,
+					radius: 20,
+				},
+				{
+					x: 140,
+					y: 290,
+					value: json[8].MediaMinuto,
+					radius: 20,
+				},
+				{
+					x: 183,
+					y: 290,
+					value: json[9].MediaMinuto,
+					radius: 20,
+				},
+				{
+					x: 227,
+					y: 290,
+					value: json[10].MediaMinuto,
+					radius: 20,
+				},
+				{
+					x: 270,
+					y: 290,
+					value: json[11].MediaMinuto,
+					radius: 20,
+				}
+              ]; 
+              
 
-					console.log("Local 1", local1);
-					console.log("Local 2", local2);
-					console.log("Local 3", local3);
-					console.log("Local 4", local4);
-					console.log("Local 5", local5);
-					console.log("Local 6", local6);
-					console.log("Local 7", local7);
-					console.log("Local 8", local7);
-					console.log("Local 9", local7);
-					console.log("Local 10", local7);
-					console.log("Local 11", local7);
-					console.log("Local 12", local7);
+              points = points.concat(locais);
 
-					points = points.concat(
-						local1,
-						local2,
-						local3,
-						local4,
-						local5,
-						local6,
-						local7,
-						local8,
-						local9,
-						local10,
-						local11,
-						local12
-					);
+              // formato para gerar mapa
+              var data = {
+                max: max,
+                min: min,
+                data: points,
+              };
+              console.log(data);
+              // Inicia pontos no mapa de calor
+            
 
-					// formato para gerar mapa
-					var data = {
-						max: max,
-						min: min,
-						data: points,
-					};
+          
 
-					// Inicia pontos no mapa de calor
-					heatmapInstance.setData(data);
-				});
-			} else {
-				console.log("Erro ao buscar quantidade de presença!");
+              heatmapInstance.setData(data);
+        //     });
+        //   } else {
+        //     console.log("Erro ao buscar quantidade de presença!");
 
-				resposta.text().then((texto) => {
-					console.error(texto);
-				});
-			}
-		});
-		return false;
-	}
+        //     resposta.text().then((texto) => {
+        //       console.error(texto);
+        //     });
+        //   }
+        // });
+        // return false;
+      };
 
 	var randomScalingFactor = function () {
 		return Math.round(Math.random() * 100);
@@ -1008,7 +988,7 @@
 				response.json().then(function (resposta) {
 
 					console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
+					buscarPresencas(resposta);				
 						window.myGauge0.config.data.datasets[0].value = resposta[0].MediaMinuto;
 						window.myGauge1.config.data.datasets[0].value = resposta[1].MediaMinuto;
 						window.myGauge2.config.data.datasets[0].value = resposta[2].MediaMinuto;
