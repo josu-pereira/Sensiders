@@ -50,7 +50,7 @@ router.post('/cadastrar', function(req, res, next) {
 	const email = req.body.email;
 	const senha = req.body.senha;
 
-	let instrucaoSql = `EXEC sp_NovoUsuario '${mercado}', '${cep.replace('-','')}', ${numero}, '${nome}','${email}','${senha}'; `;
+	let instrucaoSql = `EXEC sp_NovoUsuario '${mercado}', '${cep}', ${numero}, '${nome}','${email}','${senha}'; `;
 
 	sequelize.query(instrucaoSql).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)

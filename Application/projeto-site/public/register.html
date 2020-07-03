@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
     <link rel="shortcut icon" href="../assets/images/Logo.ico">
     <title>Cadastro | Sensiders</title>
     <script defer src="../assets/scripts/cep.js"></script>
-    <script src="../assets/scripts/validationForm.js"></script>
 </head>
+
 <body>
     <div class="menu">
         <a href="index.html" class="back-page">
@@ -18,13 +19,13 @@
     </div>
     <div class="container">
         <div class="form-container">
-            <form id="form_cadastro" method="POST" onsubmit="return cadastrar()">
-            <select id="supermercado" name="mercado" required>
-                <option value="Escolha" selected disabled>-- Escolha um supermercado --</option>
-                <option value="Sonda">Sonda</option>
-                <option value="Dias">Dias</option>
-                <option value="Extra">Extra</option>
-            </select>
+            <form id="form_cadastro" method="POST" onsubmit="return registerForm()">
+                <select id="supermercado" name="mercado" required>
+                    <option value="Escolha" selected disabled>-- Escolha um supermercado --</option>
+                    <option value="Sonda">Sonda</option>
+                    <option value="Dias">Dias</option>
+                    <option value="Extra">Extra</option>
+                </select>
                 <div class="endereco">
                     <input type="text" placeholder="CEP" name="cep" id="cep" maxlength="9" required>
                     <input type="text" placeholder="nº" name="numero" id="numero" required>
@@ -35,40 +36,47 @@
                     <input type="text" placeholder="UF" id="uf" required>
                 </div>
                 <input type="text" id="nome" placeholder="Nome" name="nome" required>
-                <input type="email" id="email" placeholder="Email" name="email" required>
+                <input type="text" id="email" placeholder="Email" name="email">
                 <input type="password" id="senha" placeholder="Senha" name="senha" required>
                 <input type="password" id="confirm_senha" placeholder="Confirme a senha" required>
-                <input 
-                    class="button-submit" 
-                    onsubmit="return loginValidationForm()" 
-                    type="submit" 
-                    id="btn_entrar" 
-                    value="Cadastrar"
-                >
+                <input class="button-submit" type="submit" id="btn_entrar"
+                    value="Cadastrar">
             </form>
             <img src="aguarde.gif" id="img_aguarde" style="display: none; height: 250px;" width="100px">
-    
+
             <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
                 Erro no cadastro
             </div>
-            <p>Voltar para a página de <a href="login.html" >login</a></p>
+            <p>Voltar para a página de <a href="login.html">login</a></p>
         </div>
     </div>
 </body>
-</html>
-<script>
 
-     function cadastrar() {
+</html>
+<script  src="../assets/scripts/validationForm.js"></script>
+
+<script>
+    // function validateForm() {
+    //     var validation = true;
+    //     validation &= registerForm();
+    //     if (validation = false) {
+    //         return validation;
+    //     }else{
+    //         validation &= cadastrar();
+    //     }
+    // }
+
+    function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario
         }).then(function (response) {
-            
+
             if (response.ok) {
 
-                window.location.href='login.html';
+                window.location.href = 'login.html';
 
             } else {
 
@@ -85,15 +93,17 @@
 
     function aguardar() {
         btn_entrar.disabled = true;
-        img_aguarde.style.display='block';
-        div_erro.style.display='none';
+        img_aguarde.style.display = 'block';
+        div_erro.style.display = 'none';
     }
 
     function finalizar_aguardar() {
         btn_entrar.disabled = false;
-        img_aguarde.style.display='none';
-        div_erro.style.display='block';
+        img_aguarde.style.display = 'none';
+        div_erro.style.display = 'block';
     }
 
-
+    function Download(url) {
+        document.getElementById('btn_entrar').src = url;
+    };
 </script>

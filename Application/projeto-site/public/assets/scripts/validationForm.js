@@ -1,3 +1,4 @@
+
 //email
 const emailRegex = /[^@]+@[^\.]+\..+/g
 
@@ -5,7 +6,7 @@ const emailRegex = /[^@]+@[^\.]+\..+/g
 const numberRegex = /^[0-9]{0,4}/gm
 
 //cep
-const cepRegex = /[0-9]{5}-[\d]{3}/g
+const cepRegex = /[0-9]/g
 
 //cidade e rua
 const lettersRegex = /[a-zA-Z\u00C0-\u00FF ]+/i
@@ -18,7 +19,7 @@ const ufRegex = /[a-zA-Z]{2}/i
 // 2 – (?=.*[a-z]) Verifica se existe uma letra minúscula;
 // 3 – (?=.*[A-Z]) Verifica se existe uma letra maiúscula;
 // 4 – ([a-zA-Z0-9]{8,}) Verifica se existe pelo menos 8 caracteres entre os digitados.
-const pwRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$/;
+const pwRegex = /^([a-zA-Z0-9]{8,})$/;
 
 // evitar q a pagina recarregue com loading
 var form = document.querySelector('form');
@@ -32,14 +33,14 @@ function loginValidationForm() {
     var senha = document.getElementById('senhaInp').value;
 
     if (email == "" || email == null) {
-        alert("Por Favor, Insira um email valido!");
+        return alert("Por Favor, Preencha o email!");
     } else {
         if (emailRegex.test(email) === false) {
-            alert("Por Favor, Insira um email valido!");
+            return alert("Por Favor, Insira um email valido!");
         }
     }
     // if (pwRegex.test(senha) === false) {
-    //     alert("Por Favor, Insira a senha correta!");
+    //     return alert("Por Favor, Insira a senha correta!");
     //     return false;
     // }
 }
@@ -48,10 +49,10 @@ function forgotPasswordForm() {
     var email = document.getElementById('emailPwInp').value;
 
     if (email == "" || email == null) {
-        alert("Por Favor, Insira um email valido!");
+        return alert("Por Favor, Insira um email valido!");
     } else {
         if (emailRegex.test(email) === false) {
-            alert("Por Favor, Insira um email valido!");
+            return alert("Por Favor, Insira um email valido!");
         }
     }
 }
@@ -67,62 +68,64 @@ function registerForm() {
     var confirmInp = document.getElementById('confirm_senha').value;
 
     if (cepInp == "" || cepInp == null) {
-        alert("Por Favor, Insira um CEP valido!");
+        return alert("Por Favor, Preencha o CEP !");
     } else {
         if (cepRegex.test(cepInp) === false) {
-            alert("Por Favor, Insira um CEP valido!");
+            return alert("Por Favor, Insira um CEP valido!");
         }
     }
     if (numeroInp == "" || numeroInp == null) {
-        alert("Por Favor, Insira um Numero valido!");
+        return alert("Por Favor, Insira um Numero valido!");
     } else {
         if (numberRegex.test(numeroInp) === false) {
-            alert("Por Favor, Insira um Numero valido!");
+            return alert("Por Favor, Insira um Numero valido!");
         }
     }
     if (ruaInp == "" || ruaInp == null) {
-        alert("Por Favor, Insira um Rua valido!");
+        return alert("Por Favor, Insira um Rua valido!");
     } else {
         if (lettersRegex.test(ruaInp) === false) {
-            alert("Por Favor, Insira um rua valido!");
+            return alert("Por Favor, Insira um rua valido!");
         }
     }
     if (cidadeInp == "" || cidadeInp == null) {
-        alert("Por Favor, Insira um cidade valido!");
+        return alert("Por Favor, Insira um cidade valido!");
     } else {
         if (lettersRegex.test(cidadeInp) === false) {
-            alert("Por Favor, Insira um cidade valido!");
+            return alert("Por Favor, Insira um cidade valido!");
         }
     }
     if (ufInp == "" || ufInp == null) {
-        alert("Por Favor, Insira um UF valido!");
+        return alert("Por Favor, Insira um UF valido!");
     } else {
         if (ufRegex.test(ufInp) === false) {
-            alert("Por Favor, Insira um UF valido!");
+            return alert("Por Favor, Insira um UF valido!");
         }
     }
     if (emailInp == "" || emailInp == null) {
-        alert("Por Favor, Insira um email valido!");
+        return alert("Por Favor, Insira um email valido!");
     } else {
         if (emailRegex.test(emailInp) === false) {
-            alert("Por Favor, Insira um email valido!");
+            return alert("Por Favor, Insira um email valido!");
         }
     }
     if (senhaInp == "" || senhaInp == null) {
-        alert("Por Favor, Insira uma senha  valido!");
+        return alert("Por Favor, Insira uma senha  valido!");
     } else {
         if (pwRegex.test(senhaInp) === false) {
-            alert("A senha deve conter uma letra maiuscula, caracter special e no min 8");
+            return alert("A senha deve conter uma letra maiuscula, caracter special e no min 8");
         }
     }
     if (confirmInp == "" || confirmInp == null) {
-        alert("Por Favor, Insira um confirmInp valido!");
+        return alert("Por Favor, Insira um confirmInp valido!");
     } else {
         if (pwRegex.test(confirmInp) === false) {
-            alert("A senha deve conter uma letra maiuscula, caracter special e no min 8");
+            return alert("A senha deve conter no min 8");
         }
     }
     if (senhaInp != confirmInp) {
-        alert("as senhas devem ser iguais");
+        return alert("as senhas devem ser iguais");
     }
+
+    cadastrar();
 }

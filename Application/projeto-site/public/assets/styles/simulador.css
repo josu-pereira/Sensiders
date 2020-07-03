@@ -12,6 +12,18 @@ body * {
     box-sizing: border-box;
 }
 
+.download button {
+    background-color: #FF7A00;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 18px;
+}
+
 .button-submit {
     background-color: #FF7A00;
     text-align: center;
