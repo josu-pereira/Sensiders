@@ -3,11 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Gráfico de 1 linha com Chart.js</title>
+	<title>Dashboard | Sensiders</title>
 
 	<script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<script type="text/javascript" src="funcoes.js"></script>
+	<script defer type="text/javascript" src="funcoes.js"></script>
 	<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
 	<script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
 	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
@@ -15,7 +15,6 @@
 	<script src="heatmap.js"></script>
 	<link rel="shortcut icon" href="../assets/images/Logo.ico">
 	<link rel="stylesheet" href="../assets/styles/dashboardStyle.css">
-	<title>Dashboard</title>
 	<style>
 		canvas {
 			-moz-user-select: none;
@@ -66,7 +65,8 @@
 <body>
 	<div class="dashboard-container">
 		<div class="header">
-			<a href="index.html"><button>Sair</button></a>
+			<a href="#" onclick="logoff()"><button>Sair</button></a>
+			<b id="b_usuario"></b>
 			<div class="button-set">
 				<button>Tempo Real</button>
 				<a href="dataDashboard.html">
@@ -137,6 +137,8 @@
 
 <script>
 	let setorCB = 1;
+
+
 	function mudarSetor() {
 		setorCB = setor_cb.value;
 		obterDadosGraficoLinha();
@@ -1338,5 +1340,6 @@
 
 	}
 
+	verificar_autenticacao();
 
 </script>
