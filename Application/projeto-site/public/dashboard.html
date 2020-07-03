@@ -33,32 +33,10 @@
 		}
 
 		.heatmap-tempo {
-			/* height: 400px; */
-			/* width: 605px; */
 			height: 400px;
 			width: 400px;
 			background-image: url("planta.png");
 			background-size: cover;
-		}
-
-		.graficosMaiores {
-			padding-left: 100px;
-			height: 100%;
-			width: 100%;
-			max-width: 60%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.gaugesContainer {
-			height: 100%;
-			width: 100%;
-			max-width: 30%;
-			display: flex;
-			flex-direction: column;
-			overflow-y: scroll;
 		}
 	</style>
 </head>
@@ -66,67 +44,81 @@
 <body>
 	<div class="dashboard-container">
 		<div class="header">
-			<a href="index.html"><button>Sair</button></a>
 			<div class="button-set">
-				<button>Tempo Real</button>
-				<a href="dataDashboard.html">
+				<img class="imagem-logo" src="./assets/images/logo-branca.png" alt="Sensiders">
+				<a href="#container-tempo-real">
+					<button>Tempo Real</button>
+				</a>
+				<a href="#container-periodo-recente">
+					<button>Período recente</button>
+				</a>
+				<a href="#container-data-especifica">
 					<button>Data específica</button>
 				</a>
-				<a href="comparacao.html">
-					<button>Comparação</button>
-				</a>
+			</div>
+			<div class="user-items">
+				<b id="b_usuario"></b>
+				<a href="#" onclick="logoff()">
+					<button>
+						<img src="./assets/images/log-out.svg" alt="Sair">
+					</button>
+				</a>	
 			</div>
 		</div>
 
-		<div class="container" style="flex-direction: row !important;justify-content: space-between">
-			<div class="graficosMaiores">
+		<div class="container" style="top: 7vh;">
+			<div class="chart-section" id="container-tempo-real">
+				<h2>Atual movimentação nos setores</h1>
 				<div class="heatmap-container">
-					<h2>Atual movimentação nos setores</h1>
-						<div class="heatmap">
-							<!-- AQUI VAI SER CRIADO O MAPA -->
-						</div>
-						<div class="heatmap-content">
-							<p class="title">Setor com maior movimentação</p>
-							<p class="desc" id="maiorMov_p"></p>
-							<p class="title">Setor com menor movimentação</p>
-							<p class="desc" id="menorMov_p"></p>
-							<p class="title">Média de movimentação geral</p>
-							<p class="desc" id="mediaMov_p"></p>
-						</div>
+					<div class="heatmap">
+						<!-- AQUI VAI SER CRIADO O MAPA -->
+					</div>
+					<div class="heatmap-content">
+						<p class="title">Setor com maior movimentação</p>
+						<p class="desc" id="maiorMov_p"></p>
+						<p class="title">Setor com menor movimentação</p>
+						<p class="desc" id="menorMov_p"></p>
+						<p class="title">Média de movimentação geral</p>
+						<p class="desc" id="mediaMov_p"></p>
+					</div>
 				</div>
-				<div style="width:75%;">
-					<div id="div_aguarde">Dados sendo obtidos...</div>
-					<select onchange="mudarSetor()" id="setor_cb"></select>
-					<canvas id="canvas_grafico_linha1"></canvas>
-				</div>
+			</div>
+			<div class="chart-section" id="container-periodo-recente">
+				<h2>Dados recentes do setor</h2>
+				<div id="div_aguarde">Dados sendo obtidos...</div>
+				<select onchange="mudarSetor()" id="setor_cb"></select>
+				<canvas id="canvas_grafico_linha1"></canvas>
+			</div>
+			<div class="chart-section" id="container-data-especifica">
+				<h2>Dados de uma data específica</h2>
 				<div class="heatmap-tempo-container">
 					<div class="heatmap-tempo">
 						<!-- AQUI VAI SER CRIADO O MAPA -->
-					  </div>
-				  
-					  <form id="heatmap_form">
-						<input type="date" name="dia" required />
-						<input type="time" name="hora_ini" min="00:00" max="23:59" required />
-						<input type="time" name="hora_fim" min="00:00" max="23:59" required />
-					  </form>
-				  
-					  <button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
+					</div>
+					
+					<form id="heatmap_form">
+					<input type="date" name="dia" required />
+					<input type="time" name="hora_ini" min="00:00" max="23:59" required />
+					<input type="time" name="hora_fim" min="00:00" max="23:59" required />
+					</form>
+				
+					<button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
 				</div>
 			</div>
-			<div class="gaugesContainer" id="gaugesContainer">
-				<canvas id="gauge1"></canvas>
-				<canvas id="gauge2"></canvas>
-				<canvas id="gauge3"></canvas>
-				<canvas id="gauge4"></canvas>
-				<canvas id="gauge5"></canvas>
-				<canvas id="gauge6"></canvas>
-				<canvas id="gauge7"></canvas>
-				<canvas id="gauge8"></canvas>
-				<canvas id="gauge9"></canvas>
-				<canvas id="gauge10"></canvas>
-				<canvas id="gauge11"></canvas>
-				<canvas id="gauge12"></canvas>
-			</div>
+		</div>
+		<div class="gauges-container" id="gaugesContainer">
+			<canvas id="gauge1"></canvas>
+			<canvas id="gauge2"></canvas>
+			<canvas id="gauge3"></canvas>
+			<canvas id="gauge4"></canvas>
+			<canvas id="gauge5"></canvas>
+			<canvas id="gauge6"></canvas>
+			<canvas id="gauge7"></canvas>
+			<canvas id="gauge8"></canvas>
+			<canvas id="gauge9"></canvas>
+			<canvas id="gauge10"></canvas>
+			<canvas id="gauge11"></canvas>
+			<canvas id="gauge12"></canvas>
 		</div>
 
 	</div>
@@ -1224,8 +1216,7 @@
 		window.myGauge10 = new Chart(ctx11, config11);
 		window.myGauge11 = new Chart(ctx12, config12);
 		atualizarGrafico();
-
-
+		verificar_autenticacao();
 	};
 
 	fetch('/setor/1', { cache: 'no-store' }).then(function (response) {
