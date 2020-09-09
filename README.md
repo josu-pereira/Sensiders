@@ -2,7 +2,9 @@
 
 # Sensiders
 
-![GitHub Logo] (/logo.png)
+<p align="center">
+  <img width="400" height="300" src="/LogoPreta.png">
+</p>
 
 ## Contexto
  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed tincidunt turpis. Donec maximus sit amet elit varius egestas. Pellentesque eget tincidunt eros. Donec gravida in neque nec mollis. Donec posuere, dolor sed blandit pharetra, massa sapien cursus ante, sed hendrerit ante tellus quis enim. Sed consequat bibendum dolor, eget feugiat eros facilisis ac. Integer finibus arcu quis eros interdum sodales.
@@ -46,13 +48,13 @@ Sed commodo nisl non ipsum rutrum egestas. Aliquam et faucibus ipsum. Maecenas i
 
 Sensiders usou as seguintes tecnologias e livrarias:
 
-*[HTML] - Corpo do site
-*[CSS] - Estilo do site
-*[JavaScript] - Uso para verificações
-*[Node.js] - Backend completo
-*[MSSQL] - Conexão com o banco
-*[Java] - Sistema desktop
-*[Python] - Captura de dados de hardware
+*[HTML] - Corpo do site </br>
+*[CSS] - Estilo do site </br>
+*[JavaScript] - Uso para verificações </br>
+*[Node.js] - Backend completo </br>
+*[MSSQL] - Conexão com o banco </br>
+*[Java] - Sistema desktop </br>
+*[Python] - Captura de dados de hardware </br>
 
 ## Licença
 
