@@ -17,31 +17,39 @@ Sed commodo nisl non ipsum rutrum egestas. Aliquam et faucibus ipsum. Maecenas i
     
 ## Instalação
    Git Clone do repositorio
-    ```sh
-        $ git clone https://github.com/BandTec/Sensiders.git
-    ```
-    ![](/projeto1.png)
+   
+  ```shell
+   $ git clone https://github.com/BandTec/Sensiders.git
+  ```
+    
+   ![](/projeto1.png)
     
    Abra o diretorio com o terminal na pasta que foi feita o download.
    Vá em application e instale os pacotes do node 
-    ```sh
-        $ cd Application/
-        $ cd projeto-aquisicao-local/projeto-node-local 
-        $ npm i
-    ```
-    ![](/projeto2.png)
+   
+  ```shell
+   $ cd Application/
+   $ cd projeto-aquisicao-local/projeto-node-local 
+   $ npm i
+  ```
+   ![](/projeto2.png)
+    
   Projeto-site
-    ```sh
-        $ cd projeto-site/
-        $ npm i
-    ```
-    ![](/projeto3.png)
+  
+  ```shell
+   $ cd projeto-site/
+   $ npm i
+  ```
+   ![](/projeto3.png)
+    
   Dentro do diretorio: projeto-site, rode o seguinte comando para iniciar o sistema
-    ```sh
-        $ npm run dev
-    ```
+  
+  ```shell
+   $ npm run dev
+  ```
   Logo depois entre no seu navegador e acesse a url:
     > localhost:3333/
+    
    ![](/projeto4.png)
     
 ## Tecnologias
