@@ -4,7 +4,7 @@ import analiseHardware
 import time
 
 #Inserir user, password, host, database
-mysql = Mysql('marise','123mysql@', 'localhost', 'projeto')
+mysql = Mysql('apiPython','urubu100', 'localhost', 'projeto')
 
 mysql.connect()
 
