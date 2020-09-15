@@ -3,7 +3,7 @@
 # Sensiders
 
 <p align="center">
-  <img width="400" height="300" src="/LogoPreta.png">
+  <img width="303" height="267" src="/LogoPreta.png">
 </p>
 
 ## Contexto
@@ -31,6 +31,7 @@ Sed commodo nisl non ipsum rutrum egestas. Aliquam et faucibus ipsum. Maecenas i
    $ cd Application/
    $ cd projeto-aquisicao-local/projeto-node-local 
    $ npm i
+   $ npm start
   ```
    ![](/projeto2.png)
     
