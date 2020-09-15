@@ -22,7 +22,7 @@ python3 -m venv NOMEdoAMBIENTE #(no meu caso windowsenv)
 #entrar no Ambiente virtual
 supondo que o ambiente se chame env
 
-# Opa parece que precisa habilitar os scripts em windows para rodar
+# habilitar os scripts em windows para rodar
 - PowerShell
 HABILITANDO EXECUÇÃO DE SCRIPTS: Set-ExecutionPolicy Unrestricted depois S e enter.
 
