@@ -1,16 +1,16 @@
-from services.mysql import Mysql
+from services.sqlAzure import Sql
 #from services.dataGenerator import getData
 import analiseHardware
 import time
 
-#Inserir user, password, host, database
-mysql = Mysql('apiPython','urubu100', 'localhost', 'projeto')
+#Inserir user, password, port, database, server
+sql = Sql('USER','PASSWORD', '1433', 'DATABSE ', 'SERVEr')
 
-mysql.connect()
+sql.connect()
 
 while True:
     valoresHW = analiseHardware.dadosHardware()
     Slack = analiseHardware.alertarSlack(valoresHW)
     print(Slack)
-    mysql.insert(valoresHW)
+    sql.insert(valoresHW)
     time.sleep(1)
