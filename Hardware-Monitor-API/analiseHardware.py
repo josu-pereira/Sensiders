@@ -15,6 +15,7 @@ def dadosHardware():
     valUpload = round((newUpload - oldUpload) / (2**10)) # KB/s Upload
     oldDownload = newDownload
     oldUpload = newUpload
+    maquina = 1
 
     if sys.platform == 'linux':
         tempCPU = psutil.sensors_temperatures(fahrenheit=False).get('coretemp')[0][1] # temperatura CPU (celsius)
