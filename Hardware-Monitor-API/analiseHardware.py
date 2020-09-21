@@ -31,11 +31,12 @@ def dadosHardware():
     'upload': valUpload,
     'temp': tempCPU,
     'swap': valSWAP,
-    'tasks': valTASKS
+    'tasks': valTASKS, 
+    'maquina': 1
     }
     print(hardware)
 
-    dadosHW = (valCPU, valRAM, valHD, valDownload, valUpload, tempCPU, valSWAP, valTASKS)
+    dadosHW = (valCPU, valRAM, valHD, valDownload, valUpload, tempCPU, valSWAP, valTASKS, maquina)
     return dadosHW
     
 def alertarSlack(valores):

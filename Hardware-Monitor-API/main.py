@@ -4,7 +4,7 @@ import analiseHardware
 import time
 
 #Inserir user, password, port, database, server
-sql = Sql('USER','PASSWORD', '1433', 'DATABSE ', 'SERVEr')
+sql = Sql('adminlocal','#Gfgrupo11c', '1433', 'bdProjetoSensiders', 'serversensiders.database.windows.net')
 
 sql.connect()
 

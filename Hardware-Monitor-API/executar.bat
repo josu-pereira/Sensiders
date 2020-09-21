@@ -27,7 +27,7 @@ if exist %nome% (
 	echo.estao todas as libs
     ) || (
 	echo.nenhuma lib encontrada, baixando elas
-	py -m pip install psutil mysql-connector-python mysql-connector requests
+	py -m pip install psutil mysql-connector-python mysql-connector requests pyodbc
     )
 
     echo iniciando o ambiente virtual
@@ -48,7 +48,7 @@ if exist %nome% (
     call ./activate.bat
 
     ::instalando as libs
-    py -m pip install psutil mysql-connector-python mysql-connector requests
+    py -m pip install psutil mysql-connector-python mysql-connector requests pyodbc
 )
 
 ::voltando pra raiz
