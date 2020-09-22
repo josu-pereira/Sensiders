@@ -30,7 +30,7 @@ class Sql:
     def insert(self, data):
         query = (
            
-            "INSERT INTO dados_hw (cpu_percent, ram_percent, disk_percent, download, upload, temp_celsius, swap_percent, tasks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" 
+            "INSERT INTO DadosMaquina (data_cpu, data_mem, data_disk, data_download, data_upload, cpu_temperature, data_swap, tarefasExec, fkmaquina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" 
         )
         values = data
         try:

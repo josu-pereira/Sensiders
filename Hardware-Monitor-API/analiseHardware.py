@@ -15,6 +15,7 @@ def dadosHardware():
     valUpload = round((newUpload - oldUpload) / (2**10)) # KB/s Upload
     oldDownload = newDownload
     oldUpload = newUpload
+    maquina = 1
 
     if sys.platform == 'linux':
         tempCPU = psutil.sensors_temperatures(fahrenheit=False).get('coretemp')[0][1] # temperatura CPU (celsius)
@@ -31,11 +32,12 @@ def dadosHardware():
     'upload': valUpload,
     'temp': tempCPU,
     'swap': valSWAP,
-    'tasks': valTASKS
+    'tasks': valTASKS, 
+    'maquina': 1
     }
     print(hardware)
 
-    dadosHW = (valCPU, valRAM, valHD, valDownload, valUpload, tempCPU, valSWAP, valTASKS)
+    dadosHW = (valCPU, valRAM, valHD, valDownload, valUpload, tempCPU, valSWAP, valTASKS, maquina)
     return dadosHW
     
 def alertarSlack(valores):
