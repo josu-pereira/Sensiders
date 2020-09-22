@@ -7,14 +7,14 @@
 
 	<script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<script defer type="text/javascript" src="funcoes.js"></script>
+	<script defer type="text/javascript" src="../../js/funcoes.js"></script>
 	<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
 	<script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
 	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
 
-	<script src="heatmap.js"></script>
-	<link rel="shortcut icon" href="../assets/images/Logo.ico">
-	<link rel="stylesheet" href="../assets/styles/dashboardStyle.css">
+	<script src="../../js/heatmap.js"></script>
+	<link rel="shortcut icon" href="../../img/Logo.ico">
+	<link rel="stylesheet" href="../../css/dashboardStyle.css">
 	<style>
 		canvas {
 			-moz-user-select: none;
@@ -27,14 +27,14 @@
 			/* width: 605px; */
 			height: 400px;
 			width: 400px;
-			background-image: url("planta.png");
+			background-image: url("../../img/planta.png");
 			background-size: cover;
 		}
 
 		.heatmap-tempo {
 			height: 400px;
 			width: 400px;
-			background-image: url("planta.png");
+			background-image: url("../../img/planta.png");
 			background-size: cover;
 		}
 	</style>
@@ -44,7 +44,7 @@
 	<div class="dashboard-container">
 		<div class="header">
 			<div class="button-set">
-				<img class="imagem-logo" src="./assets/images/logo-branca.png" alt="Sensiders">
+				<img class="imagem-logo" src="../../img/logo-branca.png" alt="Sensiders">
 				<a href="#container-tempo-real">
 					<button>Tempo Real</button>
 				</a>
@@ -59,7 +59,7 @@
 				<b id="b_usuario"></b>
 				<a href="#" onclick="logoff()">
 					<button>
-						<img src="./assets/images/log-out.svg" alt="Sair">
+						<img src="../../img/log-out.svg" alt="Sair">
 					</button>
 				</a>	
 			</div>

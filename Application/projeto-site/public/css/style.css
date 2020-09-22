@@ -85,7 +85,7 @@ html {
 
 /* HEADER */
 .header {
-    background-image: url('../images/superm.jpg');
+    background-image: url('../../img/superm.jpg');
     background-repeat: no-repeat;
     background-position: center;
     height: 80vh;
