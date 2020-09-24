@@ -1,0 +1,29 @@
+
+
+/*
+* ==============================================================================
+*                           CANVAS / HEATMAP STYLES
+* ==============================================================================
+*/
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.heatmap {
+    /* height: 400px; */
+    /* width: 605px; */
+    height: 400px;
+    width: 400px;
+    background-image: url("../../img/planta.png");
+    background-size: cover;
+}
+
+.heatmap-tempo {
+    height: 400px;
+    width: 400px;
+    background-image: url("../../img/planta.png");
+    background-size: cover;
+}
