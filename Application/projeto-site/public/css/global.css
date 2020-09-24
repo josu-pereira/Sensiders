@@ -2,6 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap');
 
 
+
+:root {
+  --color-in-primary: #FF7D7D;
+  --color-text-primary: #FF7D7D;
+
+  --background-primary: rgb(237,237,237);
+  /* --background-primary: #F9F9F9; */
+  --backgorund-box-chart: #FFFFFF;
+}
+
 /*
 * ==============================================================================
 *                               GLOBAL STYLE

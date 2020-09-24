@@ -1,112 +1,83 @@
 <!doctype html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Dashboard | Sensiders</title>
-		<link rel="shortcut icon" href="../../img/Logo.ico">
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard | Sensiders</title>
+	<link rel="shortcut icon" href="../../img/Logo.ico">
 
 
-		<!-- JS -->
-		<script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-		<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
-		<script defer type="text/javascript" src="../../js/funcoes.js"></script>
-		<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
-		<script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
-		<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
-		<script src="../../js/heatmap.js"></script>
-		
+	<!-- JS -->
+	<script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+	<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<script defer type="text/javascript" src="../../js/funcoes.js"></script>
+	<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+	<script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
+	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
+	<script src="../../js/heatmap.js"></script>
 
-		<!-- CSS -->
-		<!-- <link rel="stylesheet" href="../../css/dashboardStyle.css"> -->
-		<link rel="stylesheet" href="./style-dashboard.css">
-		
-	</head>
 
-	<body>
-		<div class="dashboard-container">
-			<div class="header">
-				<div class="button-set">
-					<img class="imagem-logo" src="../../img/logo-branca.png" alt="Sensiders">
-					<a href="#container-tempo-real">
-						<button>Tempo Real</button>
-					</a>
-					<a href="#container-periodo-recente">
-						<button>Período recente</button>
-					</a>
-					<a href="#container-data-especifica">
-						<button>Data específica</button>
-					</a>
-				</div>
-				<div class="user-items">
-					<b id="b_usuario"></b>
-					<a href="#" onclick="logoff()">
-						<button>
-							<img src="../../img/log-out.svg" alt="Sair">
-						</button>
-					</a>	
-				</div>
-			</div>
+	<!-- CSS -->
+	<!-- <link rel="stylesheet" href="../../css/dashboardStyle.css"> -->
+	<link rel="stylesheet" href="../../css/global.css">
+	<link rel="stylesheet" href="./style-dashboard.css">
 
-			<div class="container" style="top: 7vh;">
-				<div class="chart-section" id="container-tempo-real">
-					<h2>Atual movimentação nos setores</h1>
-					<div class="heatmap-container">
-						<div class="heatmap">
-							<!-- AQUI VAI SER CRIADO O MAPA -->
-						</div>
-						<div class="heatmap-content">
-							<p class="title">Setor com maior movimentação</p>
-							<p class="desc" id="maiorMov_p"></p>
-							<p class="title">Setor com menor movimentação</p>
-							<p class="desc" id="menorMov_p"></p>
-							<p class="title">Média de movimentação geral</p>
-							<p class="desc" id="mediaMov_p"></p>
-						</div>
+</head>
+
+<body>
+
+
+	<header class="header-top"></header>
+	<main class="container-main">
+
+		<div class="content-main">
+			<div class="side-bar"></div>
+			<div class="cards">
+				<div class="cards-principal">
+					<span class="title">Setor com maior movimentação</span>
+					<span class="sector-read">Padaria</span>
+					<div class="icon-card icon1">
+						<img src="../../img/icons/arrow-up.svg" alt="Ícone subir">
 					</div>
 				</div>
-				<div class="chart-section" id="container-periodo-recente">
-					<h2>Dados recentes do setor</h2>
-					<div id="div_aguarde">Dados sendo obtidos...</div>
-					<select onchange="mudarSetor()" id="setor_cb"></select>
-					<canvas id="canvas_grafico_linha1"></canvas>
-				</div>
-				<div class="chart-section" id="container-data-especifica">
-					<h2>Dados de uma data específica</h2>
-					<div class="heatmap-tempo-container">
-						<div class="heatmap-tempo">
-							<!-- AQUI VAI SER CRIADO O MAPA -->
-						</div>
-						
-						<form id="heatmap_form">
-						<input type="date" name="dia" required />
-						<input type="time" name="hora_ini" min="00:00" max="23:59" required />
-						<input type="time" name="hora_fim" min="00:00" max="23:59" required />
-						</form>
-					
-						<button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
+				
+				<div class="cards-principal">
+					<span class="title">Setor com menor movimentação</span>
+					<span class="sector-read">Laticínios</span>
+					<div class="icon-card icon2">
+						<img src="../../img/icons/arrow-down.svg" alt="Ícone descer">
 					</div>
 				</div>
-			</div>
-			<div class="gauges-container" id="gaugesContainer">
-				<canvas id="gauge1"></canvas>
-				<canvas id="gauge2"></canvas>
-				<canvas id="gauge3"></canvas>
-				<canvas id="gauge4"></canvas>
-				<canvas id="gauge5"></canvas>
-				<canvas id="gauge6"></canvas>
-				<canvas id="gauge7"></canvas>
-				<canvas id="gauge8"></canvas>
-				<canvas id="gauge9"></canvas>
-				<canvas id="gauge10"></canvas>
-				<canvas id="gauge11"></canvas>
-				<canvas id="gauge12"></canvas>
-			</div>
 
+				<div class="cards-principal">
+					<span class="title">Média de movimentação (Geral)</span>
+					<span class="sector-read">44.5</span>
+					<div class="icon-card icon3">
+						<img src="../../img/icons/code.svg" alt="Ícone code">
+					</div>
+				</div>
+				<!-- <div class="cards-principal"></div>
+				<div class="cards-principal"></div> -->
+
+
+				<div class="container-charts">
+					<div class="box-chart"></div>
+				</div>
+				<div class="container-gauges">
+					<div class="box-gauge"></div>
+
+				</div>
+
+			</div>
+			
 		</div>
 
-		<!-- JS -->
-		<script src="./dashboard.js"></script>
+	</main>
 
-	</body>
+
+	<!-- JS -->
+	<script src="./dashboard.js"></script>
+
+</body>
+
 </html>

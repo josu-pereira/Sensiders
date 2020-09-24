@@ -1,3 +1,227 @@
+/*
+* ==============================================================================
+*                               DASHBOARD
+* ==============================================================================
+*/
+
+
+body {
+    background: var(--background-primary);
+}
+
+.header-top {
+    width: 100%;
+    height: 75px;
+    background: var(--color-in-primary);
+}
+
+.container-main {
+    width: 100%;
+    height: calc(95% - 50px);
+    /* background: red; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    bottom: 25px;
+}
+
+.container-main .content-main {
+    width: 90%;
+    height: 100%;
+    /* background: blue; */
+
+
+    display: grid;
+    grid-template-columns: 270px 100%;
+
+    grid-gap: 25px;
+
+}
+
+.container-main .content-main .side-bar {
+    width: 270px;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+    border-radius: 8px;
+}
+
+.container-main .content-main .cards {
+    width: calc(100% - 270px);
+    height: 100%;
+    /* background: tomato; */
+
+
+    display: grid;
+    grid-gap: 25px;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+/*
+* SCROLL BAR BOXES
+*/
+
+
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 8px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    display: none;
+}
+
+
+/*
+* CARDS PRINCIPAIS
+*/
+
+
+.content-main .cards .cards-principal {
+    position: relative;
+    width: 305px;
+    height: 100px;
+    padding: 15px;
+
+    /* padding-top: 25px; */
+
+    background: var(--backgorund-box-chart);
+    box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.cards .cards-principal span.title {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Archivo' !important;
+    margin-top: 10px;
+}
+
+.cards .cards-principal span.sector-read {
+    font-size: 24px;
+    color: var(--color-text-primary);
+
+    /* margin-top: 10px; */
+}
+
+.icon-card {
+    
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: 15px;
+
+    color: #FFF;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-card.icon1 { background: #ffdaa6; }
+.icon-card.icon2 { background: #e5b4f7; }
+.icon-card.icon3 { background: #ffc6c6; }
+
+
+.icon-card img {
+    filter: invert(1)
+}
+
+
+
+
+
+
+
+
+
+.container-main .cards .container-charts {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+
+
+    grid-column: 1 / 3;
+    overflow-y: scroll;
+}
+
+.cards .container-charts:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
+
+.container-main .cards .container-charts .box-chart {
+
+    width: 100%;
+    height: 100%;
+
+    background: var(--backgorund-box-chart);
+    box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+    border-radius: 8px;
+
+}
+
+.cards .container-charts .box-chart:nth-child(n + 2) { margin-top: 25px; }
+
+
+.content-main .cards .container-gauges {
+    width: 100%;
+    height: 100%;
+
+    overflow-y: scroll;
+
+}
+
+.cards .container-gauges:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
+
+.cards .container-gauges .box-gauge {
+    width: 100%;
+    height: 100%;
+    
+    background: var(--backgorund-box-chart);
+    box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+    border-radius: 8px;
+
+}
+
+.cards .container-gauges .box-gauge:nth-child(n + 2) { margin-top: 25px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
