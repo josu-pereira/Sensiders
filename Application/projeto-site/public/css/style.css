@@ -162,7 +162,7 @@ html {
 }
 
 .dev {
-    width: 15%;
+    width: 10%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     text-align: center;
@@ -175,11 +175,12 @@ html {
 
 .dev img {
     width: 100%;
-    border-radius: 10px 10px 2px 2px;
+    border-radius: 10px 10px 3px 3px;
 }
 
 .dev p {
-    padding: 10px;
+    padding: 7px;
+    font-size: 0.9rem;
 }
 
 /* CONTATO */
