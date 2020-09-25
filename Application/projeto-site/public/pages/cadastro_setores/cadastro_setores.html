@@ -8,13 +8,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
     <link rel="stylesheet" href="../../css/global.css">
     <script defer src="./assets/scripts/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!--<script src="//code.jivosite.com/widget/hPLzvOwppM" async></script>-->
     <title>Sensores</title>
 </head>
 <body>
     <div class="divTopo">
         <div class="container">
-            <img class="imgSeta" src="../../img/icons/arrow-left.svg" alt="">
+        <a href="../../index.html"><img class="imgSeta" src="../../img/icons/arrow-left.svg" alt=""></a>
         <h1 class="tituloPrincipal">Aqui estão os seus setores</h1>
         </div>
     </div>
@@ -30,7 +31,7 @@
         <div class="setorListado">
             <span class="nomeSetor">Padaria</span>
             <span class="qtdSetor">5</span>
-            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="">
+            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="" onclick="document.getElementById('divEditarSetor').style.display='block'">
         </div>
         <div class="setorListado">
             <span class="nomeSetor">Açougue</span>
@@ -49,5 +50,36 @@
         </div>   
         </div>
     </div>
+    <div id="divEditarSetor" class="modal">
+        <!-- <form class="modal-content animate" action="/action_page.php" method="post">
+            <img src="https://i.pinimg.com/originals/dd/e7/17/dde717d689929ebafd133174ff2ba764.jpg" alt="">
+        </form> -->
+        <form class="modal-content animate" action=""> 
+            <h1 id="tituloEditar">Editar Setor</h1> 
+            <div class="divInputNome">
+                <span>Nome do setor:</span><br>
+                <input id="inputEdit" type="text">
+            </div>
+            <div class="divInputQtd">
+                <span>Quantidade de sensores:</span><br>
+                <input id="inputEdit" type="text">
+            </div>
+            <div class="containerbotoes">
+              <button type="button" class="cancelbtn" onclick="document.getElementById('divEditarSetor').style.display='none'">Cancelar</button>
+              <button type="submit" onclick="document.getElementById('divEditarSetor').style.display='none'" class="savebtn">Salvar</button>
+            </div>
+          </form>
+    </div>
 </body>
 </html>
+<script>
+      // Get the modal
+var modal = document.getElementById('divEditarSetor');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}       
+</script>
