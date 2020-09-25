@@ -1,0 +1,124 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #F9F9F9;
+    /*background: cyan;*/
+    height: 100vh;
+}
+
+/* Retângulo rosa do topo */
+.divTopo {
+/*position: absolute;*/
+display: flex;
+justify-content: flex-start;
+
+width: 100%;
+min-width: 1366px;
+height: 40%;
+left: 0px;
+top: 0px;
+background: #FF7D7D;
+
+/*z-index: -1;*/
+  }
+  .container{
+    width:80%;
+    margin: 0 auto;
+}
+
+  .tituloPrincipal{
+    font-family: Archivo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 33px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 100px;
+  }
+.divLista{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto    ;
+}
+.divTabela{
+    width: 40%;
+    margin-top: -6%;
+}
+.divTitulosTabela{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #DADADA;
+}
+.setorListado{
+    width: 100%;
+    height: 65px;
+    /*left: 438px;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+    border-radius: 8px;
+}
+.setorListado *{
+    padding: 33px;
+}
+.nomeSetor{
+   /* width: 96px; 
+height: 21px;
+left: 470px;
+/*padding-top: auto;
+padding-bottom: auto;*/
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+width: 18%;
+
+/* identical to box height */
+
+color: #000000;
+}
+.qtdSetor{
+/*
+width: 11px;
+height: 21px;
+left: 714px;
+top: 306px;*/
+width: 5%;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.imgEditSetor{
+    height: 90px;
+    width: 90px;
+    cursor: pointer;
+}
+
+
+.imgSeta{
+margin: 20px 0 25px;
+}
