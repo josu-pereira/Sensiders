@@ -1,5 +1,13 @@
-import psutil, time, sys
-import requests
+import psutil, time, sys, json, requests, os
+
+def gerarTemperatura():
+    dados = (requests.get("http://localhost:9000/data.json",auth=("user","pass"))).json()["Children"][0]["Children"][1]["Children"][1]["Children"]
+    for d in range(len(dados)):
+        if "CPU Package" in dados[d]["Text"]:
+            temperatura = int((dados[d]["Value"])[:-5])
+
+    return (temperatura)
+
 
 def dadosHardware():
     oldDownload = psutil.net_io_counters()[1]
@@ -18,9 +26,12 @@ def dadosHardware():
     maquina = 1
 
     if sys.platform == 'linux':
-        tempCPU = psutil.sensors_temperatures(fahrenheit=False).get('coretemp')[0][1] # temperatura CPU (celsius)
-    else:
-        tempCPU = 0
+        if not "Microsoft" in os.uname():
+            tempCPU = psutil.sensors_temperatures(fahrenheit=False).get('coretemp')[0][1] # temperatura CPU (celsius)
+        else:
+            tempCPU = 0
+    else if sys.platform == 'win32':
+        tempCPU = gerarTemperatura()
     valSWAP = psutil.swap_memory()[3] # percentual de SWAP
     valTASKS = len(psutil.pids()) # quantidade de tarefas em execução
 
