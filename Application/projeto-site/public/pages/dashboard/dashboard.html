@@ -16,6 +16,8 @@
 	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
 	<script src="../../js/heatmap.js"></script>
 
+	<script src="https://unpkg.com/feather-icons"></script>
+
 
 	<!-- CSS -->
 	<!-- <link rel="stylesheet" href="../../css/dashboardStyle.css"> -->
@@ -31,40 +33,150 @@
 	<main class="container-main">
 
 		<div class="content-main">
-			<div class="side-bar"></div>
+			<div class="sidebar">
+				<header class="header-sidebar">
+					<span>
+						Olá, 
+						<span id="b_usuario"></span>
+						suas leituras estão aqui
+					</span>
+					<img src="../../img/logo 2.png" alt="Logo sensiders">
+				</header>
+				<div class="links-sidebar">
+					
+					<a href="#" class="current-page">
+						<i data-feather="trending-up"></i>
+						<span>Dashboard</span>
+					</a>
+
+					<a href="#">
+						<i data-feather="grid"></i>
+						<span>Setores</span>
+					</a>
+
+					<a href="#" onclick="logoff()">
+						<i data-feather="log-in"></i>
+						<span>Sair</span>
+					</a>
+					
+				</div>
+			</div>
 			<div class="cards">
+
+
+				<!-- CARDS PRINCIPAIS -->
 				<div class="cards-principal">
 					<span class="title">Setor com maior movimentação</span>
-					<span class="sector-read">Padaria</span>
+					<span class="sector-read" id="maiorMov_p">Padaria</span>
 					<div class="icon-card icon1">
-						<img src="../../img/icons/arrow-up.svg" alt="Ícone subir">
+						<i data-feather="arrow-up"></i>
 					</div>
 				</div>
 				
 				<div class="cards-principal">
 					<span class="title">Setor com menor movimentação</span>
-					<span class="sector-read">Laticínios</span>
+					<span class="sector-read" id="menorMov_p">Açougue</span>
 					<div class="icon-card icon2">
-						<img src="../../img/icons/arrow-down.svg" alt="Ícone descer">
+						<i data-feather="arrow-down"></i>
 					</div>
 				</div>
 
 				<div class="cards-principal">
 					<span class="title">Média de movimentação (Geral)</span>
-					<span class="sector-read">44.5</span>
+					<span class="sector-read" id="mediaMov_p">47.8</span>
 					<div class="icon-card icon3">
-						<img src="../../img/icons/code.svg" alt="Ícone code">
+						<i data-feather="code"></i>
 					</div>
 				</div>
-				<!-- <div class="cards-principal"></div>
-				<div class="cards-principal"></div> -->
 
-
+				<!-- CARDS (HEATMAP) -->
 				<div class="container-charts">
-					<div class="box-chart"></div>
+					<div class="box-chart">
+						<header class="header-box-chart">
+							<span class="title-box">Movimentação atual nos setores</span>
+						</header>
+						<div class="heatmap-graph heatmap">
+							<!-- AQUI VAI SER CRIADO O MAPA -->
+						</div>
+					</div>
+
+
+
+					<div class="box-chart">
+						<header class="header-box-chart">
+							<span class="title-box">Dados recentes do setor</span>
+							<select onchange="mudarSetor()" id="setor_cb"></select>
+						</header>
+						<div id="div_aguarde">
+							<div class="loader loader--style2" title="1">
+								<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+									x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+									xml:space="preserve">
+									<path fill="#000"
+										d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+										<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25"
+											dur="0.6s" repeatCount="indefinite" />
+									</path>
+								</svg>
+							</div>
+
+						</div>
+						<canvas id="canvas_grafico_linha1"></canvas>
+					</div>
+					
+
+
+
+					<div class="box-chart">
+						<header class="header-box-chart">
+							<span class="title-box">Movimentação atual nos setores</span>
+						</header>
+						<div class="heatmap-graph heatmap-tempo">
+							<!-- AQUI VAI SER CRIADO O MAPA -->
+						</div>
+					</div>
 				</div>
+
+
+
+				<!-- CARDS GAUCES -->
 				<div class="container-gauges">
-					<div class="box-gauge"></div>
+					<div class="box-gauge">
+						<canvas id="gauge1"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge2"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge3"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge4"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge5"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge6"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge7"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge8"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge9"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge10"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge11"></canvas>
+					</div>
+					<div class="box-gauge">
+						<canvas id="gauge12"></canvas>
+					</div>
 
 				</div>
 
@@ -75,8 +187,12 @@
 	</main>
 
 
+
 	<!-- JS -->
 	<script src="./dashboard.js"></script>
+	<script>
+		feather.replace()
+	</script>
 
 </body>
 

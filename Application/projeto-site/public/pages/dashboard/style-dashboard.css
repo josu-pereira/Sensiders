@@ -29,44 +29,112 @@ body {
 }
 
 .container-main .content-main {
-    width: 90%;
+    width: 93%;
+    max-width: 1300px;
     height: 100%;
-    /* background: blue; */
-
-
+    
     display: grid;
-    grid-template-columns: 270px 100%;
-
+    grid-template-columns: 270px 1fr;
+    grid-template-rows: 100%;
     grid-gap: 25px;
 
+    overflow-y: hidden;
+
+  
 }
 
-.container-main .content-main .side-bar {
+
+/*
+* SIDEBAR
+*/
+
+.content-main .sidebar {
     width: 270px;
     height: 100%;
     background: #FFFFFF;
     box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
     border-radius: 8px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
+.sidebar .header-sidebar {
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar .header-sidebar img {
+    width: 25px;
+    height: 25px;
+}
+
+.sidebar .header-sidebar #b_usuario {
+    color: var(--color-in-primary);
+}
+
+.sidebar .links-sidebar {
+    width: 100%;
+    height: auto;
+    padding-top: 30px;
+
+    /* background: red; */
+    overflow-y: scroll;
+}
+
+.sidebar .links-sidebar a {
+    display: flex;
+    align-items: center;
+    color: var(--color-no-selected);    
+    font-size: 14px;
+
+    margin-top: 15px;
+
+    transition: .3s;
+}
+
+.sidebar .links-sidebar a:hover {
+    color: var(--color-in-primary);
+}
+
+
+.sidebar .links-sidebar a.current-page {
+    color: var(--color-in-primary);
+}
+
+
+
+.sidebar .links-sidebar a span {
+    position: relative;
+    left: 15px;
+}
+
+.sidebar .links-sidebar a svg {
+   width: 16px;
+   height: 16px;
+}
+
+
+
 .container-main .content-main .cards {
-    width: calc(100% - 270px);
+    width: 100%;
     height: 100%;
     /* background: tomato; */
 
 
     display: grid;
     grid-gap: 25px;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 100px 100%;
     grid-template-columns: repeat(3, 1fr);
     flex-wrap: wrap;
 }
-
-
-
-
-
-
 
 /*
 * SCROLL BAR BOXES
@@ -115,7 +183,7 @@ body {
 }
 
 .cards .cards-principal span.sector-read {
-    font-size: 24px;
+    font-size: 22px;
     color: var(--color-text-primary);
 
     /* margin-top: 10px; */
@@ -141,17 +209,9 @@ body {
 .icon-card.icon3 { background: #ffc6c6; }
 
 
-.icon-card img {
-    filter: invert(1)
+.icon-card svg {
+    color: #FFF;
 }
-
-
-
-
-
-
-
-
 
 .container-main .cards .container-charts {
     width: 100%;
@@ -165,8 +225,7 @@ body {
 
 .cards .container-charts:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
 
-.container-main .cards .container-charts .box-chart {
-
+.cards .container-charts .box-chart {
     width: 100%;
     height: 100%;
 
@@ -174,15 +233,58 @@ body {
     box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
     border-radius: 8px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cards .container-charts .box-chart:nth-child(n + 2) { margin-top: 25px; }
 
+.cards .container-charts .box-chart header {
+    width: 100%;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.cards .container-charts .box-chart header .title-box {
+    font-size: 14px;
+    font-family: 'Archivo';
+    font-weight: 700;
+}
+
+.cards .container-charts .box-chart .heatmap-graph {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    top: 25px;
+}
+.container-charts .box-chart header select {
+    width: 180px;
+    height: 25px;
+
+    border: 0;
+
+    font-family: 'Poppins';
+
+
+}
+
+
+
+/*
+*   GAUGES
+*/
 
 .content-main .cards .container-gauges {
     width: 100%;
-    height: 100%;
-
+    height: 100vh;
+    border-radius: 8px;
+    
+    grid-column: 3 / 3;
     overflow-y: scroll;
 
 }
@@ -190,20 +292,54 @@ body {
 .cards .container-gauges:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
 
 .cards .container-gauges .box-gauge {
+    display: block;
+    position: relative;
     width: 100%;
     height: 100%;
+    
     
     background: var(--backgorund-box-chart);
     box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
     border-radius: 8px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cards .container-gauges .box-gauge:nth-child(n + 2) { margin-top: 25px; }
 
 
+.cards .container-gauges .box-gauge .canvas {
+    width: 500px;
+    height: 500px;
+}
 
 
+
+
+/*
+* SPINNER
+*/
+
+.loader {
+    margin: 0 0 2em;
+    height: 100px;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*
+    Set the color of the icon
+  */
+.div_aguarde svg path,
+.div_aguarde svg rect {
+    fill: var(--color-in-primary);
+}
 
 
 
