@@ -1,3 +1,22 @@
+openFilterOption = true;
+function openFilter() {
+
+    if(openFilterOption) {
+        document.querySelector('.heatmap-form-content').style.display = "block";
+        document.querySelector('.filter').classList.add("current");
+        openFilterOption = false;
+    } else {
+        document.querySelector('.heatmap-form-content').style.display = "none";
+
+        // document.querySelector('.filter').className += " aaa"
+        document.querySelector('.filter').classList.remove("current");
+        openFilterOption = true;
+    }
+
+    console.log(openFilterOption)
+}
+
+
 let setorCB = 1;
 
 

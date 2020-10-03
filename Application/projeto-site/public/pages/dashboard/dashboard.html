@@ -127,12 +127,31 @@
 
 
 
-					<div class="box-chart">
+					<div class="box-chart current-sector">
 						<header class="header-box-chart">
 							<span class="title-box">Movimentação atual nos setores</span>
+							<div class="filter" id="filter_heatmap_tempo" onclick="openFilter()">
+								<span>Filtrar</span>
+								<i data-feather="filter"></i>
+							</div>
 						</header>
-						<div class="heatmap-graph heatmap-tempo">
-							<!-- AQUI VAI SER CRIADO O MAPA -->
+
+						<div class="content-heatmap-filter">
+							<div class="heatmap-graph heatmap-tempo">
+								<!-- AQUI VAI SER CRIADO O MAPA -->
+							</div>
+
+							<div class="heatmap-form-content">
+								<form id="heatmap_form">
+									<input type="date" name="dia" required />
+									<input type="time" name="hora_ini" min="00:00" max="23:59" required />
+									<input type="time" name="hora_fim" min="00:00" max="23:59" required />
+									<br>
+								</form>
+								<button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
+							</div>				
+						
+						
 						</div>
 					</div>
 				</div>
