@@ -59,9 +59,9 @@ body, * {
     margin-top: 50%;
 }
 
-.forms{
+/* .forms{
     margin-top: 45%;
-}
+} */
 
 #form_login a{
     width: 100%;
@@ -75,4 +75,19 @@ body, * {
     width: 60%;
     margin: auto;
     margin-top: 2%;
+}
+
+#formulario{
+    display: flex;
+    justify-content: center;
+}
+
+#btn_cadastro{
+    border: 3px solid rgb(122, 121, 121);
+    background-color: rgba(175, 175, 175, 0.5);
+}
+
+#btn_cadastro:hover{
+    transition: .5s;
+    background-color: rgb(122, 121, 121);
 }

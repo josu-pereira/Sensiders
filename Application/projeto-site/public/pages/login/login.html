@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="body-login">
+        <div class="body-login" id="formulario">
             <div class="container">
 
                 <form onsubmit="return entrar()" class="forms" method="POST" id="form_login">
@@ -44,7 +44,7 @@
 
                     <div class="div-inputs">
                         <input type="password" name="senha" id="txtSenha" placeholder="Senha">
-                        <img onclick="onSenha('txtSenha', 'eye')" src="../../img/icons/eye.svg" alt="visulaizar" class="icons-form eye"
+                        <img onclick="onSenha('txtSenha', 'eye')" src="../../img/icons/eye-off.svg" alt="visulaizar" class="icons-form eye"
                             id="eye">
                     </div>
 
@@ -54,7 +54,7 @@
 
                 <div class="btn-cadastro">
                     <a href="../register/register.html">
-                        <button class="btn">Cadastre-se</button>
+                        <button class="btn" id="btn_cadastro">Cadastre-se</button>
                     </a>
                 </div>
                 <img src="../../img/aguarde.gif" id="img_aguarde">
