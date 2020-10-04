@@ -30,7 +30,7 @@ def dadosHardware():
             tempCPU = psutil.sensors_temperatures(fahrenheit=False).get('coretemp')[0][1] # temperatura CPU (celsius)
         else:
             tempCPU = 0
-    else if sys.platform == 'win32':
+    elif sys.platform == 'win32':
         tempCPU = gerarTemperatura()
     valSWAP = psutil.swap_memory()[3] # percentual de SWAP
     valTASKS = len(psutil.pids()) # quantidade de tarefas em execução
