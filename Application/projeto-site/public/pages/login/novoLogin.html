@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../img/Logo.ico">
+    <title>Login | Sensiders</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/login.css">
+</head>
+
+<body>
+
+    <div class="login">
+
+        <div class="body-login" id="message">
+            <div class="opacity">
+                <div class="container">
+
+                    <div class="header">
+                        <img src="../../img/icons/arrow-left.svg" alt="voltar" id="back">
+                        <img src="../../img/logo-branca.png" alt="Sensiders" id="logo">
+                    </div>
+
+                    <div class="content">
+                        <p>Sua plataforma para gerenciar a movimentação do seu ambiente</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="body-login">
+            <div class="container">
+
+                <form onsubmit="return entrar()" method="POST" id="form_login">
+                    <h2>Faça seu login</h2>
+                    <div class="input-login">
+                        <input type="email" name="login" id="txtEmail" placeholder="Email">
+                        <img src="../../img/icons/email-icon.svg" alt="email" class="icons-form">
+                    </div>
+
+                    <div class="input-login">
+                        <input type="password" name="senha" id="txtSenha" placeholder="Senha">
+                        <img onclick="onSenha()" src="../../img/icons/eye.svg" alt="visulaizar" class="icons-form"
+                            id="eye">
+                    </div>
+
+                    <a href="../password/password.html">Esqueceu sua senha?</a>
+                    <button class="btn" onsubmit="return loginValidationForm()">Entrar</button>
+                </form>
+
+                <div class="btn-cadastro">
+                    <a href="../register/register.html">
+                        <button class="btn">Cadastre-se</button>
+                    </a>
+                </div>
+                <img src="../../img/aguarde.gif" id="img_aguarde">
+                <div id="div_erro"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script src="../../js/viewPassword.js"></script>
+<script src="../../js/validationForm.js"></script>
+
+<script>
+
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.emailUsuario;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
+
+                    window.location.href = '../dashboard/dashboard.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.display = 'block';
+        div_erro.style.display = 'none';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        img_aguarde.style.display = 'none';
+        div_erro.style.display = 'block';
+        div_erro.innerHTML = resposta;
+    }
+
+</script>
