@@ -52,3 +52,8 @@ a {
 	text-decoration: none !important;
 	color: #000;
 }
+
+.container{
+    margin: auto;
+    width: 80%;
+}

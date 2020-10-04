@@ -1,18 +1,22 @@
-let eye = document.querySelector('#eye')
-let pwd = document.querySelector('#txtSenha')
+// let eye = document.querySelector('#eye')
+// let pwd = document.querySelector('#txtSenha')
 
-function onSenha(){
+function onSenha(input, icon){
+    let pwd = document.getElementById(input)
+    let eye = document.getElementById(icon)
     pwd.type = "text"
     eye.src = "../../img/icons/eye-off.svg"
     eye.onclick = function(){
-        offSenha()
+        offSenha(input, icon)
     }
 }
 
-function offSenha(){
+function offSenha(input, icon){
+    let pwd = document.getElementById(input)
+    let eye = document.getElementById(icon)
     pwd.type = "password"
     eye.src = "../../img/icons/eye.svg"
     eye.onclick = function(){
-        onSenha()
+        onSenha(input, icon)
     }
 }
