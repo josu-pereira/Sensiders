@@ -29,10 +29,10 @@ form.addEventListener('submit', function(e){
 
 function loginValidationForm() {
 
-    var email = document.getElementById('emailInp').value;
-    var senha = document.getElementById('senhaInp').value;
+    var email = document.getElementById('txtEmail').value;
+    var senha = document.getElementById('txtSenha').value;
 
-    if (email == "" || email == null) {
+    if (email == "" || email == null || senha == "") {
         return alert("Por Favor, Preencha o email!");
     } else {
         if (emailRegex.test(email) === false) {
