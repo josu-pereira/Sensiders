@@ -16,9 +16,12 @@ body {
 }
 
 .container-main {
-    width: 100%;
-    height: calc(95% - 50px);
+    width: 93%;
+    max-width: 1300px;
+    height: calc(630px - 50px);
     /* background: red; */
+    margin: 0 auto;
+
 
     display: flex;
     justify-content: center;
@@ -29,16 +32,14 @@ body {
 }
 
 .container-main .content-main {
-    width: 93%;
-    max-width: 1300px;
+    width: 100%;
+    /* max-width: 1300px; */
     height: 100%;
     
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 270px 1fr;
     grid-template-rows: 100%;
     grid-gap: 25px;  
-
-    overflow: hidden;
 }
 
 
@@ -126,18 +127,14 @@ body {
     height: 100%;
     /* background: tomato; */
 
-
-    display: grid;
-    grid-gap: 25px;
-    /* grid-template-rows: 100px auto;
-    grid-template-columns: repeat(3, 1fr); */
-    flex-wrap: wrap;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 /*
 * SCROLL BAR BOXES
 */
-
 
 ::-webkit-scrollbar {
     width: 6px;
@@ -152,17 +149,24 @@ body {
 
 
 /*
-* CARDS PRINCIPAIS
+* MAIN CARDS
 */
 
+.content-main .cards .container-main-cards {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    /* background: green; */
 
-.content-main .cards .cards-principal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-main .cards .main-cards {
     position: relative;
     width: 305px;
     height: 100px;
     padding: 15px;
-
-    /* padding-top: 25px; */
 
     background: var(--backgorund-box-chart);
     box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
@@ -172,15 +176,18 @@ body {
     flex-direction: column;
 }
 
+.content-main .cards .main-cards:nth-child(n + 2) {
+    margin-left: 25px;
+}
 
-.cards .cards-principal span.title {
+.cards .main-cards span.title {
     font-size: 14px;
     font-weight: 700;
     font-family: 'Archivo' !important;
     margin-top: 10px;
 }
 
-.cards .cards-principal span.sector-read {
+.cards .main-cards span.sector-read {
     font-size: 22px;
     color: var(--color-text-primary);
 
@@ -211,19 +218,45 @@ body {
     color: #FFF;
 }
 
+
 .container-main .cards .container-charts {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    max-height: 481px;
 
-
-    grid-column: 1 / 3;
-    overflow-y: scroll;
+    /* background: orange; */
 }
 
-.cards .container-charts:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
 
-.container-charts .box-chart {
+.container-main .cards .content-charts {
+    width: 100%;
+    height: 100%;
+    /* background: red; */
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.heatmaps-container {
+    position: relative;
+    width: 66%;
+    height: calc(100% - 25px);
+    top: 25px;
+
+    /* background: orchid; */
+    overflow-y: auto;
+
+}
+
+.cards .content-charts .heatmaps-container:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
+
+
+
+
+.heatmaps-container .box-chart {
     width: 100%;
     height: 100%;
 
@@ -236,13 +269,15 @@ body {
     align-items: center;
 }
 
-.container-charts .box-chart.current-sector {
+.heatmaps-container .box-chart:nth-child(n + 2) { margin-top: 25px; }
+
+
+.heatmaps-container .box-chart.current-sector {
     align-items: flex-start;
 }
 
-.container-charts .box-chart:nth-child(n + 2) { margin-top: 25px; }
 
-.container-charts .box-chart .header-box-chart {
+.heatmaps-container .box-chart .header-box-chart {
     width: 100%;
     height: 45px;
 
@@ -252,19 +287,19 @@ body {
     padding: 0 15px;
 }
 
-.container-charts .box-chart .header-box-chart .title-box {
+.heatmaps-container .box-chart .header-box-chart .title-box {
     font-size: 14px;
     font-family: 'Archivo';
     font-weight: 700;
 }
 
-.cards .container-charts .box-chart .heatmap-graph {
+.cards .heatmaps-container .box-chart .heatmap-graph {
     position: relative;
     width: 350px;
     height: 350px;
     top: 25px;
 }
-.container-charts .box-chart .header-box-chart select {
+.heatmaps-container .box-chart .header-box-chart select {
     width: 180px;
     height: 25px;
 
@@ -351,19 +386,26 @@ body {
 *   GAUGES
 */
 
-.content-main .cards .container-gauges {
-    width: 100%;
-    height: 100vh;
+.content-main .cards .gauges-container {
+    position: relative;
+    width: 31%;
+    height: calc(100% - 25px);
+    top: 25px;
+
+    /* background: #7DFB91; */
+
+
+
     border-radius: 8px;
     
-    grid-column: 3 / 3;
+    /* padding-top: 25px; */
     overflow-y: scroll;
 
 }
 
-.cards .container-gauges:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
+.cards .gauges-container:hover::-webkit-scrollbar-thumb { display: block; transition: .2s; border-radius: 8px;}
 
-.cards .container-gauges .box-gauge {
+.cards .gauges-container .box-gauge {
     display: block;
     position: relative;
     width: 100%;
@@ -379,10 +421,10 @@ body {
     align-items: center;
 }
 
-.cards .container-gauges .box-gauge:nth-child(n + 2) { margin-top: 25px; }
+.cards .gauges-container .box-gauge:nth-child(n + 2) { margin-top: 25px; }
 
 
-.cards .container-gauges .box-gauge .canvas {
+.cards .gauges-container .box-gauge .canvas {
     width: 500px;
     height: 500px;
 }
