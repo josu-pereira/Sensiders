@@ -1,3 +1,5 @@
+
+// Para abrir e fechar o filtro do heatmap-tempo
 openFilterOption = true;
 function openFilter() {
 
@@ -15,6 +17,26 @@ function openFilter() {
 
     console.log(openFilterOption)
 }
+
+
+
+tempoLoadingPage = setTimeout(() => {
+
+
+    document.querySelector('.loading-page').style.display = "none";
+    document.querySelector('.header-top').style.display = "block";
+    document.querySelector('.container-main').style.display = "flex";
+
+    clearTimeout(tempoLoadingPage);
+
+
+}, 2000);
+
+
+
+
+
+
 
 
 let setorCB = 1;
