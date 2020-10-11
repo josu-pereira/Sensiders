@@ -1,2 +1,0 @@
-SELECT * FROM MaquinaComponente, Componente WHERE fkComponente = idComponente AND fkMaquina = 2
-insert into [dbo].[LeituraMaquina] values ('valorLEITURA', GETDATE(), 1)
