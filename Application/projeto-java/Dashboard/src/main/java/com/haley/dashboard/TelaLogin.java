@@ -6,6 +6,9 @@
 package com.haley.dashboard;
 
 import java.awt.Color;
+import com.haley.dashboard.DataBaseConnection;
+import java.util.List;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
  *
@@ -13,6 +16,10 @@ import java.awt.Color;
  */
 public class TelaLogin extends javax.swing.JFrame {
 
+    String loginUser;
+    String passwdUser;
+    
+    
     /**
      * Creates new form TelaLogin
      */
@@ -193,6 +200,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+        loginUser = txtFldEmail.getText();
+        passwdUser = txtFldSenha.getText();
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseReleased
