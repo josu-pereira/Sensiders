@@ -28,5 +28,7 @@ else
 
 fi
 
+echo $nomeambiente/ >> .gitignore
+
 echo "executando o script"
 python3 main.py

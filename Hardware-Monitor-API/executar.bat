@@ -54,5 +54,7 @@ if exist %nome% (
 ::voltando pra raiz
 cd ../..
 
+echo %nome%/ >> .gitignore
+
 ::executando o script
 py main.py
