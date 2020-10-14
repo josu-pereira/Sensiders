@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.haley.dashboard;
+package view;
 
 import java.awt.Color;
+import java.util.List;
+import model.bean.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -48,7 +51,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(890, 450));
-        setPreferredSize(new java.awt.Dimension(900, 450));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 125, 125));
@@ -77,7 +79,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Login");
 
         jLabel3.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
@@ -85,10 +86,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         txtFldEmail.setBackground(new java.awt.Color(242, 242, 242));
         txtFldEmail.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        txtFldEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtFldEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtFldEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
-        txtFldEmail.setCaretColor(new java.awt.Color(0, 0, 0));
         txtFldEmail.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
@@ -96,10 +95,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         txtFldSenha.setBackground(new java.awt.Color(242, 242, 242));
         txtFldSenha.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        txtFldSenha.setForeground(new java.awt.Color(0, 0, 0));
         txtFldSenha.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtFldSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
-        txtFldSenha.setCaretColor(new java.awt.Color(0, 0, 0));
         txtFldSenha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         btnEntrar.setBackground(new java.awt.Color(26, 255, 26));
@@ -109,11 +106,11 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEntrar.setFocusCycleRoot(true);
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnEntrarMouseReleased(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnEntrarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseReleased(evt);
             }
         });
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +197,26 @@ public class TelaLogin extends javax.swing.JFrame {
         loginUser = txtFldEmail.getText();
         passwdUser = txtFldSenha.getText();
         
+        UsuarioDAO uDao = new UsuarioDAO();
+        Usuario user = new Usuario();
+        List<Usuario> listaLogin = uDao.login(loginUser, passwdUser);
+        
+        
+        if(listaLogin.isEmpty()){
+            System.out.println("Usuario nao encontrado");
+        }else{
+            for(Usuario u : listaLogin){
+                user.setIdUsuario(u.getIdUsuario());
+                user.setEmailUsuario(u.getEmailUsuario());
+                user.setSenhaUsuario(u.getSenhaUsuario());
+                user.setNomeUsuario(u.getNomeUsuario());
+                user.setFkIdFilial(u.getFkIdFilial());
+            }
+            
+            TelaDashboard td = new TelaDashboard(user);
+            td.setVisible(true);
+        }
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseReleased
@@ -237,6 +254,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
