@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JLabel;
 import model.bean.Usuario;
 
 /**
@@ -12,10 +13,18 @@ import model.bean.Usuario;
  * @author haley
  */
 public class TelaDashboard extends javax.swing.JFrame {
-
+    Integer nmr = 0;
     /**
      * Creates new form TelaDashboard
      */
+    void teste() throws InterruptedException{
+        while (true) {          
+            nmr++;
+            lblTempCpu1.setText(nmr.toString());
+            Thread.sleep(1000);
+        }
+    }
+    
     public TelaDashboard(Usuario userLogado) {
         initComponents();
     }
@@ -573,6 +582,11 @@ public class TelaDashboard extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        dispose();
+        
+        TelaLogin tl = new TelaLogin();
+        tl.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -602,11 +616,11 @@ public class TelaDashboard extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+               
             }
         });
     }
