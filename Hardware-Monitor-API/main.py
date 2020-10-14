@@ -8,7 +8,7 @@ sql = Sql('adminlocal','#Gfgrupo11c', '1433', 'bdProjetoSensiders', 'serversensi
 
 sql.connect() # realiza conexão com o BD
 
-maquina = 3 # define ID da máquina para realizar select dos componentes em uso (TODO: fazer integração com criptografia do endereço MAC?)
+maquina = 2 # define ID da máquina para realizar select dos componentes em uso (TODO: fazer integração com criptografia do endereço MAC?)
 componentes = sql.selectComp(maquina) # realiza select dos componentes em uso da maquina
 analiseHardware.enviarMensagemSlack("Iniciando leituras na Máquina: " + str(maquina))
 
