@@ -25,9 +25,12 @@ body {
 	align-items: center;
 }
 
-.header-container .back-content img {
+.header-container .back-content svg {
 	color: red;
+	position: relative;
+	top: 10px;
 }
+
 
 .list-container {
 	width: 70%;
