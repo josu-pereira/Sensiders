@@ -101,7 +101,6 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true)));
-        jPanel8.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -163,9 +162,7 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true)));
-        jPanel9.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblDiscoQntd.setForeground(new java.awt.Color(0, 0, 0));
         lblDiscoQntd.setText("1TB");
 
         lblDiscoAlerta.setForeground(new java.awt.Color(204, 204, 0));
@@ -174,10 +171,8 @@ public class TelaDashboard extends javax.swing.JFrame {
         jProgressBar2.setToolTipText("");
         jProgressBar2.setPreferredSize(new java.awt.Dimension(146, 18));
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Média de uso:");
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Leitura atual:");
 
         lblMediaDisco.setForeground(new java.awt.Color(204, 204, 0));
@@ -187,7 +182,6 @@ public class TelaDashboard extends javax.swing.JFrame {
         lblLeituraAtualDisco.setText("55%");
 
         jLabel6.setFont(new java.awt.Font("Montserrat", 1, 22)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Disco");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -242,21 +236,16 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true)));
-        jPanel7.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblMemoriaNome.setForeground(new java.awt.Color(0, 0, 0));
         lblMemoriaNome.setText("4GB Ram");
 
         jProgressBar1.setToolTipText("");
         jProgressBar1.setPreferredSize(new java.awt.Dimension(146, 18));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Média de uso:");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Leitura atual:");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Swap:");
 
         lblMediaMemoria.setForeground(new java.awt.Color(102, 255, 0));
@@ -269,7 +258,6 @@ public class TelaDashboard extends javax.swing.JFrame {
         lblSwapMemoria.setText("12%");
 
         jLabel2.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Memória");
 
         lblMemoriaAlerta.setForeground(new java.awt.Color(51, 255, 0));
@@ -335,13 +323,10 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true)));
-        jPanel10.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel10.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("CPU");
 
-        lblCpuNome2.setForeground(new java.awt.Color(0, 0, 0));
         lblCpuNome2.setText("I3 3333 2.3GHz");
 
         lblCpuAlerta2.setForeground(new java.awt.Color(255, 0, 51));
@@ -350,13 +335,10 @@ public class TelaDashboard extends javax.swing.JFrame {
         jProgressBar3.setToolTipText("");
         jProgressBar3.setPreferredSize(new java.awt.Dimension(146, 18));
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Média de uso:");
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Leitura atual:");
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Qntd de tarefas abertas:");
 
         lblMediaCpu2.setForeground(new java.awt.Color(204, 204, 0));
@@ -374,18 +356,20 @@ public class TelaDashboard extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jProgressBar3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblCpuNome2)
-                            .addGap(69, 69, 69)
-                            .addComponent(lblCpuAlerta2)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTrfAbertaCpu2))
+                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCpuNome2)
+                                .addGap(69, 69, 69)
+                                .addComponent(lblCpuAlerta2))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -393,11 +377,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblLeituraAtualCpu2))))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTrfAbertaCpu2)))
+                                .addComponent(lblLeituraAtualCpu2)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -426,9 +406,7 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true)));
-        jPanel11.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblTempCpu1.setForeground(new java.awt.Color(0, 0, 0));
         lblTempCpu1.setText("100C°");
 
         lblTempAlerta1.setForeground(new java.awt.Color(102, 255, 0));
@@ -437,10 +415,8 @@ public class TelaDashboard extends javax.swing.JFrame {
         jProgressBar4.setToolTipText("");
         jProgressBar4.setPreferredSize(new java.awt.Dimension(146, 18));
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Média de uso:");
 
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Leitura atual:");
 
         lblMediaTemp1.setForeground(new java.awt.Color(102, 255, 0));
@@ -450,7 +426,6 @@ public class TelaDashboard extends javax.swing.JFrame {
         lblLeituraAtualTemp1.setText("45%");
 
         jLabel15.setFont(new java.awt.Font("Montserrat", 1, 22)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Temperatura");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
