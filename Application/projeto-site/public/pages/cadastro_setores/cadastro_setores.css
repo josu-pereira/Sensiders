@@ -98,3 +98,26 @@ body {
 	cursor: pointer;
 }
 
+
+/*
+* RESPONSIVIDADE
+*/
+
+
+@media screen and (max-width: 1039px) {
+	.list-container{
+		width: 80%;
+	}
+	.title-page {
+		font-size: 25px !important;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.list-container{
+		width: 95%;
+	}
+	.title-page {
+		font-size: 25px !important;
+	}
+}
