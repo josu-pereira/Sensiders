@@ -1,76 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/cadastro_setores.css">
-    <link rel="shortcut icon" href="../../img/Logo.ico">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-    <link rel="stylesheet" href="../../css/global.css">
-    <script defer src="./assets/scripts/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!--<script src="//code.jivosite.com/widget/hPLzvOwppM" async></script>-->
-    <title>Sensores</title>
-</head>
-<body>
-    <div class="divTopo">
-        <div class="container">
-        <a href="../dashboard/dashboard.html"><img class="imgSeta" src="../../img/icons/arrow-left.svg" alt=""></a>
-        <h1 class="tituloPrincipal">Aqui estão os seus setores</h1>
-        </div>
-    </div>
-
-    <div class="divLista">
-        <div class="divTabela">
-        <div class="divTitulosTabela">
-            <h2>Nome</h2>
-            <h2>Qtd Sensores</h2>
-            <h2>Editar</h2>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard | Sensiders</title>
+        <link rel="shortcut icon" href="../../img/Logo.ico">
         
-        <div class="setorListado">
-            <span class="nomeSetor">Padaria</span>
-            <span class="qtdSetor">5</span>
-            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="" onclick="document.getElementById('divEditarSetor').style.display='block'">
-        </div>
-        <div class="setorListado">
-            <span class="nomeSetor">Açougue</span>
-            <span class="qtdSetor">1</span>
-            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="">
-        </div>
-        <div class="setorListado">
-            <span class="nomeSetor">Bebidas</span>
-            <span class="qtdSetor">3</span>
-            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="">
-        </div>
-        <div class="setorListado">
-            <span class="nomeSetor">Cosméticos</span>
-            <span class="qtdSetor">2</span>
-            <img class="imgEditSetor" src="../../img/icons/edit.svg" alt="">
-        </div>   
-        </div>
-    </div>
-    <div id="divEditarSetor" class="modal">
+        
+        <!--CSS-->
+        <link rel="stylesheet" href="../../css/global.css">
+        <link rel="stylesheet" href="./cadastro_setores.css">
+        
+        
+        <!--JS-->
+        <script src="https://unpkg.com/feather-icons"></script>
 
-        <form class="modal-content animate" action=""> 
-            <h1 id="tituloEditar">Editar Setor</h1> 
-            <div class="divInputNome">
-                <span>Nome do setor:</span><br>
-                <input id="inputEdit" type="text">
+
+    </head>
+    <body>
+        <header class="header-container">
+            <div class="back-content">
+                <a href="">
+                    <img src="../../img/icons/back.svg" alt="Voltar">
+                </a>
             </div>
-            <div class="divInputQtd">
-                <span>Quantidade de sensores:</span><br>
-                <input id="inputEdit" type="text">
+        </header>
+
+        <div class="list-container">
+            
+            <span class="title-page">Aqui estão os seus setores</span>
+            <div class="list-content">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>Qtd Sensores</th>
+                        <th>Editar</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Padaria</td>
+                            <td>15</td>
+                            <td><i data-feather="edit"></i> </td>
+                        </tr>
+                        <tr>
+                            <td>Padaria</td>
+                            <td>15</td>
+                            <td><i data-feather="edit"></i> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="containerbotoes">
-              <button type="button" class="cancelbtn" onclick="document.getElementById('divEditarSetor').style.display='none'">Cancelar</button>
-              <button type="submit" onclick="document.getElementById('divEditarSetor').style.display='none'" class="savebtn">Salvar</button>
-            </div>
-          </form>
-    </div>
-</body>
+        </div>
+
+        <!-- JS -->
+        <script>
+            feather.replace()
+        </script>
+    </body>
 </html>
-<script>
+
+
+<!-- <script>
 var modal = document.getElementById('divEditarSetor');
 // Quando o usuário clicar em qualquer lugar fora do modal, irá fechar
 window.onclick = function(event) {
@@ -78,4 +68,4 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }       
-</script>
+</script> -->
