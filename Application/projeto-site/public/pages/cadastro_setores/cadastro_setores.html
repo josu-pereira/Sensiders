@@ -54,16 +54,34 @@
                     <tr>
                         <td>Padaria</td>
                         <td>15</td>
-                        <td><i data-feather="edit"></i> </td>
+                        <td><i data-feather="edit" onclick="document.getElementById('divEditarSetor').style.display='block'"></i> </td>
                     </tr>
                     <tr>
                         <td>Padaria</td>
                         <td>15</td>
-                        <td><i data-feather="edit"></i> </td>
+                        <td><i data-feather="edit" onclick="document.getElementById('divEditarSetor').style.display='block'"></i> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <div id="divEditarSetor" class="modal">
+        <form class="modal-content animate" action=""> 
+            <h1 id="tituloEditar">Editar Setor</h1> 
+            <div class="divInputNome">
+                <span>Nome do setor:</span><br>
+                <input id="inputEdit" type="text">
+            </div>
+            <div class="divInputQtd">
+                <span>Quantidade de sensores:</span><br>
+                <input id="inputEdit" type="text">
+            </div>
+            <div class="containerbotoes">
+              <button type="button" class="cancelbtn" onclick="document.getElementById('divEditarSetor').style.display='none'">Cancelar</button>
+              <button type="submit" onclick="document.getElementById('divEditarSetor').style.display='none'" class="savebtn">Salvar</button>
+            </div>
+          </form>
     </div>
 
     <!-- JS -->
@@ -75,7 +93,7 @@
 </html>
 
 
-<!-- <script>
+<script>
 var modal = document.getElementById('divEditarSetor');
 // Quando o usuário clicar em qualquer lugar fora do modal, irá fechar
 window.onclick = function(event) {
@@ -83,4 +101,4 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }       
-</script> -->
+</script>
