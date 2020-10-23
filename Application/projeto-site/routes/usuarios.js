@@ -4,6 +4,7 @@ var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
 var Supermercado = require('../models').Supermercado;
+const sendEmail = require("./../config/email");
 
 let sessoes = [];
 
@@ -98,6 +99,26 @@ router.get('/sair/:login', function(req, res, next) {
 	}
 	sessoes = nova_sessoes;
 	res.send(`Sessão do usuário ${login} finalizada com sucesso!`);
+});
+
+/*rota do email*/ 
+router.get('/recuperarSenha', function(req, res){
+	const {email} = req.body;
+	const bodyEmailUser = {
+		from: "201grupo11c@bandtec.com.br",
+		to :email,
+		subject: "Recuperar senha",	
+		text: "Ola mundo sua senha ta sendo recuperada"
+	};
+
+	sendEmail.sendMail(bodyEmailUser, (err)=>{
+		if(err) console.log(err)
+		res.json({
+			"response": "Email enviado"
+		});
+		console.log("email enviado")
+	});
+	console.log(email)
 });
 
 
