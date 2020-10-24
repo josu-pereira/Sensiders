@@ -5,12 +5,16 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import model.bean.Usuario;
+import model.bean.Componente;
 
 /**
  *
@@ -22,35 +26,91 @@ public class TelaDashboard extends javax.swing.JFrame {
      * Creates new form TelaDashboard
      */
     
-    Integer cpu, ram, disk, temp;
+    Componente cpu = new Componente();
+    Componente ram = new Componente();
+    Componente disk = new Componente();
+    Componente temp = new Componente();
     
-//    void gerarDados() {
-//        
-//        while(true){
-//            
-//            cpu = ThreadLocalRandom.current().nextInt(0, 100);
-//            ram = ThreadLocalRandom.current().nextInt(0, 100);
-//            disk = ThreadLocalRandom.current().nextInt(0, 100);
-//            temp = ThreadLocalRandom.current().nextInt(0, 100);
-//
-//            atualizarTela(lblLeituraAtualCpu2, cpu, pbCpu);
-//            atualizarTela(lblLeituraAtualMemoria, ram, pbMem);
-//            atualizarTela(lblLeituraAtualTemp1, temp, pbTemp);
-//            atualizarTela(lblLeituraAtualDisco, disk, pbDisk);
-//            
-//            try {
-//                Thread.sleep(2000);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//        }
-//        
-//    }
+    Integer cont = 0;
     
-    void atualizarTela(JLabel label, Integer num, JProgressBar bar){
-        label.setText(num.toString());
+    Integer acumCpu = 0, acumRam = 0, acumDisk = 0, acumTemp = 0;
+    Double mediaCpu, mediaRam, mediaDisk, mediaTemp;
+    
+    void gerarDados(){
+        
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run(){
+                cont++;
+                
+                cpu.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
+                msg(cpu.getVlr(), "CPU", lblCpuAlerta2);
+                acumCpu += cpu.getVlr();
+                mediaCpu = Double.valueOf(acumCpu / cont);
+                
+                ram.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
+                msg(ram.getVlr(), "Memoria", lblMemoriaAlerta);
+                acumRam += ram.getVlr();
+                mediaRam = Double.valueOf(acumRam / cont);
+                
+                disk.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
+                msg(disk.getVlr(), "Disco", lblDiscoAlerta);
+                acumDisk += disk.getVlr();
+                mediaDisk = Double.valueOf(acumDisk / cont);            
+               
+                temp.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
+                msg(temp.getVlr(), "Temperatura", lblTempAlerta1);
+                acumTemp += temp.getVlr();
+                mediaTemp = Double.valueOf(acumTemp / cont);
+                
+                atualizarTela(lblLeituraAtualCpu2, lblMediaCpu2, cpu.getVlr(), pbCpu, mediaCpu);
+                atualizarTela(lblLeituraAtualMemoria, lblMediaMemoria, ram.getVlr(), pbMem, mediaRam);
+                atualizarTela(lblLeituraAtualTemp1, lblMediaTemp1, temp.getVlr(), pbTemp, mediaTemp);
+                atualizarTela(lblLeituraAtualDisco, lblMediaDisco, disk.getVlr(), pbDisk, mediaDisk);
+                
+                
+            }
+        }, 1000, 3000);
+        
+        
+    }
+    
+    
+    
+    
+    void atualizarTela(JLabel labelAtual, JLabel labelMedia, Integer num, JProgressBar bar, Double media){
+        
         bar.setValue(num);
+        Color corMedia = cor(media);
+        Color corAtual = cor(Double.valueOf(num));
+        labelAtual.setText(num.toString());
+        labelAtual.setForeground(corAtual);
+        labelMedia.setText(media.toString());
+        labelMedia.setForeground(corMedia);
+    }
+    
+    public Color cor(Double num){
+        if(num <= 30){
+            return Color.GREEN;
+        }else if(num <= 60){
+            return Color.YELLOW;
+        }else{
+            return Color.RED;
+        }
+    }
+    
+    void msg(Integer num, String txt, JLabel label){
+        if(num <= 30){
+            label.setForeground(Color.GREEN);
+            label.setText(txt + " em baixo uso");
+        }else if(num <= 60){
+            label.setForeground(Color.YELLOW);
+            label.setText(txt + " em médio uso");
+        }else{
+            label.setForeground(Color.RED);
+            label.setText(txt + " em alto uso");
+        }
     }
     
 //    void teste() throws InterruptedException{
@@ -64,7 +124,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     public TelaDashboard(Usuario userLogado){
         initComponents();
         lbNomeUser.setText(userLogado.getNomeUsuario());
-        //gerarDados();
+        gerarDados();
     }
 
     /**
@@ -243,27 +303,25 @@ public class TelaDashboard extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLeituraAtualDisco))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMediaDisco)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDiscoQntd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addComponent(lblDiscoAlerta))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(pbDisk, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblLeituraAtualDisco))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblMediaDisco))
+                            .addComponent(pbDisk, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -283,9 +341,9 @@ public class TelaDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lblLeituraAtualDisco))
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pbDisk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -518,7 +576,7 @@ public class TelaDashboard extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(lblTempCpu1)
                     .addComponent(lblTempAlerta1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(lblMediaTemp1))

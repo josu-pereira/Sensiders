@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.bean;
+package model.dao;
 
 /**
  *
  * @author Patrick L Teixeira
  */
-public class Maquina extends Thread{
-    private Integer cpu;
-    private Integer mem;
-    private Integer disk;
-    private Integer temp;
-    
+public class ComponenteDAO {
     
 }
