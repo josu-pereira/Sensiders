@@ -31,6 +31,11 @@ public class TelaDashboard extends javax.swing.JFrame {
     Componente disk = new Componente();
     Componente temp = new Componente();
     
+    Componente task = new Componente();
+    Componente swap = new Componente();
+    Componente dwnld = new Componente();
+    Componente upld = new Componente();
+    
     Integer cont = 0;
     
     Integer acumCpu = 0, acumRam = 0, acumDisk = 0, acumTemp = 0;
@@ -64,11 +69,22 @@ public class TelaDashboard extends javax.swing.JFrame {
                 acumTemp += temp.getVlr();
                 mediaTemp = Double.valueOf(acumTemp / cont);
                 
-                atualizarTela(lblLeituraAtualCpu2, lblMediaCpu2, cpu.getVlr(), pbCpu, mediaCpu);
-                atualizarTela(lblLeituraAtualMemoria, lblMediaMemoria, ram.getVlr(), pbMem, mediaRam);
-                atualizarTela(lblLeituraAtualTemp1, lblMediaTemp1, temp.getVlr(), pbTemp, mediaTemp);
-                atualizarTela(lblLeituraAtualDisco, lblMediaDisco, disk.getVlr(), pbDisk, mediaDisk);
+                task.setVlr(ThreadLocalRandom.current().nextInt(0, 500));
+                lblTrfAbertaCpu2.setText(task.getVlr().toString());
                 
+                dwnld.setVlr(ThreadLocalRandom.current().nextInt(0, 6000));
+                lblDownload.setText(dwnld.getVlr().toString() + " KiB/s");
+                
+                upld.setVlr(ThreadLocalRandom.current().nextInt(0, 3000));
+                lblUpload.setText(upld.getVlr().toString() + " KiB/s");
+                
+                swap.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
+                lblSwapMemoria.setText(swap.getVlr().toString() + " %");
+                
+                atualizarTela(lblLeituraAtualCpu2, lblMediaCpu2, cpu.getVlr(), pbCpu, mediaCpu, " %");
+                atualizarTela(lblLeituraAtualMemoria, lblMediaMemoria, ram.getVlr(), pbMem, mediaRam, " %");
+                atualizarTela(lblLeituraAtualTemp1, lblMediaTemp1, temp.getVlr(), pbTemp, mediaTemp, " ºC");
+                atualizarTela(lblLeituraAtualDisco, lblMediaDisco, disk.getVlr(), pbDisk, mediaDisk, " %");
                 
             }
         }, 1000, 3000);
@@ -79,36 +95,36 @@ public class TelaDashboard extends javax.swing.JFrame {
     
     
     
-    void atualizarTela(JLabel labelAtual, JLabel labelMedia, Integer num, JProgressBar bar, Double media){
+    void atualizarTela(JLabel labelAtual, JLabel labelMedia, Integer num, JProgressBar bar, Double media, String metrica){
         
         bar.setValue(num);
-        Color corMedia = cor(media);
-        Color corAtual = cor(Double.valueOf(num));
-        labelAtual.setText(num.toString());
-        labelAtual.setForeground(corAtual);
-        labelMedia.setText(media.toString());
-        labelMedia.setForeground(corMedia);
+        String corMedia = cor(media);
+        String corAtual = cor(Double.valueOf(num));
+        labelAtual.setText(num.toString() + metrica);
+        labelAtual.setForeground(Color.decode(corAtual));
+        labelMedia.setText(media.toString() + metrica);
+        labelMedia.setForeground(Color.decode(corMedia));
     }
     
-    public Color cor(Double num){
+    public String cor(Double num){
         if(num <= 30){
-            return Color.GREEN;
+            return "#33FF00";
         }else if(num <= 60){
-            return Color.YELLOW;
+            return "#FED500";
         }else{
-            return Color.RED;
+            return "#FF0000";
         }
     }
     
     void msg(Integer num, String txt, JLabel label){
         if(num <= 30){
-            label.setForeground(Color.GREEN);
+            label.setForeground(Color.decode("#33FF00"));
             label.setText(txt + " em baixo uso");
         }else if(num <= 60){
-            label.setForeground(Color.YELLOW);
+            label.setForeground(Color.decode("#FED500"));
             label.setText(txt + " em médio uso");
         }else{
-            label.setForeground(Color.RED);
+            label.setForeground(Color.decode("#FF0000"));
             label.setText(txt + " em alto uso");
         }
     }
@@ -186,7 +202,9 @@ public class TelaDashboard extends javax.swing.JFrame {
         lblLeituraAtualTemp1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lblDownload = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lblUpload = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -591,7 +609,11 @@ public class TelaDashboard extends javax.swing.JFrame {
 
         jLabel16.setText("Velocidade Download:");
 
-        jLabel17.setText("334 KiB/s");
+        lblDownload.setText("334 KiB/s");
+
+        jLabel19.setText("Velocidade Upload:");
+
+        lblUpload.setText("334 KiB/s");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -603,7 +625,11 @@ public class TelaDashboard extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17))
+                        .addComponent(lblDownload)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUpload))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -628,7 +654,9 @@ public class TelaDashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17))
+                    .addComponent(lblDownload)
+                    .addComponent(jLabel19)
+                    .addComponent(lblUpload))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -722,8 +750,8 @@ public class TelaDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -746,6 +774,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel lblCpuNome2;
     private javax.swing.JLabel lblDiscoAlerta;
     private javax.swing.JLabel lblDiscoQntd;
+    private javax.swing.JLabel lblDownload;
     private javax.swing.JLabel lblLeituraAtualCpu2;
     private javax.swing.JLabel lblLeituraAtualDisco;
     private javax.swing.JLabel lblLeituraAtualMemoria;
@@ -760,6 +789,7 @@ public class TelaDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel lblTempAlerta1;
     private javax.swing.JLabel lblTempCpu1;
     private javax.swing.JLabel lblTrfAbertaCpu2;
+    private javax.swing.JLabel lblUpload;
     private javax.swing.JProgressBar pbCpu;
     private javax.swing.JProgressBar pbDisk;
     private javax.swing.JProgressBar pbMem;
