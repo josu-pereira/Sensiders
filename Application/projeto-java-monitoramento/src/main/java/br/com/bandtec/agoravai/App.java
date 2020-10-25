@@ -5,12 +5,18 @@
  */
 package br.com.bandtec.agoravai;
 
+import view.TelaLogin;
+
 /**
  *
  * @author Patrick L Teixeira
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Ola mundo");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaLogin().setVisible(true);
+            }
+        });
     }
 }

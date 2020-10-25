@@ -96,6 +96,6 @@ GNU
 
 ### Equipe
 
-| [**Alexandre Yucra**](https://github.com/Aleyucra74) | [**Felipe Azevedo**](https://github.com/felipe-dias-azevedo) | [**Gabriel Ronny**](https://github.com/gabrielronny) | [**Josue Pereira**](https://github.com/josu-pereira) | [**Patrick Lessa**](https://github.com/PatrickLessa)
+| [**Alexandre Yucra**](https://github.com/Aleyucra74) | [**Felipe Azevedo**](https://github.com/felipe-dias-azevedo) | [**Gabriel Ronny**](https://github.com/gabrielronny) | [**Josue Pereira**](https://github.com/josu-pereira) | [**Patrick Lessa**](https://github.com/PatrickLessa) |
     
 
