@@ -17,6 +17,13 @@
   E que de acordo com uma pesquisa francesa "Umesh et al" (1989), que analisou o tempo de espera X custo de aprimoramento do sistema, foi detectado uma diminuição das reclamações dos clientes em 40%, impulsionando o lucro em 19%.
   Foi então que o grupo Sensiders decidiu realizar uma análise dos dados do hardware destas máquinas, para assim, o dono do estabelecimento evitar perdas de lucro e maximizar a satisfação dos clientes através de uma aplicação Desktop em conexão com um banco de dados em nuvem para prover maior seguridade e performance à aplicação.
 
+## Solução Sensiders - Monitoramento
+  Aplicação de monitoramento de pessoas
+   ![](/lld.jpg)
+   
+  Aplicação de monitoramento do hardware
+   ![](/lld2.jpg)
+
 ## Novos Recursos
     * Documentação atualizada
     * Redesign, novas funcionalidades e melhorias de desempenho no Front-End web
@@ -87,4 +94,8 @@ GNU
 [Java]: <https://www.java.com/pt_BR/>
 [Python]: <https://www.python.org/>
 
+### Equipe
+
+| [**Alexandre Yucra**](https://github.com/Aleyucra74) | [**Felipe Azevedo**](https://github.com/felipe-dias-azevedo) | [**Gabriel Ronny**](https://github.com/gabrielronny) | [**Josue Pereira**](https://github.com/josu-pereira) | [**Patrick Lessa**](https://github.com/PatrickLessa)
     
+
