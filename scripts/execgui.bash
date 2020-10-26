@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo -e "\e[48;5;204m [Sensiders]: \e[0m Oi somos a Sensiders, vamos lhe ajudar a instalar umas coisas"
+sudo apt update && sudo apt upgrade
+
 echo -e "\e[48;5;204m [Sensiders]: \e[0m caso voce esteja numa instancia"
 read -p " Gostaria de instalar uma gui lxde?(s/n)" gui
 if [[ $gui == "s" ]]
@@ -12,7 +14,6 @@ if [[ $gui == "s" ]]
 		sed -i 's/max_bpp=32/max_bpp=16/g' /etc/xrdp/xrdp.ini
 		sed -i 's/allowed_users=console/allowed_users=ubuntu/g' /etc/X11/Xwrapper.config
 		service xrdp start
-		clear
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Ja configurado, agora para se conectar na area remota va no win e conecte com o ip da instancia"
 	else
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Tudo bem, vamos continuar"
@@ -39,7 +40,6 @@ if [[ $? = 0 ]]
 			curl -s "https://get.sdkman.io" | bash
 			source "$HOME/.sdkman/bin/sdkman-init.sh"
 			sdk install java 8.0.265.j9-adpt
-			clear
 		#	sudo apt install java
 		#	sudo apt install jre-default-headless
 		#	sudo apt install opejdk-11-jre
