@@ -26,7 +26,8 @@ function listaSetores(nome,setor) {
 }
 
 function requisicao() {
-    fetch('/setor/1')
+    var idFilial = localStorage.getItem("idFilial");
+    fetch(`/setor/${idFilial}`)
         .then(function (response) {
             return response.json();
         })

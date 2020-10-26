@@ -87,7 +87,7 @@
 
                     sessionStorage.login_usuario_meuapp = json.emailUsuario;
                     sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
-
+                    localStorage.setItem("idFilial", json.fkIdFilial);
                     window.location.href = '../dashboard/dashboard.html';
                 });
 
