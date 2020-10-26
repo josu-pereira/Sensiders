@@ -14,7 +14,7 @@ function retornaSetores(data) {
 
 
 function listaSetores(nome,setor) {
-    for (var i = 0; i < nome.length -1 ; i++){
+    for (var i = 0; i < nome.length; i++){
         document.getElementById('listSetores').innerHTML += `
         <tr>
         <td>${nome[i]}</td>
