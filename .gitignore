@@ -102,5 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
-#/Application/projeto-Java-Monitoramento/target/
-#/Application/projeto-java-monitoramento/target/
+/Application/projeto-Java-Monitoramento/target/
+/Application/projeto-java-monitoramento/target/
