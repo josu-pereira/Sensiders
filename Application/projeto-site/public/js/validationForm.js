@@ -6,7 +6,7 @@ const emailRegex = /[^@]+@[^\.]+\..+/g
 const numberRegex = /^[0-9]{0,4}/gm
 
 //cep
-const cepRegex = /[0-9]/g
+const cepRegex = /^\d{5}-\d{3}$/g
 
 //cidade e rua
 const lettersRegex = /[a-zA-Z\u00C0-\u00FF ]+/i
@@ -19,7 +19,7 @@ const ufRegex = /[a-zA-Z]{2}/i
 // 2 – (?=.*[a-z]) Verifica se existe uma letra minúscula;
 // 3 – (?=.*[A-Z]) Verifica se existe uma letra maiúscula;
 // 4 – ([a-zA-Z0-9]{8,}) Verifica se existe pelo menos 8 caracteres entre os digitados.
-const pwRegex = /^([a-zA-Z0-9]{8,})$/;
+const pwRegex = /^([a-zA-Z0-9!@*#]{8,15})$/g;
 
 // evitar q a pagina recarregue com loading
 var form = document.querySelector('form');
@@ -113,14 +113,14 @@ function registerForm() {
         return alert("Por Favor, Insira uma senha  valido!");
     } else {
         if (pwRegex.test(senhaInp) === false) {
-            return alert("A senha deve conter uma letra maiuscula, caracter special e no min 8");
+            return alert("A senha deve conter no minimo 8 caracteres ate 15");
         }
     }
     if (confirmInp == "" || confirmInp == null) {
         return alert("Por Favor, Insira um confirmInp valido!");
     } else {
         if (pwRegex.test(confirmInp) === false) {
-            return alert("A senha deve conter no min 8");
+            return alert("A senha deve conter no minimo 8 caracteres ate 15");
         }
     }
     if (senhaInp != confirmInp) {
