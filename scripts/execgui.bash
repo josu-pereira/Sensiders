@@ -2,7 +2,7 @@
 
 echo -e "\e[48;5;204m [Sensiders]: \e[0m Oi somos a Sensiders, vamos lhe ajudar a instalar umas coisas"
 sudo apt update && sudo apt upgrade
-
+sudo apit install maven
 echo -e "\e[48;5;204m [Sensiders]: \e[0m caso voce esteja numa instancia"
 read -p " Gostaria de instalar uma gui lxde?(s/n)" gui
 if [[ $gui == "s" ]]
@@ -27,7 +27,10 @@ if [[ $? = 0 ]]
 	then
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Vemos que voce ja o Java instalado, vamos executar a nossa aplicacao"
 		cd ..
-		cd Application/projeto-java-monitoramento/target/
+		cd Application/projeto-java-monitoramento/
+		mvn clean install
+		cd target/
+
 		sudo chmod 777 projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar
 		java -jar projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar		
 	else
@@ -40,15 +43,16 @@ if [[ $? = 0 ]]
 			curl -s "https://get.sdkman.io" | bash
 			source "$HOME/.sdkman/bin/sdkman-init.sh"
 			sdk install java 8.0.265.j9-adpt
-		#	sudo apt install java
-		#	sudo apt install jre-default-headless
-		#	sudo apt install opejdk-11-jre
-			echo -e "\e[48;5;204m [Sensiders]: \e[0m Instalacao com sucesso"
+			
+			echo -e "\e[48;5;204m [Sensiders]: \e[0m Instalacao com sucesso o java"
+			echo -e "\e[48;5;204m [Sensiders]: \e[0m Agora vamos executar o programa"
+			cd ..
+			cd Application/projeto-java-monitoramento/
+			mvn clean install
+			cd target/
+			sudo chmod 777 projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar
+			java -jar projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar
 		else
 			echo -e "\e[48;5;204m [Sensiders]: \e[0m Tudo bem, nao vamos instalar o java"
 	fi
 fi
-
-
-
-
