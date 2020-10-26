@@ -25,7 +25,8 @@ java -version
 if [[ $? = 0 ]]
 	then
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Vemos que voce ja o Java instalado, vamos executar a nossa aplicacao"
-		cd ../Application/projeto-java-monitoramento/target/
+		cd ..
+		cd Application/projeto-java-monitoramento/target/
 		sudo chmod 777 projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar
 		java -jar projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar		
 	else
