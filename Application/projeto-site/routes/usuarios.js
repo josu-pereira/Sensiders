@@ -102,8 +102,8 @@ router.get('/sair/:login', function(req, res, next) {
 });
 
 /*rota do email*/ 
-router.get('/recuperarSenha', function(req, res){
-	const {email} = req.body;
+router.post('/recuperarSenha', function(req, res){
+	const {email} = req.body.email;
 	const bodyEmailUser = {
 		from: "201grupo11c@bandtec.com.br",
 		to :email,
