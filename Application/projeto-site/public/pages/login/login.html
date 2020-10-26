@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="stylesheet" href="../../css/formStyle.css">
     <link rel="stylesheet" href="../../css/login.css">
+
+
+    <!--JS-->
+    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +24,21 @@
                 <div class="container">
 
                     <div class="header">
-                        <a href="../../index.html"><img src="../../img/icons/arrow-left.svg" alt="voltar" id="back"></a>
+                        <a href="../../index.html">
+                            <svg width="49" height="32" viewBox="0 0 49 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path d="M2 16H48" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M6.00098 21.001L0.999976 16L6.00098 10.999" stroke="#FFF" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="32" height="49" fill="white" transform="translate(49) rotate(90)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                         <img src="../../img/logo-branca.png" alt="Sensiders" id="logo">
                     </div>
 
@@ -39,13 +57,12 @@
                     <h2>Faça seu login</h2>
                     <div class="div-inputs">
                         <input type="email" name="login" id="txtEmail" placeholder="Email">
-                        <img src="../../img/icons/email-icon.svg" alt="email" class="icons-form">
+                        <i data-feather="mail" class="icons-form"></i>
                     </div>
 
                     <div class="div-inputs">
                         <input type="password" name="senha" id="txtSenha" placeholder="Senha">
-                        <img onclick="onSenha('txtSenha', 'eye')" src="../../img/icons/eye-off.svg" alt="visulaizar" class="icons-form eye"
-                            id="eye">
+                        <i data-feather="eye" class="icons-form" id="senha"></i>
                     </div>
 
                     <a href="../password/password.html">Esqueceu sua senha?</a>
@@ -62,8 +79,10 @@
             </div>
         </div>
     </div>
-
-
+    
+    <script>
+        feather.replace()
+    </script>
 </body>
 
 </html>
@@ -72,7 +91,6 @@
 <script src="../../js/validationForm.js"></script>
 
 <script>
-
     function entrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));

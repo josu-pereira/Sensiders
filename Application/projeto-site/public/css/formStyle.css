@@ -55,11 +55,13 @@
     position: relative;
 }
 
-.icons-form{
+.icons-form {
     position: absolute;
     right: 25px;
     top: 13px;
+    color: #DADADA !important;
 }
+
 
 .eye{
     cursor: pointer;
