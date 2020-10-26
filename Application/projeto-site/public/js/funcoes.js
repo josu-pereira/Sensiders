@@ -22,6 +22,7 @@ function logoff() {
     finalizar_sessao();
     sessionStorage.clear();
     redirecionar_login();
+    localStorage.removeItem("loadingPage");
 }
 
 function validar_sessao() {

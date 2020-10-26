@@ -19,16 +19,29 @@ function openFilter() {
 }
 
 
+function verifyLoadingPage() {
+    
+    if(localStorage.getItem("loadingPage")) {
+    
+        document.querySelector('.loading-page').style.display = "none";
+        document.querySelector('.header-top').style.display = "block";
+        document.querySelector('.container-main').style.display = "flex";
+    
+    }
+
+}
+
+window.onload = verifyLoadingPage();
 
 tempoLoadingPage = setTimeout(() => {
-
 
     document.querySelector('.loading-page').style.display = "none";
     document.querySelector('.header-top').style.display = "block";
     document.querySelector('.container-main').style.display = "flex";
 
-    clearTimeout(tempoLoadingPage);
+    localStorage.setItem("loadingPage", true);
 
+    clearTimeout(tempoLoadingPage);
 
 }, 2000);
 
