@@ -23,6 +23,7 @@ function logoff() {
     sessionStorage.clear();
     redirecionar_login();
     localStorage.removeItem("loadingPage");
+    localStorage.removeItem("idFilial");
 }
 
 function validar_sessao() {
