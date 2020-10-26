@@ -103,21 +103,37 @@ router.get('/sair/:login', function(req, res, next) {
 
 /*rota do email*/ 
 router.post('/recuperarSenha', function(req, res){
-	const {email} = req.body.email;
-	const bodyEmailUser = {
-		from: "201grupo11c@bandtec.com.br",
-		to :email,
-		subject: "Recuperar senha",	
-		text: "Ola mundo sua senha ta sendo recuperada"
-	};
+	const {email} = req.body;
 
-	sendEmail.sendMail(bodyEmailUser, (err)=>{
-		if(err) console.log(err)
-		res.json({
-			"response": "Email enviado"
-		});
-		console.log("email enviado")
-	});
+	let sql = `SELECT senhaUsuario, nomeUsuario FROM Usuario where emailUsuario = '${email}'`
+	sequelize.query(sql, {
+		model: Usuario
+	}).then(resultado => {
+		if(resultado.length == 1){
+			let nome = resultado[0].dataValues.nomeUsuario;
+			let senha = resultado[0].dataValues.senhaUsuario;
+			const bodyEmailUser = {
+				from: "201grupo11c@bandtec.com.br",
+				to :email,
+				subject: "Recuperar senha",	
+				text: `Ola ${nome}, parece que você esqueceu sua senha, mas estamos aqui para te lembrar! Senha: ${senha}`
+			};
+		
+			sendEmail.sendMail(bodyEmailUser, (err)=>{
+				if(err) console.log(err)
+				res.json({
+					"response": "Email enviado"
+				});
+				console.log("email enviado")
+				console.log(resultado[0].dataValues.senhaUsuario);
+			});
+		}else if(resultado.length == 0){
+			res.status(403).send('email inválido(s)');
+		}else{
+			res.status(403).send('existe mais de um email igual a este');
+		}
+
+	})
 	console.log(email)
 });
 

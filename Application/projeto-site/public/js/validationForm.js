@@ -55,6 +55,8 @@ function forgotPasswordForm() {
             return alert("Por Favor, Insira um email valido!");
         }
     }
+
+    recuperarSenha();
 }
 
 function registerForm() {
