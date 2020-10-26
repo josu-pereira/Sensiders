@@ -25,7 +25,9 @@ java -version
 if [[ $? = 0 ]]
 	then
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Vemos que voce ja o Java instalado, vamos executar a nossa aplicacao"
-		echo -e "teste;aqui executa o .jar"
+		cd ../Application/projeto-java-monitoramento/target/
+		sudo chmod 777 projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar
+		java -jar projeto-java-monitoramento-1.0-SNAPSHOT-jar-with-dependencies.jar		
 	else
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m nao encontramos nenhuma versao do java instalado"
 		read -p "vamos instalar o java para voce, voce confirmar?(s/n)" res
@@ -33,7 +35,9 @@ if [[ $? = 0 ]]
 		then
 			echo -e "\e[48;5;204m [Sensiders]: \e[0m Instalando o java"
 			sleep 2
-			echo -e "teste; install java"
+			curl -s "https://get.sdkman.io" | bash
+			source "$HOME/.sdkman/bin/sdkman-init.sh"
+			sdk install java 8.0.265.j9-adpt
 			clear
 		#	sudo apt install java
 		#	sudo apt install jre-default-headless
