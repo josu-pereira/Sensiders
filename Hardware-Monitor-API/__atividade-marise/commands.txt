@@ -1,0 +1,62 @@
+#Comandos MySQL
+
+CREATE DATABASE projeto;
+
+USE projeto;
+
+CREATE TABLE dados ( 
+    id int NOT NULL AUTO_INCREMENT, 
+    cpu_percent varchar(5) NOT NULL,
+    ram_percent varchar(5) NOT NULL, 
+    disk_percent varchar(5) NOT NULL, 
+    download varchar(8) NOT NULL,
+    upload varchar(8) NOT NULL,
+    temp_celsius varchar(5) NOT NULL,
+    swap_percent varchar(5) NOT NULL,
+    tasks varchar(5) NOT NULL,
+    clock varchar(8) NOT NULL,
+    dataHora datetime NOT NULL,
+    PRIMARY KEY (id)
+);
+
+#Python
+
+#Criar ambiente virtual
+
+python3 -m venv NOMEdoAMBIENTE #(no meu caso windowsenv)
+
+#entrar no Ambiente virtual
+supondo que o ambiente se chame env
+
+# habilitar os scripts em windows para rodar
+- PowerShell
+HABILITANDO EXECUÇÃO DE SCRIPTS: Set-ExecutionPolicy Unrestricted depois S e enter.
+
+windowsenv/Scripts/activate.ps1
+
+-CMD
+
+env/Scripts/activate.bat
+
+-BASH
+
+source env/Scripts/activate
+
+
+#EXECUTAR O CODIGO
+python /main.py
+#veja os comandos
+
+PS C:\Users\Marise\Desktop\ProjetoPython\python_marise> windowsenv/Scripts/activate.ps1
+(windowsenv) PS C:\Users\Marise\Desktop\ProjetoPython\python_marise> python .\main.py
+<mysql.connector.connection.MySQLConnection object at 0x000001611BCA7190>
+{'cpu': 14.6, 'memory': 4, 'disk': 25.8, 'memory_percent': 53.3}
+Inserindo Valores
+{'cpu': 6.1, 'memory': 4, 'disk': 25.8, 'memory_percent': 53.3}
+Inserindo Valores
+{'cpu': 2.7, 'memory': 4, 'disk': 25.8, 'memory_percent': 53.3}
+Inserindo Valores
+{'cpu': 2.7, 'memory': 4, 'disk': 25.8, 'memory_percent': 53.1}
+
+
+# para interromper a captura dados CRTL + C
