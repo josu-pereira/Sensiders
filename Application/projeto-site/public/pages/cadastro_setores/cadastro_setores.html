@@ -52,15 +52,15 @@
                     <th>Editar</th>
                 </thead>
                 <tbody id="listSetores">
-                    
+
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div id="divEditarSetor" method="POST" onsubmit="fnSalvar()" class="modal">
-        <form class="modal-content animate" action=""> 
-            <h1 id="tituloEditar">Editar Setor</h1> 
+    <div id="divEditarSetor" class="modal">
+        <form class="modal-content animate" action="">
+            <h1 id="tituloEditar">Editar Setor</h1>
             <div class="divInputNome">
                 <span>Nome do setor:</span><br>
                 <input id="inputEdit1" type="text" maxlength="30">
@@ -70,11 +70,12 @@
                 <input id="inputEdit2" name="number" onkeypress="fnVerificarNumero()" maxlength="2">
             </div>
             <div class="containerbotoes">
-              <button type="button" class="cancelbtn" onclick="document.getElementById('divEditarSetor').style.display='none'">Cancelar</button>
-              <button type="submit" class="savebtn">Salvar</button>
+                <button type="button" class="cancelbtn"
+                    onclick="document.getElementById('divEditarSetor').style.display='none'">Cancelar</button>
+                <button type="button" onclick="fnSalvar()" class="savebtn">Salvar</button>
             </div>
             <div id="div_erro"></div>
-          </form>
+        </form>
     </div>
 
     <!-- JS -->
@@ -87,49 +88,11 @@
 
 
 <script>
-var modal = document.getElementById('divEditarSetor');
-// Quando o usuário clicar em qualquer lugar fora do modal, irá fechar
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}       
-
-
-function editar() {
-        aguardar();
-        var formulario = new URLSearchParams(new FormData(divEditarSetor));
-        fetch("/setor/editar", {
-            method: "POST",
-            body: formulario
-        }).then(function (response) {
-
-            if (response.ok) {
-
-                window.location.href = '../cadastro_setores/cadastro_setores.html';
-
-            } else {
-
-                console.log('Erro ao editar!');
-                response.text().then(function (resposta) {
-                    div_erro.innerHTML = resposta;
-                });
-                finalizar_aguardar();
-            }
-        });
-
-        return false;
-    }
-
-    function aguardar() {
-        btn_entrar.disabled = true;
-        img_aguarde.style.display = 'block';
-        div_erro.style.display = 'none';
-    }
-
-    function finalizar_aguardar() {
-        btn_entrar.disabled = false;
-        img_aguarde.style.display = 'none';
-        div_erro.style.display = 'block';
-    }
+    var modal = document.getElementById('divEditarSetor');
+    // Quando o usuário clicar em qualquer lugar fora do modal, irá fechar
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }       
 </script>

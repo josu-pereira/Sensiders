@@ -3,7 +3,6 @@
 // let qtdSensores_setor;
 // let contagem;
 function fnVerificarNumero() {
-    debugger;
     var texto2 = Number(document.getElementById('inputEdit2').value);
 
     if (texto2.length == 1 && isNaN(texto2)) {
@@ -18,10 +17,11 @@ function fnVerificarNumero() {
 }
 
 function fnSalvar() {
-    var texto1 = document.getElementById('inputEdit1').value;
-    var texto2 = Number(document.getElementById('inputEdit2').value);
+    var nomeSetor = document.getElementById('inputEdit1').value;
+    var qtdSensores = Number(document.getElementById('inputEdit2').value);
+    var idSetor = localStorage.getItem('idSetor');
 
-    if (isNaN(texto2)) {
+    if (isNaN(qtdSensores)) {
         alert("Insira um valor numérico válido");
     }
     // if(texto1 == "" || texto1 == null) {
@@ -30,22 +30,21 @@ function fnSalvar() {
     // if(texto2 == "" || texto2 == null) {
     //     return alert("Por Favor, Preencha a quantidade de Sensores !");
     // }
-    
-    fetch(`/setor/all/${idSetor}`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            // return retornaSetores(data)
-            // const todosOsDados = retornaSetores(data);
-            console.log(data)
-            data.forEach(item => {
-                document.getElementById('inputEdit1').value = item.nome;
-                document.getElementById('inputEdit2').value = item.qtdSensores;
-            });
-        });
 
-    editar();
+    fetch(`http://localhost:3333/setor/editar/${idSetor}`, {
+        header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            nomeSetor,
+            qtdSensores
+        })
+    }).then((response) => {
+        console.log(response);
+    });
+
 }
 
 function requisicao() {
@@ -76,7 +75,7 @@ function requisicao() {
 function openModal(idSetor) {
     document.getElementById('divEditarSetor').style.display = 'block';
     console.log(idSetor);
-
+    localStorage.setItem('idSetor', idSetor);
     fetch(`/setor/all/${idSetor}`)
         .then(function (response) {
             return response.json();

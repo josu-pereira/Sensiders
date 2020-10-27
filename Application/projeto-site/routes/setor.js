@@ -36,20 +36,23 @@ router.get('/all/:idSetor', function (req, res, next) {
 router.post('/editar/:idSetor', function(req, res, next) {
 	console.log('Editando o setor');
 	
-	const inputEdit1 = req.body.inputEdit1;
-        const inputEdit2 = req.body.inputEdit2;
+        const inputEdit1 = req.body.nomeSetor;
+        console.log(inputEdit1);
+        const inputEdit2 = req.body.qtdSensores;
+        console.log(inputEdit2);
         const idSetor = req.params.idSetor;
+        console.log(idSetor);
         
 
-	let instrucaoSql = `UPDATE setor SET nome = '${inputEdit1}', qtdSensores = '${inputEdit2}' WHERE idSetor = '${idSetor}';`;
+// 	let instrucaoSql = `UPDATE setor SET nome = '${inputEdit1}', qtdSensores = ${inputEdit2} WHERE idSetor = '${idSetor}';`;
 
-	sequelize.query(instrucaoSql).then(resultado => {
-		console.log(`Setor editado: ${resultado}`)
-        res.send(resultado);
-    }).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
-  	});
+// 	sequelize.query(instrucaoSql).then(resultado => {
+// 		console.log(`Setor editado: ${resultado}`)
+//         res.send(resultado);
+//     }).catch(erro => {
+// 		console.error(erro);
+// 		res.status(500).send(erro.message);
+//   	});
 });
 
         
