@@ -2,14 +2,15 @@
 
 echo -e "\e[48;5;204m [Sensiders]: \e[0m Oi somos a Sensiders, vamos lhe ajudar a instalar umas coisas"
 sudo apt update && sudo apt upgrade
-sudo apit install maven
+sudo apt install maven
 echo -e "\e[48;5;204m [Sensiders]: \e[0m caso voce esteja numa instancia"
-read -p " Gostaria de instalar uma gui lxde?(s/n)" gui
+read -p " Gostaria de instalar uma window manager i3 e.e?(s/n)" gui
 if [[ $gui == "s" ]]
 	then
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Estaremos instalando os pacotes, aguarde..."
 
-		sudo apt install xrdp lxde-core lxde tigervnc-standalone-server -y
+		#sudo apt install xrdp lxde-core lxde tigervnc-standalone-server -y
+		sudo apt install xrdp tigervnc-standalone-server xorg i3 i3blocks i3lock terminator acpi xbacklight rofi feh clipit pcmanfm
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m aguarde mais um pouco..."
 		sed -i 's/max_bpp=32/max_bpp=16/g' /etc/xrdp/xrdp.ini
 		sed -i 's/allowed_users=console/allowed_users=ubuntu/g' /etc/X11/Xwrapper.config
