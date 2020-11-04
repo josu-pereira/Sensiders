@@ -23,9 +23,14 @@ def readHashMAC_old():
 def readHashMAC():
     getHash256MAC()
     f = open("hashmac", "r")
+    from sys import platform
     if f.mode == 'r':
         conteudo = f.read()
-        os.remove("hashmac")
+        if platform != 'win32':
+            os.remove("hashmac")
+        else:
+            import subprocess
+            subprocess.Popen('del hashmac', shell=True, stdout = subprocess.PIPE, stderr= subprocess.PIPE)
         return conteudo
 
 #getHashMAC()

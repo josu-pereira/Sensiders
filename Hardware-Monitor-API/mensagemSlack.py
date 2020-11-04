@@ -1,15 +1,19 @@
+from requests import post
 def enviarMensagemSlack(mensagem):
     url = '' # canal do Slack
-    pload = {'text': mensagem}
+    #pload = {'text': mensagem}
+    url = url + mensagem
     try:
-        requests.post(url, json = pload)
+        #post(url, json = pload)
+        post(url)
+        print(mensagem)
     except:
         print("\nERRO no Slack! (URL)")
-        print(mensagem, "\n")
+        #print(mensagem, "\n")
 
 if __name__ == '__main__':
     try:
-        enviarMensagemSlack('Teste no slack')
+        enviarMensagemSlack('Testando o slack')
         print('slack ok!')
     except:
         print('erro no slack')
