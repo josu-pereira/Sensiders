@@ -21,6 +21,10 @@ function fnSalvar() {
     var qtdSensores = Number(document.getElementById('inputEdit2').value);
     var idSetor = localStorage.getItem('idSetor');
 
+    // console.log(nomeSetor);
+    // console.log(qtdSensores);
+    // console.log(idSetor);
+
     if (isNaN(qtdSensores)) {
         alert("Insira um valor numérico válido");
     }
@@ -32,19 +36,22 @@ function fnSalvar() {
     // }
 
     fetch(`http://localhost:3333/setor/editar/${idSetor}`, {
-        header: {
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         method: "POST",
         body: JSON.stringify({
-            nomeSetor,
-            qtdSensores
+            nomeSetor: nomeSetor,
+            qtdSensores: qtdSensores
         })
     }).then((response) => {
+        if (response.ok) {
+            // alert('Atualizado com sucesso');
+            location.reload();
+        }
         console.log(response);
     });
-
 }
 
 function requisicao() {
