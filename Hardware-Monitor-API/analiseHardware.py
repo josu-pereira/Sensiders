@@ -12,8 +12,7 @@ def inserirComponentes(componentes, valMaquina):
     'upload': 0,
     'temp': 0,
     'swap': 0,
-    'tasks': 0,
-    'maquina': valMaquina
+    'tasks': 0
     }
 
     valNET = geradorDados.getDownloadAndUpload() # pega os valores de Rede (executa aqui porque demora 1 segundo para poder realizar o calculo de KiB/s)

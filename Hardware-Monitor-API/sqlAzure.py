@@ -39,9 +39,9 @@ class Sql:
             self.close()
 
     def selectComp(self, maquina): # função do select que retorna o componente + idMaqComp
-        sql_select_query = ("select nomeComponente, idMaqComp from MaquinaComponente, Componente, Maquina where fkMaquina = idMaquina and fkComponente = idComponente and idMaquina = " + str(maquina))
+        sql_select_query = ("select nomeComponente, idMaqComp from MaquinaComponente, Componente, Maquina where fkMaquina = idMaquina and fkComponente = idComponente and hashmac = ?")
         try:
-            self.cursor.execute(sql_select_query)
+            self.cursor.execute(sql_select_query, maquina)
             dadosColetados = self.cursor.fetchall()
             return dadosColetados
         except Exception as err:
