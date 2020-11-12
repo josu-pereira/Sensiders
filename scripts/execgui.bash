@@ -2,14 +2,14 @@
 
 echo -e "\e[48;5;204m [Sensiders]: \e[0m Oi somos a Sensiders, vamos lhe ajudar a instalar umas coisas"
 read -p " Gostaria de atualizar uns pacotes?? (s/n)" pckt
-if [[ $pckt == "s"]]
-    then
-	    echo -e "\e[48;5;204m [Sensiders]: \e[0m Estaremos instalando os pacotes, aguarde..."
-        sudo apt update && sudo apt upgrade
-        sudo apt install maven
-    else
-	    echo -e "\e[48;5;204m [Sensiders]: \e[0m Tudo bem, vamos continuar"
-fi		
+if [[ $pckt == "s" ]]
+	then
+		echo -e "\e[48;5;204m [Sensiders]: \e[0m Estaremos instalando os pacotes, aguarde..."
+	        sudo apt update && sudo apt upgrade
+        	sudo apt install maven
+	else
+	   	echo -e "\e[48;5;204m [Sensiders]: \e[0m Tudo bem, vamos continuar"
+fi
 
 echo -e "\e[48;5;204m [Sensiders]: \e[0m caso voce esteja numa instancia"
 read -p " Gostaria de instalar uma window manager i3?(s/n)" gui
@@ -26,10 +26,10 @@ if [[ $gui == "s" ]]
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Ja configurado, agora para se conectar na area remota, conecte com o ip da instancia"
 	else
 		echo -e "\e[48;5;204m [Sensiders]: \e[0m Tudo bem, vamos continuar"
-	    read -p " Gostaria de iniciar o java? (s/n)" java
+		read -p " Gostaria de iniciar o java? (s/n)" java
 	if [[ $java == "s" ]]
-	    then
-            echo -e "\e[48;5;204m [Sensiders]: \e[0m Iniciando java..."
+		then
+        		echo -e "\e[48;5;204m [Sensiders]: \e[0m Iniciando java..."
 			sleep 2
 			source ./execjava.bash
 	fi
