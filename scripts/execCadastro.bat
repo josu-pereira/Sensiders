@@ -12,9 +12,9 @@ java -version
 IF "%ERRORLEVEL%" EQU "0" (
      echo voce tem o java entao vamos prosseguir
 
-     cd ../Application/cadastro-componentes/
+     cd ..\Application\cadastro-componentes\
      mvn clean install
-     cd target/
+     cd target\
      icacls cadastro-componentes-1.0-SNAPSHOT-jar-with-dependencies.jar /grant Users:F
      java -jar cadastro-componentes-1.0-SNAPSHOT-jar-with-dependencies.jar
 )

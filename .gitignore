@@ -103,7 +103,7 @@ dist
 
 # TernJS port file
 .tern-port
-/Application/projeto-Java-Monitoramento/target/
-/Application/projeto-java-monitoramento/target/
-/Application/cadastro-componentes/target/
-/Application/br.com.bandtec_projeto-java-monitoramento_jar_1.0-SNAPSHOT/target/
+Application/projeto-Java-Monitoramento/target/
+Application/projeto-java-monitoramento/target/
+Application/cadastro-componentes/target/
+Application/br.com.bandtec_projeto-java-monitoramento_jar_1.0-SNAPSHOT/target/
