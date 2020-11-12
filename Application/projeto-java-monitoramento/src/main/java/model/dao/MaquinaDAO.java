@@ -7,22 +7,28 @@ package model.dao;
 
 import connection.Connection;
 import java.util.List;
-import model.bean.Componente;
+import model.bean.Maquina;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
  * @author Patrick L Teixeira
  */
-public class ComponenteDAO {
+public class MaquinaDAO {
     
-    public List<Componente> returnComponentes(Integer idMaquina){
+    public List<Maquina> returnMaquinas(Integer fkFilial){
         try {
             Connection conn = new Connection();
             JdbcTemplate jdbc = conn.getConnection();
             
+            List<Maquina> maquinas = jdbc.query("SELECT * FROM MAQUINA WHERE fkFilial = ?", 
+                    new BeanPropertyRowMapper(Maquina.class), fkFilial);
             
-        } catch (Exception e) {
+            return maquinas;
+        } catch (DataAccessException e) {
+            return null;
         }
     }
     

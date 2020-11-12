@@ -12,16 +12,43 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Patrick L Teixeira
  */
 public class Componente {
-    private Integer vlr;
-
-    public Integer getVlr() {
-        return vlr;
-    }
-
-    public void setVlr(Integer vlr) {
-        this.vlr = vlr;
-    }
     
+    private Integer idComponente;
+    private String nomeComponente;
+    private Double totalComponente;
+    private String metricaComponente;
+
+    public Integer getIdComponente() {
+        return idComponente;
+    }
+
+    public void setIdComponente(Integer idComponente) {
+        this.idComponente = idComponente;
+    }
+
+    public String getNomeComponente() {
+        return nomeComponente;
+    }
+
+    public void setNomeComponente(String nomeComponente) {
+        this.nomeComponente = nomeComponente;
+    }
+
+    public Double getTotalComponente() {
+        return totalComponente;
+    }
+
+    public void setTotalComponente(Double totalComponente) {
+        this.totalComponente = totalComponente;
+    }
+
+    public String getMetricaComponente() {
+        return metricaComponente;
+    }
+
+    public void setMetricaComponente(String metricaComponente) {
+        this.metricaComponente = metricaComponente;
+    }
     
     
     

@@ -6,6 +6,8 @@
 package view;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import model.bean.Usuario;
 import model.bean.Componente;
+import model.bean.Maquina;
+import model.dao.MaquinaDAO;
 
 /**
  *
@@ -26,20 +30,9 @@ public class TelaDashboard extends javax.swing.JFrame {
      * Creates new form TelaDashboard
      */
     
-    Componente cpu = new Componente();
-    Componente ram = new Componente();
-    Componente disk = new Componente();
-    Componente temp = new Componente();
-    
-    Componente task = new Componente();
-    Componente swap = new Componente();
-    Componente dwnld = new Componente();
-    Componente upld = new Componente();
-    
-    Integer cont = 0;
-    
-    Integer acumCpu = 0, acumRam = 0, acumDisk = 0, acumTemp = 0;
-    Double mediaCpu, mediaRam, mediaDisk, mediaTemp;
+    Integer idFilial;
+    MaquinaDAO mDAO = new MaquinaDAO();
+   
     
     void gerarDados(){
         
@@ -47,44 +40,7 @@ public class TelaDashboard extends javax.swing.JFrame {
         timer.schedule(new TimerTask(){
             @Override
             public void run(){
-                cont++;
-                
-                cpu.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
-                msg(cpu.getVlr(), "CPU", lblCpuAlerta2);
-                acumCpu += cpu.getVlr();
-                mediaCpu = Double.valueOf(acumCpu / cont);
-                
-                ram.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
-                msg(ram.getVlr(), "Memoria", lblMemoriaAlerta);
-                acumRam += ram.getVlr();
-                mediaRam = Double.valueOf(acumRam / cont);
-                
-                disk.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
-                msg(disk.getVlr(), "Disco", lblDiscoAlerta);
-                acumDisk += disk.getVlr();
-                mediaDisk = Double.valueOf(acumDisk / cont);            
                
-                temp.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
-                msg(temp.getVlr(), "Temperatura", lblTempAlerta1);
-                acumTemp += temp.getVlr();
-                mediaTemp = Double.valueOf(acumTemp / cont);
-                
-                task.setVlr(ThreadLocalRandom.current().nextInt(0, 500));
-                lblTrfAbertaCpu2.setText(task.getVlr().toString());
-                
-                dwnld.setVlr(ThreadLocalRandom.current().nextInt(0, 6000));
-                lblDownload.setText(dwnld.getVlr().toString() + " KiB/s");
-                
-                upld.setVlr(ThreadLocalRandom.current().nextInt(0, 3000));
-                lblUpload.setText(upld.getVlr().toString() + " KiB/s");
-                
-                swap.setVlr(ThreadLocalRandom.current().nextInt(0, 100));
-                lblSwapMemoria.setText(swap.getVlr().toString() + " %");
-                
-                atualizarTela(lblLeituraAtualCpu2, lblMediaCpu2, cpu.getVlr(), pbCpu, mediaCpu, " %");
-                atualizarTela(lblLeituraAtualMemoria, lblMediaMemoria, ram.getVlr(), pbMem, mediaRam, " %");
-                atualizarTela(lblLeituraAtualTemp1, lblMediaTemp1, temp.getVlr(), pbTemp, mediaTemp, " ºC");
-                atualizarTela(lblLeituraAtualDisco, lblMediaDisco, disk.getVlr(), pbDisk, mediaDisk, " %");
                 
             }
         }, 1000, 3000);
@@ -92,57 +48,17 @@ public class TelaDashboard extends javax.swing.JFrame {
         
     }
     
-    
-    
-    
-    void atualizarTela(JLabel labelAtual, JLabel labelMedia, Integer num, JProgressBar bar, Double media, String metrica){
-        
-        bar.setValue(num);
-        String corMedia = cor(media);
-        String corAtual = cor(Double.valueOf(num));
-        labelAtual.setText(num.toString() + metrica);
-        labelAtual.setForeground(Color.decode(corAtual));
-        labelMedia.setText(media.toString() + metrica);
-        labelMedia.setForeground(Color.decode(corMedia));
-    }
-    
-    public String cor(Double num){
-        if(num <= 30){
-            return "#33FF00";
-        }else if(num <= 60){
-            return "#FED500";
-        }else{
-            return "#FF0000";
-        }
-    }
-    
-    void msg(Integer num, String txt, JLabel label){
-        if(num <= 30){
-            label.setForeground(Color.decode("#33FF00"));
-            label.setText(txt + " em baixo uso");
-        }else if(num <= 60){
-            label.setForeground(Color.decode("#FED500"));
-            label.setText(txt + " em médio uso");
-        }else{
-            label.setForeground(Color.decode("#FF0000"));
-            label.setText(txt + " em alto uso");
-        }
-    }
-    
-//    void teste() throws InterruptedException{
-//        while (true) {          
-//            nmr++;
-//            lblTempCpu1.setText(nmr.toString());
-//            Thread.sleep(1000);
-//        }
-//    }
-    
     public TelaDashboard(Usuario userLogado){
         initComponents();
         lbNomeUser.setText(userLogado.getNomeUsuario());
-        gerarDados();
+        idFilial = userLogado.getFkIdFilial();
+        //gerarDados();
     }
-
+    
+    void configMaquina(){
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
