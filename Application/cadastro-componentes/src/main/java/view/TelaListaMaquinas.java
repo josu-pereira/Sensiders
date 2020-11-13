@@ -15,10 +15,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.bean.Setor;
-import model.dao.SetorDAO;
+import model.bean.Maquina;
+import model.dao.MaquinaDAO;
 
-public class TelaListaSetores extends Application {
+public class TelaListaMaquinas extends Application {
     
     private int posX = 1;
     private int posY = 1;
@@ -26,7 +26,7 @@ public class TelaListaSetores extends Application {
     
     private int idFilial;
 
-    public TelaListaSetores(int idFilial) {
+    public TelaListaMaquinas(int idFilial) {
         this.idFilial = idFilial;
     }
     
@@ -87,22 +87,22 @@ public class TelaListaSetores extends Application {
         tfPesquisar.setStyle(globalStyles.getStyleTfSearch());
         lbSair.setStyle(globalStyles.getStyleTitle());
 
-        List<Setor> listaSetores = new SetorDAO().selectComponente(idFilial);
+        List<Maquina> listaSetores = new MaquinaDAO().selectComponente(idFilial);
         
         posX = 1;
         posY = 1;
         count = 0;
 
         listaSetores.forEach(s -> {
-            Label lbNomeSetor = new Label(s.getNome());
-            lbNomeSetor.setLayoutX(250);
-            lbNomeSetor.setStyle(globalStyles.getStyleLabels());
+            Label lbDescricaoMaquina = new Label(s.getDescricaoMaquina());
+            lbDescricaoMaquina.setLayoutX(250);
+            lbDescricaoMaquina.setStyle(globalStyles.getStyleLabels());
             
-            Rectangle boxSetor = new Rectangle(posX, 200, 250, 150);
-            boxSetor.setStyle("-fx-fill: #FFF;");
-            boxSetor.setCursor(Cursor.HAND);
-            boxSetor.setArcHeight(8);
-            boxSetor.setArcWidth(8);
+            Rectangle boxMaquina = new Rectangle(posX, 200, 250, 150);
+            boxMaquina.setStyle("-fx-fill: #FFF;");
+            boxMaquina.setCursor(Cursor.HAND);
+            boxMaquina.setArcHeight(8);
+            boxMaquina.setArcWidth(8);
             
             if(count == 4) {
                posX++;
@@ -112,9 +112,9 @@ public class TelaListaSetores extends Application {
             
             count++;
             posY++;
-            gridPane.setHalignment(lbNomeSetor, HPos.CENTER);
-            gridPane.add(boxSetor, posY, posX);
-            gridPane.add(lbNomeSetor, posY, posX);
+            gridPane.setHalignment(lbDescricaoMaquina, HPos.CENTER);
+            gridPane.add(boxMaquina, posY, posX);
+            gridPane.add(lbDescricaoMaquina, posY, posX);
         
         });
         

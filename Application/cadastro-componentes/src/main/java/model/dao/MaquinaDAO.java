@@ -8,36 +8,35 @@ package model.dao;
 import connection.Connection;
 import java.util.List;
 import model.bean.Componente;
-import model.bean.Setor;
+import model.bean.Maquina;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class SetorDAO {
+public class MaquinaDAO {
     
     
-    public List<Setor> selectComponente(int idFilial) {
+    public List<Maquina> selectComponente(int idFilial) {
         try {
            
             Connection conn = new Connection();
             JdbcTemplate jdbcTemplate = conn.getConnection();
-            Setor setor = new Setor();
+            Maquina setor = new Maquina();
             
             
-            List<Setor> listaSetores = jdbcTemplate.query(
-                    "SELECT * FROM setor where fkFilial = ?", 
-                    new BeanPropertyRowMapper(Setor.class), idFilial);
+            List<Maquina> listMaquinas = jdbcTemplate.query("SELECT * FROM maquina where fkFilial = ?", 
+                    new BeanPropertyRowMapper(Maquina.class), idFilial);
             
             
-            listaSetores.forEach(s -> {
-                setor.setIdSetor(s.getIdSetor());
+            listMaquinas.forEach(s -> {
+                setor.setIdMaquina(s.getIdMaquina());
                 setor.setFkFilial(s.getFkFilial());
-                setor.setNome(s.getNome());
-                setor.setQtdSensores(s.getQtdSensores());
+                setor.setDescricaoMaquina(s.getDescricaoMaquina());
+                setor.setHashmac(s.getHashmac());
             
             });
             
-            return listaSetores;
+            return listMaquinas;
         } catch (DataAccessException e) {
             System.out.println("DEU ERRO: "+e.getMessage());
             return null;
