@@ -46,6 +46,71 @@ BEGIN
 END 
 
 
+Go;
+
+Select idMaqComp,
+Substring(fkComponente, 9999, CHARINDEX(',', fkComponente + ',', 9999)-9999) As Comp
+from  A Join dbo.Numeracao N
+        On N.Numero <= DATALENGTH(A.Elementos) + 1
+        And SUBSTRING(‘,’ + A.Elementos, Numero, 1) = ‘,’
+
+BEGIN TRANSACTION;
+Create Table Numeracao
+(Numero Int Not Null Primary Key) ;
+Go
+Declare @ValorMaximo Int,
+@Contador Int;
+Set @ValorMaximo=100;
+Set @Contador=1;
+Insert Into dbo.Numeracao Values(1)
+While @Contador * 2 <= @ValorMaximo
+ Begin
+   Insert Into dbo.Numeracao
+   Select Numero+@Contador from dbo.Numeracao;
+   Set @Contador *= 2;       
+ End
+ select * from Numeracao;
+
+DECLARE @A varchar(50)
+SET @A = (select idComponente from Componente where '2' = idComponente)
+Select A.fkMaquina,
+Substring(@A, N.Numero, CHARINDEX(',', @A + ',', N.Numero)- N.Numero) As Comp
+from MaquinaComponente A Join Numeracao N
+        On N.Numero <= DATALENGTH(@A) + 1
+        And SUBSTRING(',' + @A, Numero, 1) = ','
+        WHERE A.fkMaquina = '2'
+        
+DECLARE @A varchar(50), @B int
+SET @A = '1,2,3'
+Insert Into MaquinaComponente(fkMaquina,fkComponente)
+Select A.fkMaquina,
+Substring(@A, N.Numero, CHARINDEX(',', @A + ',', N.Numero)- N.Numero) As Comp
+from MaquinaComponente A Join Numeracao N
+        On N.Numero <= DATALENGTH(@A) + 1
+        And SUBSTRING(',' + @A, Numero, 1) = ','
+
+DECLARE @A varchar(50), @B INT
+SET @A = '1,2,3,4'
+SET @B = '2'
+INSERT INTO MaquinaComponente(fkMaquina, fkComponente)
+SELECT [value] FROM STRING_SPLIT(@A, ',');
+
+CREATE PROCEDURE sp_TesteCad
+@FKMID int,
+@COMP VARCHAR(MAX)=NULL
+
+AS
+BEGIN
+
+ INSERT INTO MaquinaComponente(fkMaquina,fkComponente)
+    SELECT @FKMID, value FROM string_split(@COMP, ',')
+ 
+END
+GO
+
+sp_TesteCad 2, '7,8'
+SELECT * FROM MaquinaComponente
+ROLLBACK;
 
 
 
@@ -54,42 +119,44 @@ END
 
 -- '"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dEZ"
 -- ENVIAR COMO MATRIZ
+
 CREATE PROCEDURE sp_CadastroMaquina
 @nomeMaquina varchar(50),
 @emailUsuario varchar(50),
 @hashmac varchar(260),
-@componentes varchar(50),
+@componentes varchar(50)
 
 AS
 BEGIN
 
-DECLARE @fkFilial INT, @fkMaquina INT, @vetorComp VARCHAR(50), @I INT, @comp INT
+DECLARE @fkFilial INT, @fkMaquina INT, @vetorComp VARCHAR(50)
 
 SET @fkFilial = (SELECT fkidFilial FROM Usuario WHERE @emailUsuario = emailUsuario)
-SET @fkMaquina = (SELECT idMaquina FROM Maquina WHERE @nomeMaquina = descricaoMaquina)
+
 -- RETIRAR OS ESPACOS E ASPAS E VIRGULAS
 SET @vetorComp = REPLACE(@componentes,'"','')
 SET @vetorComp = REPLACE(@vetorComp,' ','')
-SET @vetorComp = REPLACE(@vetorComp,',','')
-
-
+-- SET @vetorComp = REPLACE(@vetorComp,',','')
 
 INSERT INTO Maquina(descricaoMaquina,fkFilial,hashmac)
     VALUES(@nomeMaquina,@fkFilial,@hashmac)
 
-SET @I = 0
-WHILE @I < LEN(@vetorComp)
-BEGIN
-    SET @I += 1;
-    SET @comp = (SELECT idComponente FROM Componente WHERE @I = idComponente)
+SET @fkMaquina = (SELECT idMaquina FROM Maquina WHERE @nomeMaquina = descricaoMaquina)
 
-    INSERT INTO MaquinaComponente(fkMaquina,fkMaquina)
-        VALUES(@fkMaquina,)
-END
+INSERT INTO MaquinaComponente(fkMaquina,fkComponente)
+    SELECT @fkMaquina, value FROM string_split(@vetorComp, ',')
+    
 
-SELECT
+SELECT @fkMaquina as 'maq', @nomeMaquina as 'nome da maquina', @fkFilial as 'filial', @componentes as 'MaqComps'
 
 
 END
 GO
 
+drop PROCEDURE sp_CadastroMaquina
+
+-- como enviar?
+-- para os componentes envie: '1','1','1','1','1'
+-- tanto faz se tiver aspas duplas ou espaços, o procedimento tira
+-- mas envie como matriz
+Exec sp_CadastroMaquina 'maquina caixa','patrick@outlook.com','hashmachere','7,8,9'
