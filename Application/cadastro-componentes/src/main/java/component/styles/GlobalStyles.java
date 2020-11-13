@@ -12,11 +12,29 @@ public class GlobalStyles {
     private String styleButtonConfirm = "-fx-background-color: #7DFB91; -fx-font: 14 poppins ;"
             + "-fx-border-radius: 8; -fx-text-fill: #FFF;  -fx-font-weight: bold";
     
-    public String styleTitle = "-fx-font: 18 archivo;";
-  
     public String styleErrorMessage = "-fx-font: 14 poppins; -fx-font-weight: bold;"
             + "-fx-text-fill: #F00";
+    private String styleLabels = "-fx-font: 14 archivo;";
     
+    public String styleTitle = "-fx-font: 18 archivo; -fx-font-weight: bold; "
+            + "-fx-text-fill: #FFF;";
+    
+    public String styleTitleBlack = "-fx-text-fill: #000";
+
+    public String getStyleTitleBlack() {
+        return styleTitleBlack;
+    }
+    
+    public String styleTfSearch = "-fx-background-color: #FAFAFA;"
+            + "-fx-border-radius: 8; -fx-font: 14 poppins; -fx-text-fill: gray";
+
+    public String getStyleTfSearch() {
+        return styleTfSearch;
+    }
+
+    public String getStyleLabels() {
+        return styleLabels;
+    }
     
     public String getStyleTitle() {
         return styleTitle;
@@ -25,10 +43,7 @@ public class GlobalStyles {
     public String getStyleErrorMessage() {
         return styleErrorMessage;
     }
-    
-    
-    
-    
+   
     public String getBackgroundPage() {
         return backgroundPage;
     }
