@@ -127,7 +127,7 @@ public class TelaLogin extends Application {
                     } else {
                         
                         
-                        new TelaListaMaquinas(user.getFkIdFilial()).start(stage);
+                        //new TelaListaMaquinas(user.getFkIdFilial()).start(stage);
                         //stage.close();
                         
                     }

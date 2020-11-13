@@ -79,7 +79,7 @@ public class TelaLogin extends Application {
         
         header.setStyle(globalStyles.getStyleHeader());
         
-        lbTitle.setStyle(globalStyles.getStyleTitle());
+        lbTitle.setStyle(globalStyles.getStyleTitle() + globalStyles.getStyleTitleBlack());
         lbEmail.setStyle(globalStyles.getStyleLabels());
         lbPassword.setStyle(globalStyles.getStyleLabels());
         
@@ -126,8 +126,10 @@ public class TelaLogin extends Application {
                         JOptionPane.showMessageDialog(null, "Opps... \n Usuário e/ou senha incorretos!");
                     } else {
                         stage.close();
+                        new TelaListaMaquinas(user.getFkIdFilial()).start(stage);
+                        /*
                         TelaDashboard td = new TelaDashboard(user);
-                        td.setVisible(true);
+                        td.setVisible(true);*/
                     }
                 }
                 

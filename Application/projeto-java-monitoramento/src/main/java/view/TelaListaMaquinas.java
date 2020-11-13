@@ -1,7 +1,7 @@
 
 package view;
 
-import component.styles.GlobalStyles;
+import styles.GlobalStyles;
 import java.util.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.bean.Maquina;
 import model.dao.MaquinaDAO;
+import view.TelaLogin;
 
 public class TelaListaMaquinas extends Application {
     
@@ -87,7 +88,7 @@ public class TelaListaMaquinas extends Application {
         tfPesquisar.setStyle(globalStyles.getStyleTfSearch());
         lbSair.setStyle(globalStyles.getStyleTitle());
 
-        List<Maquina> listaSetores = new MaquinaDAO().selectComponente(idFilial);
+        List<Maquina> listaSetores = new MaquinaDAO().returnMaquinas(idFilial);
         
         posX = 1;
         posY = 1;
@@ -103,6 +104,15 @@ public class TelaListaMaquinas extends Application {
             boxMaquina.setCursor(Cursor.HAND);
             boxMaquina.setArcHeight(8);
             boxMaquina.setArcWidth(8);
+            
+            
+            // Para quando clicar na "boxMaquina"
+            boxMaquina.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    System.out.println(s.getDescricaoMaquina());
+                }
+            });
             
             if(count == 4) {
                posX++;

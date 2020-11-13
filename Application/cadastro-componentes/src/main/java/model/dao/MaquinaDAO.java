@@ -24,7 +24,7 @@ public class MaquinaDAO {
             Maquina setor = new Maquina();
             
             
-            List<Maquina> listMaquinas = jdbcTemplate.query("SELECT * FROM maquina where fkFilial = ?", 
+            List<Maquina> listMaquinas = jdbcTemplate.query("select * from vwListaMaquinas where fkFilial = ?", 
                     new BeanPropertyRowMapper(Maquina.class), idFilial);
             
             
