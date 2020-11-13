@@ -616,8 +616,6 @@ public class TelaDashboard extends javax.swing.JFrame {
         setVisible(false);
         dispose();
         
-        TelaLogin tl = new TelaLogin();
-        tl.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
