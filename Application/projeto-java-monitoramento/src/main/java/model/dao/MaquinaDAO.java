@@ -23,11 +23,12 @@ public class MaquinaDAO {
             Connection conn = new Connection();
             JdbcTemplate jdbc = conn.getConnection();
             
-            List<Maquina> maquinas = jdbc.query("SELECT * FROM MAQUINA WHERE fkFilial = ?", 
+            List<Maquina> maquinas = jdbc.query("SELECT * FROM vwListaMaquinas where fkFilial = ?", 
                     new BeanPropertyRowMapper(Maquina.class), fkFilial);
             
             return maquinas;
         } catch (DataAccessException e) {
+            System.out.println(e.getMessage());
             return null;
         }
     }
