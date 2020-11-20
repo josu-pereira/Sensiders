@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.bean.Maquina;
+import model.bean.Usuario;
 import model.dao.MaquinaDAO;
 import view.TelaLogin;
 
@@ -25,17 +26,16 @@ public class TelaListaMaquinas extends Application {
     private int posY = 1;
     private int count = 0;
     
-    private int idFilial;
+    private Usuario user;
 
-    public TelaListaMaquinas(int idFilial) {
-        this.idFilial = idFilial;
+    public TelaListaMaquinas(Usuario user) {
+        this.user = user;
     }
     
     GlobalStyles globalStyles = new GlobalStyles();
     
     public void start(Stage stage) {
         
-        System.out.println(idFilial);
         // Layout
         Pane pane = new Pane();  
         GridPane gridPane = new GridPane();
@@ -88,13 +88,13 @@ public class TelaListaMaquinas extends Application {
         tfPesquisar.setStyle(globalStyles.getStyleTfSearch());
         lbSair.setStyle(globalStyles.getStyleTitle());
 
-        List<Maquina> listaSetores = new MaquinaDAO().returnMaquinas(idFilial);
+        List<Maquina> listaMaquinas = new MaquinaDAO().returnMaquinas(user.getFkIdFilial());
         
         posX = 1;
         posY = 1;
         count = 0;
 
-        listaSetores.forEach(s -> {
+        listaMaquinas.forEach(s -> {
             Label lbDescricaoMaquina = new Label(s.getDescricaoMaquina());
             lbDescricaoMaquina.setLayoutX(250);
             lbDescricaoMaquina.setStyle(globalStyles.getStyleLabels());
@@ -110,7 +110,9 @@ public class TelaListaMaquinas extends Application {
             boxMaquina.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent t) {
-                    System.out.println(s.getDescricaoMaquina());
+                    new TelaDashboard(user, s.getIdMaquina(), s.getDescricaoMaquina()).start(stage);
+                    
+                   // System.out.println(s.getDescricaoMaquina());
                 }
             });
             
@@ -148,11 +150,7 @@ public class TelaListaMaquinas extends Application {
                 
                 new TelaLogin().start(stage);
             }
-            
         });
-        
-        
-        
         
         stage.show();
         

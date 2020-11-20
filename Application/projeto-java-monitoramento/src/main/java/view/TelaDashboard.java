@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.bean.Usuario;
 import styles.GlobalStyles;
 
 public class TelaDashboard extends Application {
@@ -20,10 +21,22 @@ public class TelaDashboard extends Application {
     private int posX = 1;
     private int posY = 1;
     private int count = 0;
+    private Usuario user;
+    private int idMaquina;
+    private String descricaoMaquina;
+    
+    public TelaDashboard(Usuario user, int idMaquina, String descricaoMaquina) {
+        this.user = user;
+        this.idMaquina = idMaquina;
+        this.descricaoMaquina = descricaoMaquina;
+    }
+    
+    
 
     GlobalStyles globalStyles = new GlobalStyles();
 
     public void start(Stage stage) {
+        
         Pane pane = new Pane();
         stage.setTitle("Dashboard");
         stage.setResizable(false);
@@ -34,7 +47,7 @@ public class TelaDashboard extends Application {
         header.toFront();
 
         // LABELS
-        Label lbNomeMaquina = new Label("Máquina 1");
+        Label lbNomeMaquina = new Label(descricaoMaquina);
         lbNomeMaquina.setLayoutX(120);
         lbNomeMaquina.setLayoutY(45);
 
@@ -63,7 +76,7 @@ public class TelaDashboard extends Application {
             Label lbNomeComponente = new Label("CPU");
             lbNomeComponente.setLayoutX(27);
             lbNomeComponente.setLayoutY(17);
-            lbNomeComponente.setStyle(globalStyles.getStyleLabels() + "-fx-font: 27 archivo;");
+            lbNomeComponente.setStyle(globalStyles.getStyleLabels() + "-fx-font: 26 archivo;");
 
             Label lbComponenteDescricao = new Label("Intel i3 7200 2.30GHz");
             lbComponenteDescricao.setLayoutX(lbNomeComponente.getLayoutX() + 60);
@@ -124,12 +137,13 @@ public class TelaDashboard extends Application {
             Pane paneComponente = new Pane();
             paneComponente.setPrefWidth(boxMaquina.getWidth());
             paneComponente.setPrefHeight(boxMaquina.getHeight());
-            paneComponente.setStyle("-fx-background-color: white");
+            //paneComponente.setStyle("-fx-background-color: white");
 
             // Para quando clicar na "boxMaquina"
             boxMaquina.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent t) {
+                    
 //                    System.out.println(s.getDescricaoMaquina());
                 }
             });
@@ -185,6 +199,21 @@ public class TelaDashboard extends Application {
         lbNomeMaquina.setStyle(globalStyles.getStyleTitle());
         lbVoltar.setStyle(globalStyles.getStyleTitle());
 
+        
+        
+        
+        // Ações
+        lbVoltar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                new TelaListaMaquinas(user).start(stage);
+            }
+        });
+        
+        
+        
+        
+        
         // Adicionando à tela
         pane.getChildren().add(header);
         pane.getChildren().add(lbNomeMaquina);
