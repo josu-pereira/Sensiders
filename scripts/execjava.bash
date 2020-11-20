@@ -23,7 +23,7 @@ if [[ $? = 0 ]]
 			sleep 2
 			curl -s "https://get.sdkman.io" | bash
 			source "$HOME/.sdkman/bin/sdkman-init.sh"
-			sdk install java 8.0.265.j9-adpt
+			sdk install java 11.0.9.j9-adpt
 			
 			echo -e "\e[48;5;204m [Sensiders]: \e[0m Instalacao com sucesso o java"
 			echo -e "\e[48;5;204m [Sensiders]: \e[0m Agora vamos executar o programa"
