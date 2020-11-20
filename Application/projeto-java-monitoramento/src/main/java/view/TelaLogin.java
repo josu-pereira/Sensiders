@@ -125,7 +125,7 @@ public class TelaLogin extends Application {
                     if(user == null) {
                         JOptionPane.showMessageDialog(null, "Opps... \n Usuário e/ou senha incorretos!");
                     } else {
-                        stage.close();
+                        //stage.close();
                         new TelaListaMaquinas(user).start(stage);
                         /*
                         TelaDashboard td = new TelaDashboard(user);
