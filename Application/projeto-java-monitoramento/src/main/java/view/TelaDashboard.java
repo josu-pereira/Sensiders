@@ -94,32 +94,32 @@ public class TelaDashboard extends Application {
             Label lbMediaDeUso = new Label("Média de Uso: ");
             lbMediaDeUso.setLayoutX(lbNomeComponente.getLayoutX());
             lbMediaDeUso.setLayoutY(70);
-            lbMediaDeUso.setStyle("-fx-font: 20 Roboto;");
+            lbMediaDeUso.setStyle("-fx-font: 16 Roboto;");
 
             Label lbLeituraAtual = new Label("Leitura Atual: ");
             lbLeituraAtual.setLayoutX(lbMediaDeUso.getLayoutX());
             lbLeituraAtual.setLayoutY(100);
-            lbLeituraAtual.setStyle("-fx-font: 20 Roboto;");
+            lbLeituraAtual.setStyle("-fx-font: 16 Roboto;");
 
             Label lbQtdTarefasExecutadas = new Label("Qtd de Tarefas executadas: ");
             lbQtdTarefasExecutadas.setLayoutX(lbMediaDeUso.getLayoutX());
             lbQtdTarefasExecutadas.setLayoutY(130);
-            lbQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
+            lbQtdTarefasExecutadas.setStyle("-fx-font: 16 Roboto;");
 
             Label lbValorMediaDeUso = new Label("55%");
-            lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
+            lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 120);
             lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
-            lbValorMediaDeUso.setStyle("-fx-font: 20 Roboto;");
+            lbValorMediaDeUso.setStyle("-fx-font: 16 Roboto;");
 
             Label lbValorLeituraAtual = new Label("80%");
-            lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
+            lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 120);
             lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
-            lbValorLeituraAtual.setStyle("-fx-font: 20 Roboto;");
+            lbValorLeituraAtual.setStyle("-fx-font: 16 Roboto;");
 
             Label lbValorQtdTarefasExecutadas = new Label("4");
-            lbValorQtdTarefasExecutadas.setLayoutX(lbQtdTarefasExecutadas.getLayoutX() + 250);
+            lbValorQtdTarefasExecutadas.setLayoutX(lbQtdTarefasExecutadas.getLayoutX() + 230);
             lbValorQtdTarefasExecutadas.setLayoutY(lbQtdTarefasExecutadas.getLayoutY());
-            lbValorQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
+            lbValorQtdTarefasExecutadas.setStyle("-fx-font: 16 Roboto;");
             
             ProgressBar pb = new ProgressBar(0.8); 
             pb.setLayoutX(lbNomeComponente.getLayoutX());
@@ -179,7 +179,7 @@ public class TelaDashboard extends Application {
         lbVelocDown.setStyle(globalStyles.getStyleLabels());
 
         Label lbValorVelocDown = new Label("859KiB/s");
-        lbValorVelocDown.setLayoutX(lbVelocDown.getLayoutX() + 85);
+        lbValorVelocDown.setLayoutX(lbVelocDown.getLayoutX() + 95);
         lbValorVelocDown.setLayoutY(675);
         lbValorVelocDown.setStyle(globalStyles.getStyleLabels());
 
