@@ -15,7 +15,7 @@ public class Componente {
     
     private Integer idComponente;
     private String nomeComponente;
-    private Double totalComponente;
+    private String totalComponente;
     private String metricaComponente;
 
     public Integer getIdComponente() {
@@ -34,11 +34,11 @@ public class Componente {
         this.nomeComponente = nomeComponente;
     }
 
-    public Double getTotalComponente() {
+    public String getTotalComponente() {
         return totalComponente;
     }
 
-    public void setTotalComponente(Double totalComponente) {
+    public void setTotalComponente(String totalComponente) {
         this.totalComponente = totalComponente;
     }
 
