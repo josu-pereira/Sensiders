@@ -1,8 +1,12 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Cursor;
@@ -30,26 +34,164 @@ public class TelaDashboard extends Application {
     private Usuario user;
     private int idMaquina;
     private String descricaoMaquina;
-    private List<Componente> cmps = null;
+    private List<Componente> cmps;
     private Double leituraComp;
     
-    Gridpanes gp;
+    GridPane gridPane = new GridPane();
     
-//    List<Map<String, Object>> aux = null;
+    //declaração das labels
+    
+    
+    ComponenteDAO cDao = new ComponenteDAO();
+    List<Double> somas = new ArrayList<>();
+    
+    Integer cont = 1;
     
     public TelaDashboard(Usuario user, int idMaquina, String descricaoMaquina) {
         this.user = user;
         this.idMaquina = idMaquina;
         this.descricaoMaquina = descricaoMaquina;
     }
-    
 
     GlobalStyles globalStyles = new GlobalStyles();
+    
+    public void looping(){
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run(){
+                Platform.runLater(() ->{
+                    gridPane.getChildren().removeAll();
+               
+                    posX = 1;
+                    posY = 1;
+                    count = 0;
+
+                    for(int i = 0; i < cmps.size(); i++){
+                        leituraComp = cDao.returnLeitura(user.getFkIdFilial(), cmps.get(i).getIdComponente(), idMaquina);
+                        Gridpanes gp = new Gridpanes();
+                        gp.setLeitura(leituraComp);
+                        gp.setSoma(somas.get(i)+leituraComp);
+                        somas.set(i, gp.getSoma());
+                        gp.calcMedia(cont);
+                        gp.medirAlerta(Double.valueOf(cmps.get(i).getTotalComponente()));
+
+                        criarBox(cmps.get(i).getNomeComponente(), gp.getAlerta(), leituraComp, gp.getMedia());
+
+                    }
+
+                    cont++;
+                    System.out.println("5 segundos");
+                });
+               
+            }
+        }, 1000, 5000);
+    }
+    
+    public void criarBox(String nomeComponente, String alerta, Double leitura, Double media){
+        
+        Label lbNomeComponente = new Label();
+        Label lbSituacaoComponente = new Label();
+        Label lbLeituraAtual = new Label();
+        Label lbValorMediaDeUso = new Label();
+        Label lbValorLeituraAtual = new Label();
+        ProgressBar pb = new ProgressBar();
+
+        lbNomeComponente.setText(nomeComponente);
+        lbNomeComponente.setLayoutX(27);
+        lbNomeComponente.setLayoutY(17);
+        lbNomeComponente.setStyle(globalStyles.getStyleLabels() + "-fx-font: 26 archivo;");
+
+        Label lbComponenteDescricao = new Label();
+        lbComponenteDescricao.setLayoutX(lbNomeComponente.getLayoutX() + 60);
+        lbComponenteDescricao.setLayoutY(25);
+        lbComponenteDescricao.setStyle(globalStyles.getStyleLabels());
+
+
+        lbSituacaoComponente.setText(String.format("%s em %s", nomeComponente, alerta));
+        lbSituacaoComponente.setLayoutX(390);
+        lbSituacaoComponente.setLayoutY(25);
+        lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: red");        
+
+
+        Label lbMediaDeUso = new Label("Média de Uso: ");
+        lbMediaDeUso.setLayoutX(lbNomeComponente.getLayoutX());
+        lbMediaDeUso.setLayoutY(70);
+        lbMediaDeUso.setStyle("-fx-font: 20 Roboto;");
+
+
+        lbLeituraAtual.setText("Leitura Atual");
+        lbLeituraAtual.setLayoutX(lbMediaDeUso.getLayoutX());
+        lbLeituraAtual.setLayoutY(100);
+        lbLeituraAtual.setStyle("-fx-font: 20 Roboto;");
+
+//            Label lbQtdTarefasExecutadas = new Label("Qtd de Tarefas executadas: ");
+//            lbQtdTarefasExecutadas.setLayoutX(lbMediaDeUso.getLayoutX());
+//            lbQtdTarefasExecutadas.setLayoutY(130);
+//            lbQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
+
+
+        lbValorMediaDeUso.setText(media.toString());
+        lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
+        lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
+        lbValorMediaDeUso.setStyle("-fx-font: 20 Roboto;");
+
+
+        lbValorLeituraAtual.setText(leitura.toString());
+        lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
+        lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
+        lbValorLeituraAtual.setStyle("-fx-font: 20 Roboto;");
+
+//            Label lbValorQtdTarefasExecutadas = new Label("4");
+//            lbValorQtdTarefasExecutadas.setLayoutX(lbQtdTarefasExecutadas.getLayoutX() + 250);
+//            lbValorQtdTarefasExecutadas.setLayoutY(lbQtdTarefasExecutadas.getLayoutY());
+//            lbValorQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
+
+
+        pb.setProgress(leitura);
+        pb.setLayoutX(lbNomeComponente.getLayoutX());
+        pb.setLayoutY(200);
+        pb.setPrefWidth(470);
+        pb.prefHeight(30);
+        pb.setStyle("-fx-accent: #FF7D7D;");
+
+        Rectangle boxMaquina = new Rectangle(posX, 200, 518, 260);
+        boxMaquina.setStyle("-fx-fill: #FFF;");
+        boxMaquina.setCursor(Cursor.HAND);
+        boxMaquina.setArcHeight(8);
+        boxMaquina.setArcWidth(8);
+
+        Pane paneComponente = new Pane();
+        paneComponente.setPrefWidth(boxMaquina.getWidth());
+        paneComponente.setPrefHeight(boxMaquina.getHeight());
+        //paneComponente.setStyle("-fx-background-color: white");
+
+        if (count == 2) {
+            posX++;
+            posY = 1;
+            count = 0;
+        }
+
+        count++;
+        posY++;
+        gridPane.add(boxMaquina, posY, posX);
+        gridPane.add(paneComponente, posY, posX);
+        //getChildren das informações do componente
+        paneComponente.getChildren().add(lbNomeComponente);
+        paneComponente.getChildren().add(lbComponenteDescricao);
+        paneComponente.getChildren().add(lbSituacaoComponente);
+        //getChildren dos dados do componente
+        paneComponente.getChildren().add(lbMediaDeUso);
+        paneComponente.getChildren().add(lbLeituraAtual);
+        //paneComponente.getChildren().add(lbQtdTarefasExecutadas);
+        paneComponente.getChildren().add(lbValorMediaDeUso);
+        paneComponente.getChildren().add(lbValorLeituraAtual);
+        //paneComponente.getChildren().add(lbValorQtdTarefasExecutadas);
+        paneComponente.getChildren().add(pb);
+    }
 
     public void start(Stage stage) {
         
-        
-        ComponenteDAO cDao = new ComponenteDAO();
         cmps = cDao.returnComponentes(idMaquina);
     
         Pane pane = new Pane();
@@ -72,7 +214,7 @@ public class TelaDashboard extends Application {
         lbVoltar.setCursor(Cursor.HAND);
 
         // Box componentes
-        GridPane gridPane = new GridPane();
+        
         gridPane.toFront();
 
         gridPane.setLayoutX(50);
@@ -80,117 +222,25 @@ public class TelaDashboard extends Application {
         gridPane.setHgap(35);
         gridPane.setVgap(35);
 
-        posX = 1;
-        posY = 1;
-        count = 0;
-
 //        listaSetores.forEach(s -> {
         cmps.forEach(c -> {
             
             leituraComp = cDao.returnLeitura(user.getFkIdFilial(), c.getIdComponente(), idMaquina);
-            gp = new Gridpanes();
+            
+            Gridpanes gp = new Gridpanes();
+            
             gp.setLeitura(leituraComp);
             gp.setSoma(gp.getSoma()+leituraComp);
-            gp.calcMedia();
+            somas.add(gp.getSoma());
+            gp.calcMedia(cont);
             gp.medirAlerta(Double.valueOf(c.getTotalComponente()));
 
             // Labels dos gridpanes
-            Label lbNomeComponente = new Label(c.getNomeComponente());
-            lbNomeComponente.setLayoutX(27);
-            lbNomeComponente.setLayoutY(17);
-            lbNomeComponente.setStyle(globalStyles.getStyleLabels() + "-fx-font: 26 archivo;");
-
-            Label lbComponenteDescricao = new Label();
-            lbComponenteDescricao.setLayoutX(lbNomeComponente.getLayoutX() + 60);
-            lbComponenteDescricao.setLayoutY(25);
-            lbComponenteDescricao.setStyle(globalStyles.getStyleLabels());
-
-            Label lbSituacaoComponente = new Label(String.format("%s em %s", c.getNomeComponente(), gp.getAlerta()));
-            lbSituacaoComponente.setLayoutX(390);
-            lbSituacaoComponente.setLayoutY(25);
-            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: red");        
+            criarBox(c.getNomeComponente(), gp.getAlerta(), leituraComp, gp.getMedia());
             
-            
-            Label lbMediaDeUso = new Label("Média de Uso: ");
-            lbMediaDeUso.setLayoutX(lbNomeComponente.getLayoutX());
-            lbMediaDeUso.setLayoutY(70);
-            lbMediaDeUso.setStyle("-fx-font: 20 Roboto;");
-
-            Label lbLeituraAtual = new Label(leituraComp.toString());
-            lbLeituraAtual.setLayoutX(lbMediaDeUso.getLayoutX());
-            lbLeituraAtual.setLayoutY(100);
-            lbLeituraAtual.setStyle("-fx-font: 20 Roboto;");
-
-            Label lbQtdTarefasExecutadas = new Label("Qtd de Tarefas executadas: ");
-            lbQtdTarefasExecutadas.setLayoutX(lbMediaDeUso.getLayoutX());
-            lbQtdTarefasExecutadas.setLayoutY(130);
-            lbQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
-
-            Label lbValorMediaDeUso = new Label(gp.getMedia().toString());
-            lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
-            lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
-            lbValorMediaDeUso.setStyle("-fx-font: 20 Roboto;");
-
-            Label lbValorLeituraAtual = new Label(leituraComp.toString());
-            lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
-            lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
-            lbValorLeituraAtual.setStyle("-fx-font: 20 Roboto;");
-
-            Label lbValorQtdTarefasExecutadas = new Label("4");
-            lbValorQtdTarefasExecutadas.setLayoutX(lbQtdTarefasExecutadas.getLayoutX() + 250);
-            lbValorQtdTarefasExecutadas.setLayoutY(lbQtdTarefasExecutadas.getLayoutY());
-            lbValorQtdTarefasExecutadas.setStyle("-fx-font: 20 Roboto;");
-            
-            ProgressBar pb = new ProgressBar(leituraComp); 
-            pb.setLayoutX(lbNomeComponente.getLayoutX());
-            pb.setLayoutY(200);
-            pb.setPrefWidth(470);
-            pb.prefHeight(30);
-            pb.setStyle("-fx-accent: #FF7D7D;");
-
-            Rectangle boxMaquina = new Rectangle(posX, 200, 518, 260);
-            boxMaquina.setStyle("-fx-fill: #FFF;");
-            boxMaquina.setCursor(Cursor.HAND);
-            boxMaquina.setArcHeight(8);
-            boxMaquina.setArcWidth(8);
-
-            Pane paneComponente = new Pane();
-            paneComponente.setPrefWidth(boxMaquina.getWidth());
-            paneComponente.setPrefHeight(boxMaquina.getHeight());
-            //paneComponente.setStyle("-fx-background-color: white");
-
-            // Para quando clicar na "boxMaquina"
-            boxMaquina.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent t) {
-                    
-//                    System.out.println(s.getDescricaoMaquina());
-                }
-            });
-
-            if (count == 2) {
-                posX++;
-                posY = 1;
-                count = 0;
-            }
-
-            count++;
-            posY++;
-            gridPane.add(boxMaquina, posY, posX);
-            gridPane.add(paneComponente, posY, posX);
-            //getChildren das informações do componente
-            paneComponente.getChildren().add(lbNomeComponente);
-            paneComponente.getChildren().add(lbComponenteDescricao);
-            paneComponente.getChildren().add(lbSituacaoComponente);
-            //getChildren dos dados do componente
-            paneComponente.getChildren().add(lbMediaDeUso);
-            paneComponente.getChildren().add(lbLeituraAtual);
-            paneComponente.getChildren().add(lbQtdTarefasExecutadas);
-            paneComponente.getChildren().add(lbValorMediaDeUso);
-            paneComponente.getChildren().add(lbValorLeituraAtual);
-            paneComponente.getChildren().add(lbValorQtdTarefasExecutadas);
-            paneComponente.getChildren().add(pb);
+           
         });
+        cont++;
 
 //        Label lbVelocDown = new Label("Veloc. Down: ");
 //        lbVelocDown.setLayoutX(120);
@@ -245,6 +295,7 @@ public class TelaDashboard extends Application {
 //        pane.getChildren().add(lbValorVelocUp);
 
         stage.show();
+        looping();
 
     }
 

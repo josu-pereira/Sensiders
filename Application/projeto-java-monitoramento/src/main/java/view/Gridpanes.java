@@ -10,23 +10,13 @@ package view;
  * @author Patrick L Teixeira
  */
 public class Gridpanes {
-    private String nome;
     private Double leitura;
     private String alerta;
-    private Integer cont = 1;
     private Double soma = 0.0;
     private Double media;
     
     public Gridpanes(){
         media = leitura;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Double getLeitura() {
@@ -48,15 +38,13 @@ public class Gridpanes {
     public void setSoma(Double soma) {
         this.soma = soma;
     }
-    
-    
 
     public Double getMedia() {
         return media;
     }
     
-    public void calcMedia(){
-        this.media = soma/cont;
+    public void calcMedia(Integer div){
+        this.media = soma/div;
     }
     
     public void medirAlerta(Double total){
