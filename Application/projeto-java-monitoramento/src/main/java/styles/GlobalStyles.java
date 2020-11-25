@@ -1,30 +1,31 @@
 package styles;
 
 public class GlobalStyles {
-    
+
     private String styleHeader = "-fx-fill: #FF7D7D";
     private String backgroundPage = "-fx-background-color: #e6e6e6";
-    
-   
+
     private String styleTextField = "-fx-background-color: #FAFAFA;"
             + "-fx-border-radius: 8; -fx-font: 14 poppins;";
-    
+
     private String styleButtonConfirm = "-fx-background-color: #7DFB91; -fx-font: 14 poppins ;"
             + "-fx-border-radius: 8; -fx-text-fill: #FFF;  -fx-font-weight: bold";
-    
+
     public String styleErrorMessage = "-fx-font: 14 poppins; -fx-font-weight: bold;"
             + "-fx-text-fill: #F00";
     private String styleLabels = "-fx-font: 14 archivo;";
-    
+
+    private String styleLabelsComponentes = "-fx-font: 20 Roboto;";
+
     public String styleTitle = "-fx-font: 18 archivo; -fx-font-weight: bold; "
             + "-fx-text-fill: #FFF;";
-    
+
     public String styleTitleBlack = "-fx-text-fill: #000";
 
     public String getStyleTitleBlack() {
         return styleTitleBlack;
     }
-    
+
     public String styleTfSearch = "-fx-background-color: #FAFAFA;"
             + "-fx-border-radius: 8; -fx-font: 14 poppins; -fx-text-fill: gray";
 
@@ -35,7 +36,7 @@ public class GlobalStyles {
     public String getStyleLabels() {
         return styleLabels;
     }
-    
+
     public String getStyleTitle() {
         return styleTitle;
     }
@@ -43,7 +44,7 @@ public class GlobalStyles {
     public String getStyleErrorMessage() {
         return styleErrorMessage;
     }
-   
+
     public String getBackgroundPage() {
         return backgroundPage;
     }
@@ -59,4 +60,9 @@ public class GlobalStyles {
     public String getStyleButtonConfirm() {
         return styleButtonConfirm;
     }
+
+    public String getStyleLabelsComponentes() {
+        return styleLabelsComponentes;
+    }
+
 }
