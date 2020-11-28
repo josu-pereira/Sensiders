@@ -15,6 +15,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -204,16 +205,20 @@ public class TelaDashboard extends Application {
     }
 
     public void start(Stage stage) {
+        
+        
+        ScrollPane scrollPane = new ScrollPane();
 
         cmps = cDao.returnComponentes(idMaquina);
 
         Pane pane = new Pane();
         stage.setTitle("Dashboard");
         stage.setResizable(false);
-        stage.setScene(new Scene(pane, 1300, 700));
+        stage.setScene(new Scene(scrollPane, 1300, 700));
+        scrollPane.setContent(pane);
 
         // HEADER
-        Rectangle header = new Rectangle(0, 0, pane.getWidth(), 150);
+        Rectangle header = new Rectangle(0, 0, scrollPane.getWidth(), 150);
         header.toFront();
 
         // LABELS
