@@ -2,12 +2,17 @@ package view;
 
 /**
  *
- * @author josu
+ * @author josu, patrick
  */
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -21,6 +26,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import jira.clientejira.ClienteJiraApi;
+import jira.clientejira.DemoDeUsoClienteApi;
+import jira.clientejira.modelo.Issue;
 import model.bean.Componente;
 import model.bean.Usuario;
 import model.dao.ComponenteDAO;
@@ -38,6 +46,12 @@ public class TelaDashboard extends Application {
     private String descricaoMaquina;
     private List<Componente> cmps;
     private Double leituraComp;
+
+    ClienteJiraApi clienteJiraApi = new ClienteJiraApi(
+            "sensiders.atlassian.net",
+            "201grupo11c@bandtec.com.br",
+            "MmpKeqJGyeJmUXOb9DA78ADD"
+    );
 
     GridPane gridPane = new GridPane();
 
@@ -114,16 +128,16 @@ public class TelaDashboard extends Application {
             lbSituacaoComponente.setLayoutX(330);
         }
         lbSituacaoComponente.setLayoutY(25);
-//        if (leitura / 100 <= 0.3) {
-////            System.out.println("aqui é verde");
-//            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: #0f0");
-//        } else if (leitura/100 < 0.7) {
-////            System.out.println("aqui é amarelo");
-//           lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: ff0");
-//        } else {
-////            System.out.println("aqui é vermelho");
-        lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: f00");
-//        }
+        if (alerta.equals("baixo uso")) {
+//            System.out.println(nomeComponente + " ta verde, situacao: " + lbSituacaoComponente.getText());
+            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: #0f0");
+        } else if (alerta.equals("medio uso")) {
+//            System.out.println(nomeComponente + " ta amarelo, situacao: " + lbSituacaoComponente.getText());
+            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: ff0");
+        } else {
+//            System.out.println(nomeComponente + " ta vermelho, situacao: " + lbSituacaoComponente.getText());
+            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: f00");
+        }
 
         Label lbMediaDeUso = new Label("Média de Uso: ");
         lbMediaDeUso.setLayoutX(lbNomeComponente.getLayoutX());
@@ -138,30 +152,36 @@ public class TelaDashboard extends Application {
         lbValorMediaDeUso.setText(media.toString());
         lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
         lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
-//         if (leitura / 100 <= 0.3) {
-////            System.out.println("aqui é verde");
-//            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
-//        } else if (leitura/100 < 0.7) {
-////            System.out.println("aqui é amarelo");
-//           lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
-//        } else {
-//            System.out.println("aqui é vermelho");
-        lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
-//        }
+        if (alerta.equals("baixo uso")) {
+//            System.out.println(nomeComponente + " ta verde, media: " + lbValorMediaDeUso.getText());
+            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
+        } else if (alerta.equals("medio uso")) {
+//            System.out.println(nomeComponente + " ta amarelo, media: " + lbValorMediaDeUso.getText());
+            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
+        } else {
+//            System.out.println(nomeComponente + " ta vermelho, media: " + lbValorMediaDeUso.getText());
+            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
+        }
 
         lbValorLeituraAtual.setText(leitura.toString());
         lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
         lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
-//        if (leitura/100 <= 0.3) {
-////            System.out.println("aqui é verde");
-//            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
-//        } else if (leitura/100 < 0.7) {
-////            System.out.println("aqui é amarelo");
-//            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
-//        } else {
-//            System.out.println("aqui é vermelho");
-        lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
-//        }
+        if (alerta.equals("baixo uso")) {
+            System.out.println(nomeComponente + " ta verde, leitura: " + lbValorLeituraAtual.getText());
+            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
+        } else if (alerta.equals("medio uso")) {
+            System.out.println(nomeComponente + " ta amarelo, leitura: " + lbValorLeituraAtual.getText());
+            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
+        } else {
+            System.out.println(nomeComponente + " ta vermelho, leitura: " + lbValorLeituraAtual.getText());
+            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
+            try {
+                //chamado jira
+                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", leitura.toString(), user.getNomeUsuario(), descricaoMaquina);
+            } catch (IOException ex) {
+                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 //        BARRA DE PROGRESSO
         pb.setProgress(leitura / 100);
@@ -205,8 +225,7 @@ public class TelaDashboard extends Application {
     }
 
     public void start(Stage stage) {
-        
-        
+
         ScrollPane scrollPane = new ScrollPane();
 
         cmps = cDao.returnComponentes(idMaquina);

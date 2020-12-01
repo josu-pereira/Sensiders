@@ -14,9 +14,10 @@ import java.io.IOException;
 
 public class DemoDeUsoClienteApi {
 
-    public static void main(String[] args) throws IOException {
+//    public static void main(String[] args) throws IOException {
+    public static void abrirChamdo(String nomeComponente, String alerta, String leitura, String nomeUsuario, String maquina) throws IOException {
 
-        // Este "gson" Ã© opcional. Apenas para imprimir os objetos na saÃ­da padrÃ£o, caso queira.
+        // Este "gson" é opcional. Apenas para imprimir os objetos na saÃ­da padrÃ£o, caso queira.
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         ClienteJiraApi clienteJiraApi = new ClienteJiraApi(
@@ -24,20 +25,16 @@ public class DemoDeUsoClienteApi {
                 "201grupo11c@bandtec.com.br",
                 "MmpKeqJGyeJmUXOb9DA78ADD"
         );
-//        System.out.println(gson.toJson(clienteJiraApi));;;
-        
-//        Issue issue = clienteJiraApi.getIssue("CDAT-1");;
-//        System.out.println("Issue recuperada: "+gson.toJson(issue));
+        try {
+            Issue novaIssue = new Issue();
+            novaIssue.setProjectKey("CDAT");
+            novaIssue.setSummary("Alto uso de "+nomeComponente);
+            novaIssue.setDescription(nomeComponente+" chega a "+leitura+" de uso\nUsuário: "+nomeUsuario+"\nMáquina: "+maquina);
+            novaIssue.setLabels("alerta");
 
-        // Exemplo de objeto para novo chamado (Issue)
-        Issue novaIssue = new Issue();
-        novaIssue.setProjectKey("CDAT");
-        novaIssue.setSummary("Alto uso de ram");
-        novaIssue.setDescription("RAM chega a 90% de uso");
-        novaIssue.setLabels("alerta-cpu", "alerta-disco");
-
-        clienteJiraApi.criarIssue(novaIssue);
-        //System.out.println("Issue criada: "+gson.toJson(novaIssue));
-//        System.out.println(gson.toJson(clienteJiraApi));
+            clienteJiraApi.criarIssue(novaIssue);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

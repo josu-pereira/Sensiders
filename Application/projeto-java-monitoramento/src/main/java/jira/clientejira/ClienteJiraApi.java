@@ -24,7 +24,7 @@ public class ClienteJiraApi {
     /**
      * Cria uma nova instÃ¢ncia de {@link ClienteJiraApi}.
      * @param urlBaseJira URL base do seu Jira. Ex: <b>meuapp.atlassian.net</b>
-     * @param usuario Seu usuÃ¡rio de acesso ao Jira
+     * @param usuario Seu usuário de acesso ao Jira
      * @param token Seu token de acesso ao Jira.
      *              Pode ser gerado em <a href='https://id.atlassian.com/manage-profile/security/api-tokens'>
      *              https://id.atlassian.com/manage-profile/security/api-tokens</a>
