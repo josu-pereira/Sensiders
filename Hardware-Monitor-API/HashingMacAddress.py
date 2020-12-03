@@ -1,8 +1,11 @@
-from uuid import getnode as get_mac
+#from uuid import getnode as get_mac
+from getmac import get_mac_address as gma
 import hashlib
 import os
+
 def getHash256MAC():
-    mac = get_mac()
+    #mac = get_mac()
+    mac = gma()
     mac = str(mac).encode('utf8')
     machash = hashlib.sha256()
     machash.update(mac)
@@ -10,15 +13,6 @@ def getHash256MAC():
     #print(machash.hexdigest())
     arquivoHash = open("hashmac","w+")
     arquivoHash.write(machash.hexdigest())
-
-""" TESTE DE LEITURA DO HAA
-def readHashMAC_old():
-    getHash256MAC()
-    f = open("hashmac", "r")
-    if f.mode == 'r':
-        conteudoA = f.read()
-        print("conteudo 1:", conteudoA)
-"""
 
 def readHashMAC():
     getHash256MAC()
