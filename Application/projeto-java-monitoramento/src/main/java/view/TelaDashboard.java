@@ -9,14 +9,17 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -45,7 +48,7 @@ public class TelaDashboard extends Application {
     private int idMaquina;
     private String descricaoMaquina;
     private List<Componente> cmps;
-    private Double leituraComp;
+    private List<Map<String, Object>> leituras;
 
     ClienteJiraApi clienteJiraApi = new ClienteJiraApi(
             "sensiders.atlassian.net",
@@ -56,15 +59,16 @@ public class TelaDashboard extends Application {
     GridPane gridPane = new GridPane();
 
     //declaração das labels
-    ComponenteDAO cDao = new ComponenteDAO();
     List<Double> somas = new ArrayList<>();
 
     Integer cont = 1;
+    Double auxLeitura = 0.0;
 
     public TelaDashboard(Usuario user, int idMaquina, String descricaoMaquina) {
         this.user = user;
         this.idMaquina = idMaquina;
         this.descricaoMaquina = descricaoMaquina;
+        this.leituras = ComponenteDAO.returnLeitura(this.idMaquina);
     }
 
     GlobalStyles globalStyles = new GlobalStyles();
@@ -82,15 +86,24 @@ public class TelaDashboard extends Application {
                     count = 0;
 
                     for (int i = 0; i < cmps.size(); i++) {
-                        leituraComp = cDao.returnLeitura(user.getFkIdFilial(), cmps.get(i).getIdComponente(), idMaquina);
+                        
+                        //System.out.println(cmps.get(i).getNomeComponente() + " " + leituras.get(i).get("nome_componente"));
+                        for(int j = 0; j < leituras.size(); j++){
+                            if(cmps.get(i).getNomeComponente().equals(leituras.get(j).get("nome_componente"))){
+                                auxLeitura = Double.valueOf(leituras.get(j).get("leitura").toString());
+                                //System.out.println(cmps.get(i).getNomeComponente() + " " + leituras.get(j).get("nome_componente"));
+                                break;
+                            }    
+                        }
                         Gridpanes gp = new Gridpanes();
-                        gp.setLeitura(leituraComp);
-                        gp.setSoma(somas.get(i) + leituraComp);
+                        gp.setLeitura(auxLeitura);
+                        gp.setSoma(somas.get(i) + auxLeitura);
                         somas.set(i, gp.getSoma());
                         gp.calcMedia(cont);
                         gp.medirAlerta(Double.valueOf(cmps.get(i).getTotalComponente()));
 
-                        criarBox(cmps.get(i).getNomeComponente(), gp.getAlerta(), leituraComp, gp.getMedia());
+                        criarBox(cmps.get(i).getNomeComponente(), gp);
+                        
 
                     }
 
@@ -99,10 +112,10 @@ public class TelaDashboard extends Application {
                 });
 
             }
-        }, 1000, 5000);
+        }, 5000, 5000);
     }
 
-    public void criarBox(String nomeComponente, String alerta, Double leitura, Double media) {
+    public void criarBox(String nomeComponente, Gridpanes gp) {
 
         Label lbNomeComponente = new Label();
         Label lbSituacaoComponente = new Label();
@@ -121,23 +134,14 @@ public class TelaDashboard extends Application {
         lbComponenteDescricao.setLayoutY(25);
         lbComponenteDescricao.setStyle(globalStyles.getStyleLabels());
 
-        lbSituacaoComponente.setText(String.format("%s em %s", nomeComponente, alerta));
+        lbSituacaoComponente.setText(String.format("%s em %s", nomeComponente, gp.getAlerta()));
         if (nomeComponente.length() <= 5) {
             lbSituacaoComponente.setLayoutX(390);
         } else {
             lbSituacaoComponente.setLayoutX(330);
         }
         lbSituacaoComponente.setLayoutY(25);
-        if (alerta.equals("baixo uso")) {
-//            System.out.println(nomeComponente + " ta verde, situacao: " + lbSituacaoComponente.getText());
-            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: #0f0");
-        } else if (alerta.equals("medio uso")) {
-//            System.out.println(nomeComponente + " ta amarelo, situacao: " + lbSituacaoComponente.getText());
-            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: ff0");
-        } else {
-//            System.out.println(nomeComponente + " ta vermelho, situacao: " + lbSituacaoComponente.getText());
-            lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + "-fx-text-fill: f00");
-        }
+        lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + gp.getCor());
 
         Label lbMediaDeUso = new Label("Média de Uso: ");
         lbMediaDeUso.setLayoutX(lbNomeComponente.getLayoutX());
@@ -149,42 +153,26 @@ public class TelaDashboard extends Application {
         lbLeituraAtual.setLayoutY(100);
         lbLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes());
 
-        lbValorMediaDeUso.setText(media.toString());
+        lbValorMediaDeUso.setText(gp.getMedia().toString());
         lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
         lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
-        if (alerta.equals("baixo uso")) {
-//            System.out.println(nomeComponente + " ta verde, media: " + lbValorMediaDeUso.getText());
-            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
-        } else if (alerta.equals("medio uso")) {
-//            System.out.println(nomeComponente + " ta amarelo, media: " + lbValorMediaDeUso.getText());
-            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
-        } else {
-//            System.out.println(nomeComponente + " ta vermelho, media: " + lbValorMediaDeUso.getText());
-            lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
-        }
+        lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + gp.getCor());
 
-        lbValorLeituraAtual.setText(leitura.toString());
+        lbValorLeituraAtual.setText(gp.getLeitura().toString());
         lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
         lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
-        if (alerta.equals("baixo uso")) {
-            System.out.println(nomeComponente + " ta verde, leitura: " + lbValorLeituraAtual.getText());
-            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #0f0");
-        } else if (alerta.equals("medio uso")) {
-            System.out.println(nomeComponente + " ta amarelo, leitura: " + lbValorLeituraAtual.getText());
-            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #ff0");
-        } else {
-            System.out.println(nomeComponente + " ta vermelho, leitura: " + lbValorLeituraAtual.getText());
-            lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + "-fx-text-fill: #f00");
+        lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + gp.getCor());
+        if(gp.getAlerta().equals("alto uso")) {
             try {
                 //chamado jira
-                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", leitura.toString(), user.getNomeUsuario(), descricaoMaquina);
+                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
             } catch (IOException ex) {
                 Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
 //        BARRA DE PROGRESSO
-        pb.setProgress(leitura / 100);
+        pb.setProgress(gp.getLeitura() / 100);
         pb.setLayoutX(lbNomeComponente.getLayoutX());
         pb.setLayoutY(200);
         pb.setPrefWidth(470);
@@ -228,7 +216,7 @@ public class TelaDashboard extends Application {
 
         ScrollPane scrollPane = new ScrollPane();
 
-        cmps = cDao.returnComponentes(idMaquina);
+        cmps = ComponenteDAO.returnComponentes(idMaquina);
 
         Pane pane = new Pane();
         stage.setTitle("Dashboard");
@@ -261,19 +249,25 @@ public class TelaDashboard extends Application {
 //        listaSetores.forEach(s -> {
         cmps.forEach(c -> {
 
-            leituraComp = cDao.returnLeitura(user.getFkIdFilial(), c.getIdComponente(), idMaquina);
-
+            //leituraComp = cDao.returnLeitura(user.getFkIdFilial(), c.getIdComponente(), idMaquina);
+            for(int i = 0; i< leituras.size(); i++){
+                if(leituras.get(i).get("nome_componente").equals(c.getNomeComponente())){
+                    auxLeitura = Double.valueOf(leituras.get(i).get("leitura").toString());
+                    System.out.println(leituras.get(i).get("nome_componente"));
+                    break;
+                }
+            }
+            
             Gridpanes gp = new Gridpanes();
 
-            gp.setLeitura(leituraComp);
-            gp.setSoma(gp.getSoma() + leituraComp);
+            gp.setLeitura(auxLeitura);
+            gp.setSoma(gp.getSoma() + auxLeitura);
             somas.add(gp.getSoma());
             gp.calcMedia(cont);
             gp.medirAlerta(Double.valueOf(c.getTotalComponente()));
+            System.out.println(auxLeitura);
 
-            // Labels dos gridpanes
-            criarBox(c.getNomeComponente(), gp.getAlerta(), leituraComp, gp.getMedia());
-
+            criarBox(c.getNomeComponente(), gp);
         });
         cont++;
 

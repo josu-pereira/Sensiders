@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class ComponenteDAO {
     
-    public List<Componente> returnComponentes(Integer maquina){
+    public static List<Componente> returnComponentes(Integer maquina){
         try {
             Connection conn = new Connection();
             JdbcTemplate jdbc = conn.getConnection();         
@@ -38,17 +38,17 @@ public class ComponenteDAO {
         }
     }
     
-    public Double returnLeitura(Integer filial, Integer componente, Integer maquina){
+    public static List<Map<String, Object>> returnLeitura(Integer maquina){
         try {
             Connection conn = new Connection();
             JdbcTemplate jdbc = conn.getConnection();
-            Double leitura = 0.0;
             
-            List<Map<String, Object>> aux = jdbc.queryForList("select componentes = dbo.fc_returnLeitura(?, ?, ?)", filial, componente, maquina);
+            List<Map<String, Object>> leituras;
+            leituras = jdbc.queryForList("select top (dbo.fc_returnCountComponente(?)) id, leitura, nome_componente from vw_returnLeitura where idMaquina = ? order by id desc", maquina, maquina);
             
-            leitura = Double.valueOf(aux.get(0).get("componentes").toString());
+            //leitura = Double.valueOf(aux.get(0).get("componentes").toString());
             
-            return leitura;
+            return leituras;
         } catch (DataAccessException e) {
             System.out.println(e.getMessage());
             return null;

@@ -1,5 +1,8 @@
 package br.com.bandtec.agoravai;
 
+import java.util.List;
+import java.util.Map;
+import model.dao.ComponenteDAO;
 import view.TelaLogin;
 
 /**

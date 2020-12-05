@@ -14,6 +14,7 @@ public class Gridpanes {
     private String alerta;
     private Double soma = 0.0;
     private Double media;
+    private String cor;
     
     public Gridpanes(){
         media = leitura;
@@ -42,6 +43,10 @@ public class Gridpanes {
     public Double getMedia() {
         return media;
     }
+
+    public String getCor() {
+        return cor;
+    }
     
     public void calcMedia(Integer div){
         this.media = soma/div;
@@ -52,10 +57,13 @@ public class Gridpanes {
         
         if(porc <= 30){
             alerta = "baixo uso";
+            cor = "-fx-text-fill: #0f0";
         }else if(porc<70){
             alerta= "medio uso";
+            cor = "-fx-text-fill: #ff0";
         }else{
             alerta = "alto uso";
+            cor = "-fx-text-fill: #f00";
         }
     }
 }
