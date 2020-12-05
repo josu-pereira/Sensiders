@@ -1,5 +1,7 @@
 CREATE DATABASE `bdProjetoSensiders` ;
 
+USE `bdProjetoSensiders`;
+
 CREATE TABLE `Supermercado`(
 	`idSupermercado` int AUTO_INCREMENT NOT NULL,
 	`nome` varchar(30) NOT NULL,
