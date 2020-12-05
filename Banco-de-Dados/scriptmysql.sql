@@ -128,10 +128,10 @@ CREATE TABLE `dado`(
 
 
  -- funcao
-DELIMITER //
-
+DELIMITER $$
 create function fc_returnCountComponente(p_maquina int)
 returns int
+deterministic
 begin
 declare v_num int; 
 set v_num = (select count(idComponente) from Componente 
@@ -141,15 +141,14 @@ set v_num = (select count(idComponente) from Componente
                     on Maquina.idMaquina = MaquinaComponente.fkMaquina
                         where Maquina.idMaquina = p_maquina );
 return v_num;
-end;
-//
+end$$
 DELIMITER ;
 
 -- funcao
-Delimiter //
-
+Delimiter $$
 Create Function fc_returnLeitura(p_filial INT, p_componente INT, p_maquina INT)
 returns VARCHAR(5)
+deterministic
 BEGIN
 
 DECLARE v_leitura varchar(5);
@@ -175,9 +174,7 @@ SET v_leitura=(
 );
 
 RETURN v_leitura;
-END;
-//
-
+END$$
 DELIMITER ;
 
 -- view
