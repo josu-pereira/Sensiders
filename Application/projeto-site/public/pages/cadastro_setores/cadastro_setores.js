@@ -35,7 +35,7 @@ function fnSalvar() {
     //     return alert("Por Favor, Preencha a quantidade de Sensores !");
     // }
 
-    fetch(`http://localhost:3333/setor/editar/${idSetor}`, {
+    fetch(`/setor/editar/${idSetor}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ function fnSalvar() {
         })
     }).then((response) => {
         if (response.ok) {
-            // alert('Atualizado com sucesso');
+            alert('Atualizado com sucesso');
             location.reload();
         }
         console.log(response);
