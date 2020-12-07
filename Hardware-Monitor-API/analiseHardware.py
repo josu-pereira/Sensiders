@@ -57,10 +57,10 @@ def inserirComponentes(componentes, valMaquina):
             dados.append((TASKS, valTEMPO, componente[1]))
 
     print(hardware)
-    print(alertarSlack(hardware))
+    print(alertarSlack(valMaquina, hardware))
     return dados
 
-def alertarSlack(valores, metricas = {'cpu': 65,'memory': 60,'disk': 70,'download': 3000,'upload': 1000,'temp': 60,'swap': 50,'tasks': 400,}):
+def alertarSlack(maquina, valores, metricas={'cpu': 65,'memory': 60,'disk': 70,'download': 3000,'upload': 1000,'temp': 60,'swap': 50,'tasks': 400,}):
     if (valores['cpu'] >= metricas['cpu']) or (valores['memory'] >= metricas['memory']) or (valores['disk'] >= metricas['disk']) or (valores['download'] >= metricas['download']) or (valores['upload'] >= metricas['upload']) or (valores['temp'] >= metricas['temp']) or (valores['swap'] >= metricas['swap']) or (valores['tasks'] >= metricas['tasks']):
         condicao = ''
         if valores['cpu'] >= metricas['cpu']:
@@ -80,8 +80,9 @@ def alertarSlack(valores, metricas = {'cpu': 65,'memory': 60,'disk': 70,'downloa
         if valores['tasks'] >= metricas['tasks']:
             condicao += "Muitas tarefas em uso, "
 
-        condicao = condicao[0:-2] + '.'
+        condicao = maquina.capitalize() + ": " + condicao[0:-2] + '.'
         enviarMensagemSlack(condicao)
         return condicao
     else:
-        return "Hardware OK!"
+        condicao = maquina.capitalize() + ": " + "Hardware OK!"
+        return condicao
