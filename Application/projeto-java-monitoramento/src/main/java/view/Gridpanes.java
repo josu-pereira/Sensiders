@@ -15,6 +15,7 @@ public class Gridpanes {
     private Double soma = 0.0;
     private Double media;
     private String cor;
+    //private Double porcentagem;
     
     public Gridpanes(){
         media = leitura;
@@ -52,13 +53,17 @@ public class Gridpanes {
         this.media = soma/div;
     }
     
-    public void medirAlerta(Double total){
-        Double porc = (leitura*100)/total;
+//    public Double getPorcentagem(){
+//        return porcentagem;
+//    }
+    
+    public void medirAlerta(){
+        //this.porcentagem = (leitura*100)/total;
         
-        if(porc <= 30){
+        if(this.leitura <= 30){
             alerta = "baixo uso";
             cor = "-fx-text-fill: #0f0";
-        }else if(porc<70){
+        }else if(this.leitura<70){
             alerta= "medio uso";
             cor = "-fx-text-fill: #ff0";
         }else{

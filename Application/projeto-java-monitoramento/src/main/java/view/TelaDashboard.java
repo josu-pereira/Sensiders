@@ -101,7 +101,7 @@ public class TelaDashboard extends Application {
                         gp.setSoma(somas.get(i) + auxLeitura);
                         somas.set(i, gp.getSoma());
                         gp.calcMedia(cont);
-                        gp.medirAlerta(Double.valueOf(cmps.get(i).getTotalComponente()));
+                        gp.medirAlerta();
 
                         criarBox(cmps.get(i).getNomeComponente(), gp);
                         
@@ -173,7 +173,7 @@ public class TelaDashboard extends Application {
         }
 
 //        BARRA DE PROGRESSO
-        pb.setProgress(gp.getLeitura() / 100);
+        pb.setProgress(gp.getLeitura()/ 100);
         pb.setLayoutX(lbNomeComponente.getLayoutX());
         pb.setLayoutY(200);
         pb.setPrefWidth(470);
@@ -254,7 +254,7 @@ public class TelaDashboard extends Application {
             for(int i = 0; i< leituras.size(); i++){
                 if(leituras.get(i).get("nome_componente").equals(c.getNomeComponente())){
                     auxLeitura = Double.valueOf(leituras.get(i).get("leitura").toString());
-                    System.out.println(leituras.get(i).get("nome_componente"));
+                    //System.out.println(leituras.get(i).get("nome_componente"));
                     break;
                 }
             }
@@ -265,7 +265,7 @@ public class TelaDashboard extends Application {
             gp.setSoma(gp.getSoma() + auxLeitura);
             somas.add(gp.getSoma());
             gp.calcMedia(cont);
-            gp.medirAlerta(Double.valueOf(c.getTotalComponente()));
+            gp.medirAlerta();
             System.out.println(auxLeitura);
 
             criarBox(c.getNomeComponente(), gp);
