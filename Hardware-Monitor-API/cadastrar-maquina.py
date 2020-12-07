@@ -107,20 +107,22 @@ class CadastrarMaquina:
             self.cursorAzure.execute(query)
             dadosColetados = self.cursor.fetchall()
             dadosColetadosAzure = self.cursorAzure.fetchall()
-            assert dadosColetados == dadosColetadosAzure, "Dados do Azure e MySQL diferentes"
+            for i in range(len(dadosColetados[0])):
+                assert dadosColetados[0][i] == dadosColetadosAzure[0][i], "Dados do Azure e MySQL diferentes"
             return dadosColetados
         except Exception as err:
             print(err)
             self.close()
         
     def select_components(self):
-        query = ("SELECT * FROM Componente")
+        query = ("SELECT idComponente, nomeComponente, totalComponente from Componente")
         try:
             self.cursor.execute(query)
             self.cursorAzure.execute(query)
             dadosColetados = self.cursor.fetchall()
             dadosColetadosAzure = self.cursorAzure.fetchall()
-            assert dadosColetados == dadosColetadosAzure, "Dados do Azure e MySQL diferentes"
+            for i in range(len(dadosColetados[0])):
+                assert dadosColetados[0][i] == dadosColetadosAzure[0][i], "Dados do Azure e MySQL diferentes"
             return dadosColetados
         except Exception as err:
             print(err)
@@ -134,7 +136,8 @@ class CadastrarMaquina:
             self.cursorAzure.execute(queryAzure, self.loginMaquina, self.senhaMaquina)
             dadosColetados = self.cursor.fetchall()
             dadosColetadosAzure = self.cursorAzure.fetchall()
-            assert dadosColetados == dadosColetadosAzure, "Dados do Azure e MySQL diferentes"
+            for i in range(len(dadosColetados[0])):
+                assert dadosColetados[0][i] == dadosColetadosAzure[0][i], "Dados do Azure e MySQL diferentes"
             return dadosColetados
         except Exception as err:
             print(err)

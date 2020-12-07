@@ -10,7 +10,11 @@ def getRAM():
     return valRAM
 
 def getHD():
-    valHD = psutil.disk_usage('/')[3] # percentual de ocupação HD na raiz
+    from os import name as osname
+    if osname == 'posix':
+        valHD = psutil.disk_usage('/')[3] # percentual de ocupação HD na raiz
+    else:
+        valHD = psutil.disk_usage('C://')[3] # percentual de ocupação HD na partição C:
     return valHD
 
 def getDownloadAndUpload():
@@ -48,40 +52,3 @@ def getSWAP():
 def getTASKS():
     valTASKS = len(psutil.pids()) # quantidade de tarefas/processos em execução
     return valTASKS
-
-
-""" CODIGO ANTIGO (BACKUP)
-
-def dadosHardware():
-    valNET = getDownloadAndUpload()
-
-    valDownload = valNET[0]
-    valUpload = valNET[1]
-    valCPU = getCPU()
-    valRAM = getRAM()
-    valHD = getHD()
-    tempCPU = getTemp()
-    valSWAP = getSWAP()
-    valTASKS = getTASKS()
-
-    maquina = 1
-
-    t = time.localtime()
-    valTEMPO = ('{}-{}-{} {}:{}:{}'.format(t[0], t[1], t[2], t[3], t[4], t[5]))
-
-    hardware = {
-    'cpu': valCPU,
-    'memory': valRAM,
-    'disk': valHD,
-    'download': valDownload,
-    'upload': valUpload,
-    'temp': tempCPU,
-    'swap': valSWAP,
-    'tasks': valTASKS,
-    'maquina': maquina
-    }
-    print(hardware)
-
-    dadosHW = (valCPU, valRAM, valHD, valDownload, valUpload, tempCPU, valSWAP, valTASKS, maquina, valTEMPO)
-    return [dadosHW, hardware]
-"""

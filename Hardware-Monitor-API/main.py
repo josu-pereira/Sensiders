@@ -20,13 +20,13 @@ maquina_mysql = mysql.select_machine_name(maquina_hash)[0][0]
 assert maquina == maquina_mysql, "Nomes das máquinas diferentes entre os bancos Azure e MySQL."
 assert len(componentes) == len(componentes_mysql), "Componentes diferentes entre os bancos Azure e MySQL."
 
-print("\nIniciando leituras na Máquina:\033[1m", maquina, "\033[0m")
+print("\nIniciando leituras na Máquina:", maquina)
 time.sleep(0.5)
 msg = ""
 for i in componentes:
-    msg += "\033[1m" + str(i[0]) + "\033[0m, "
+    msg += str(i[0]) + ", "
 msg = msg[:-2]
-print("Componentes em Uso:", msg, "\033[0m")
+print("Componentes em Uso:", msg)
 
 time.sleep(1)
 analiseHardware.enviarMensagemSlack("Iniciando leituras na Máquina: " + str(maquina))
