@@ -18,11 +18,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class UsuarioDAO {
     
-    public Usuario login(String email, String senha){
+    public static Usuario login(String email, String senha){
         
         try {
-            Connection conn = new Connection();
-            JdbcTemplate jdbcTemplate = conn.getConnection();
+            JdbcTemplate jdbcTemplate = Connection.getConnection();
             Usuario user = new Usuario();
 
             List<Usuario> lista = jdbcTemplate.query("SELECT * FROM usuario WHERE emailUsuario = ? AND senhaUsuario = ?"

@@ -88,7 +88,7 @@ public class TelaListaMaquinas extends Application {
         tfPesquisar.setStyle(globalStyles.getStyleTfSearch());
         lbSair.setStyle(globalStyles.getStyleTitle());
 
-        List<Maquina> listaMaquinas = new MaquinaDAO().returnMaquinas(user.getFkIdFilial());
+        List<Maquina> listaMaquinas = MaquinaDAO.returnMaquinas(user.getFkIdFilial());
         
         posX = 1;
         posY = 1;

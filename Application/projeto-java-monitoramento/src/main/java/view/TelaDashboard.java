@@ -80,6 +80,7 @@ public class TelaDashboard extends Application {
             public void run() {
                 Platform.runLater(() -> {
                     gridPane.getChildren().removeAll();
+                    leituras = ComponenteDAO.returnLeitura(idMaquina);
 
                     posX = 1;
                     posY = 1;
@@ -108,11 +109,11 @@ public class TelaDashboard extends Application {
                     }
 
                     cont++;
-                    System.out.println("5 segundos");
+                    System.out.println("7 segundos");
                 });
 
             }
-        }, 5000, 5000);
+        }, 7000, 7000);
     }
 
     public void criarBox(String nomeComponente, Gridpanes gp) {

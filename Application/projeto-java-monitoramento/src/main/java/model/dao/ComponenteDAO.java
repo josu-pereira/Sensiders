@@ -21,8 +21,7 @@ public class ComponenteDAO {
     
     public static List<Componente> returnComponentes(Integer maquina){
         try {
-            Connection conn = new Connection();
-            JdbcTemplate jdbc = conn.getConnection();         
+            JdbcTemplate jdbc = Connection.getConnection();         
             
             List<Componente> componentes;
             componentes = jdbc.query("select idComponente, nomeComponente, totalComponente, "
@@ -40,8 +39,7 @@ public class ComponenteDAO {
     
     public static List<Map<String, Object>> returnLeitura(Integer maquina){
         try {
-            Connection conn = new Connection();
-            JdbcTemplate jdbc = conn.getConnection();
+            JdbcTemplate jdbc = Connection.getConnection();
             
             List<Map<String, Object>> leituras;
             leituras = jdbc.queryForList("select top (dbo.fc_returnCountComponente(?)) id, leitura, nome_componente from vw_returnLeitura where idMaquina = ? order by id desc", maquina, maquina);

@@ -13,14 +13,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author Patrick L Teixeira
  */
 public class Connection {
-    private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private final String URL = "jdbc:sqlserver://serversensiders.database.windows.net:1433;"
+    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String URL = "jdbc:sqlserver://serversensiders.database.windows.net:1433;"
             + "database=bdProjetoSensiders;encrypt=true;trustServerCertificate=false;"
             + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-    private final String USERNAME = "adminlocal";
-    private final String PASSWORD = "#Gfgrupo11c";
+    private static final String USERNAME = "adminlocal";
+    private static final String PASSWORD = "#Gfgrupo11c";
     
-    public JdbcTemplate getConnection(){
+    public static JdbcTemplate getConnection(){
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(DRIVER);
         dataSource.setUrl(URL);

@@ -108,9 +108,8 @@ public class TelaLogin extends Application {
                 if (userEmail.equals("") || userPassword.equals("")) {
                     JOptionPane.showMessageDialog(null, "Opps... Alguns campos estão faltando!", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    UsuarioDAO uDao = new UsuarioDAO();
 
-                    Usuario user = uDao.login(userEmail, userPassword);
+                    Usuario user = UsuarioDAO.login(userEmail, userPassword);
 
                     if (user == null) {
                         JOptionPane.showMessageDialog(null, "Opps... \n Usuário e/ou senha incorretos!");

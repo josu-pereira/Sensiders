@@ -18,10 +18,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class MaquinaDAO {
     
-    public List<Maquina> returnMaquinas(Integer fkFilial){
+    public static List<Maquina> returnMaquinas(Integer fkFilial){
         try {
-            Connection conn = new Connection();
-            JdbcTemplate jdbc = conn.getConnection();
+            JdbcTemplate jdbc = Connection.getConnection();
             
             List<Maquina> maquinas = jdbc.query("SELECT * FROM vwListaMaquinas where fkFilial = ?", 
                     new BeanPropertyRowMapper(Maquina.class), fkFilial);
