@@ -1,22 +1,21 @@
 from analiseHardware import enviarMensagemSlack
-import pyodbc
+import mysql.connector
 
 class Sql:
-    def __init__(self, user, password, port, database, server):
+    def __init__(self, user, password, database, server):
         self.user = user
         self.password = password
-        self.port = port
         self.database = database
-        self.server = server
+        self.host = server
         self.sql = None
         self.cursor = None
 
     #Estabelecendo uma conexão
     def connect(self):
         try:
-            self.sql = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server}'+';SERVER='+self.server+';PORT='+self.port+';DATABASE='+self.database+';UID='+self.user+';PWD='+self.password)
+            self.sql = mysql.connector.connect(user=self.user, password=self.password, host=self.host, database=self.database)
             #Criando cursor para manipulação do banco.
-            print("Azure =", self.sql)
+            print("MySQL = ", self.sql)
             self.cursor = self.sql.cursor()
         except Exception as err:
             print(err)
@@ -25,12 +24,12 @@ class Sql:
 
     def insert(self, data):
         query = (
-            "INSERT INTO DadosMaquina (data_cpu, data_mem, data_disk, data_download, data_upload, cpu_temperature, data_swap, tarefasExec, fkmaquina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" 
+            "INSERT INTO DadosMaquina (data_cpu, data_mem, data_disk, data_download, data_upload, cpu_temperature, data_swap, tarefasExec, fkmaquina) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)" 
         )
         values = data
         try:
             print('Inserindo Valores')
-            self.cursor.execute(query,values)
+            self.cursor.execute(query, values)
 
             self.sql.commit()
         except Exception as err:
@@ -39,7 +38,7 @@ class Sql:
             self.close()
 
     def selectComp(self, maquina): # função do select que retorna o componente + idMaqComp
-        sql_select_query = ("select nomeComponente, idMaqComp from MaquinaComponente, Componente, Maquina where fkMaquina = idMaquina and fkComponente = idComponente and hashmac = ?")
+        sql_select_query = ("select nomeComponente, idMaqComp from MaquinaComponente, Componente, Maquina where fkMaquina = idMaquina and fkComponente = idComponente and hashmac = %s")
         try:
             self.cursor.execute(sql_select_query, maquina)
             dadosColetados = self.cursor.fetchall()
@@ -50,11 +49,11 @@ class Sql:
             self.close()
 
     def newInsert(self, data): # função do novo insert de leitura dos componentes que o cliente escolheu
-        query = ("INSERT INTO LeituraMaquina (leitura, dataHora, fkMaqComp) VALUES (?, ?, ?)")
+        query = ("INSERT INTO LeituraMaquina (leitura, dataHora, fkMaqComp) VALUES (%s, %s, %s)")
         values = data
         try:
             print('Inserindo Valores')
-            self.cursor.execute(query,values)
+            self.cursor.execute(query, values)
             self.sql.commit()
         except Exception as err:
             print(err)
