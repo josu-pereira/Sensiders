@@ -53,4 +53,25 @@ public class ComponenteDAO {
         }
     }
     
+    public static List<Map<String, Object>> returnLeitura2(Integer maquina){
+        try {
+            JdbcTemplate jdbc = Connection.getConnection();
+            
+            String qtd = "";
+            
+            List<Map<String, Object>> count;
+            count = jdbc.queryForList("select fc_returnCountComponente(?)", maquina);
+            
+            qtd = String.valueOf(count.get(0).get("count"));
+            
+             List<Map<String, Object>> leituras;
+             leituras = jdbc.queryForList("select leitura, nome_componente from vw_returnLeitura where id = ? order by id desc limit "+qtd, maquina);
+             
+             return leituras;
+        } catch (DataAccessException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    
 }

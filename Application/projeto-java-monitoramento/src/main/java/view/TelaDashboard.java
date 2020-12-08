@@ -68,7 +68,7 @@ public class TelaDashboard extends Application {
         this.user = user;
         this.idMaquina = idMaquina;
         this.descricaoMaquina = descricaoMaquina;
-        this.leituras = ComponenteDAO.returnLeitura(this.idMaquina);
+        this.leituras = ComponenteDAO.returnLeitura2(this.idMaquina);
     }
 
     GlobalStyles globalStyles = new GlobalStyles();
@@ -80,7 +80,7 @@ public class TelaDashboard extends Application {
             public void run() {
                 Platform.runLater(() -> {
                     gridPane.getChildren().removeAll();
-                    leituras = ComponenteDAO.returnLeitura(idMaquina);
+                    leituras = ComponenteDAO.returnLeitura2(idMaquina);
 
                     posX = 1;
                     posY = 1;

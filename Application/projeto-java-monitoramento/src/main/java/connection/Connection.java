@@ -13,12 +13,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author Patrick L Teixeira
  */
 public class Connection {
-    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String URL = "jdbc:sqlserver://serversensiders.database.windows.net:1433;"
-            + "database=bdProjetoSensiders;encrypt=true;trustServerCertificate=false;"
-            + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-    private static final String USERNAME = "adminlocal";
-    private static final String PASSWORD = "#Gfgrupo11c";
+    
+    /*
+    credenciais MYSQL: 
+        DRIVER = "com.mysql.jdbc.Driver";
+        URL = "jdbc:mysql://localhost:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
+        USERNAME = "root"
+        PASSWORD = "urubu100"
+    
+    credencias AZURE:
+        DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        URL = "jdbc:sqlserver://serversensiders.database.windows.net:1433;"
+        USERNAME = "adminlocal";
+        PASSWORD = "#Gfgrupo11c";
+    */
+    
+    private static final String  DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "urubu100";
     
     public static JdbcTemplate getConnection(){
         BasicDataSource dataSource = new BasicDataSource();
