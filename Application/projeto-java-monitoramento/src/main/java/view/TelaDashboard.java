@@ -136,7 +136,7 @@ public class TelaDashboard extends Application {
         lbComponenteDescricao.setStyle(globalStyles.getStyleLabels());
 
         lbSituacaoComponente.setText(String.format("%s em %s", nomeComponente, gp.getAlerta()));
-        if (nomeComponente.length() <= 5) {
+        if (nomeComponente.length() <= 7) {
             lbSituacaoComponente.setLayoutX(390);
         } else {
             lbSituacaoComponente.setLayoutX(330);

@@ -62,10 +62,10 @@ public class Gridpanes {
         
         if(this.leitura <= 30){
             alerta = "baixo uso";
-            cor = "-fx-text-fill: #0f0";
+            cor = "-fx-text-fill: #008000";
         }else if(this.leitura<70){
             alerta= "medio uso";
-            cor = "-fx-text-fill: #ff0";
+            cor = "-fx-text-fill: #FFA500";
         }else{
             alerta = "alto uso";
             cor = "-fx-text-fill: #f00";
