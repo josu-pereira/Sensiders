@@ -65,7 +65,7 @@ public class ComponenteDAO {
             qtd = String.valueOf(count.get(0).get("count"));
             
              List<Map<String, Object>> leituras;
-             leituras = jdbc.queryForList("select leitura, nome_componente from vw_returnLeitura where idMaquina = ? order by id desc limit "+qtd, maquina);
+             leituras = jdbc.queryForList("select leitura, nome_componente from vw_returnLeitura where id = ? order by id desc limit "+qtd, maquina);
              
              return leituras;
         } catch (DataAccessException e) {
