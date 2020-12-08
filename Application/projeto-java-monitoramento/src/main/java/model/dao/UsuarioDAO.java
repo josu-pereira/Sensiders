@@ -24,7 +24,7 @@ public class UsuarioDAO {
             JdbcTemplate jdbcTemplate = Connection.getConnection();
             Usuario user = new Usuario();
 
-            List<Usuario> lista = jdbcTemplate.query("SELECT * FROM usuario WHERE emailUsuario = ? AND senhaUsuario = ?"
+            List<Usuario> lista = jdbcTemplate.query("SELECT * FROM Usuario WHERE emailUsuario = ? AND senhaUsuario = ?"
                     , new BeanPropertyRowMapper(Usuario.class), email, senha);
             
             if(lista.isEmpty()){
