@@ -17,7 +17,7 @@ public class Connection {
     /*
     credenciais MYSQL: 
         DRIVER = "com.mysql.jdbc.Driver";
-        URL = "jdbc:mysql://localhost:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
+        URL = "jdbc:mysql://3.93.53.111:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
         USERNAME = "root"
         PASSWORD = "urubu100"
     
@@ -29,7 +29,7 @@ public class Connection {
     */
     
     private static final String  DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://3.93.53.111:3306/bdProjetoSensiders?useTimezone=true&serverTimezone=UTC";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "urubu100";
     

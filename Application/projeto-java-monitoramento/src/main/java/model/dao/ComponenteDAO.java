@@ -60,7 +60,7 @@ public class ComponenteDAO {
             String qtd = "";
             
             List<Map<String, Object>> count;
-            count = jdbc.queryForList("select fc_returnCountComponente(?)", maquina);
+            count = jdbc.queryForList("select fc_returnCountComponente(?) as count", maquina);
             
             qtd = String.valueOf(count.get(0).get("count"));
             
