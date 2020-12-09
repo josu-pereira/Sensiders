@@ -113,7 +113,7 @@ public class TelaDashboard extends Application {
                 });
 
             }
-        }, 7000, 7000);
+        }, 2000, 7000);
     }
 
     public void criarBox(String nomeComponente, Gridpanes gp) {
@@ -163,14 +163,14 @@ public class TelaDashboard extends Application {
         lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
         lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
         lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + gp.getCor());
-        if(gp.getAlerta().equals("alto uso")) {
-            try {
-                //chamado jira
-                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
-            } catch (IOException ex) {
-                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        if(gp.getAlerta().equals("alto uso")) {
+//            try {
+//                //chamado jira
+//                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
+//            } catch (IOException ex) {
+//                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
 
 //        BARRA DE PROGRESSO
         pb.setProgress(gp.getLeitura()/ 100);
