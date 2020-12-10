@@ -110,8 +110,9 @@ public class TelaListaMaquinas extends Application {
             boxMaquina.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent t) {
+                    stage.close();
+                    Stage stage = new Stage();
                     new TelaDashboard(user, s.getIdMaquina(), s.getDescricaoMaquina()).start(stage);
-                    
                    // System.out.println(s.getDescricaoMaquina());
                 }
             });
@@ -147,7 +148,8 @@ public class TelaListaMaquinas extends Application {
         lbSair.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                
+                stage.close();
+                Stage stage = new Stage();
                 new TelaLogin().start(stage);
             }
         });

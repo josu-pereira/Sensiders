@@ -72,9 +72,9 @@ public class TelaDashboard extends Application {
     }
 
     GlobalStyles globalStyles = new GlobalStyles();
-
+    Timer timer = new Timer();
     public void looping() {
-        Timer timer = new Timer();
+        
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -302,7 +302,10 @@ public class TelaDashboard extends Application {
         lbVoltar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
+                stage.close();
+                Stage stage = new Stage();
                 new TelaListaMaquinas(user).start(stage);
+                timer.cancel();
             }
         });
 

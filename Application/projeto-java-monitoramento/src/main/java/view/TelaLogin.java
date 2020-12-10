@@ -1,7 +1,6 @@
 package view;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -114,8 +113,13 @@ public class TelaLogin extends Application {
                     if (user == null) {
                         JOptionPane.showMessageDialog(null, "Opps... \n Usuário e/ou senha incorretos!");
                     } else {
-                        //stage.close();
+                        stage.close();
+                        
+                        Stage stage = new Stage();
                         new TelaListaMaquinas(user).start(stage);
+                        
+                        
+                        
                         /*
                         TelaDashboard td = new TelaDashboard(user);
                         td.setVisible(true);*/
