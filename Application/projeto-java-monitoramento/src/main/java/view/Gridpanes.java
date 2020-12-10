@@ -10,6 +10,7 @@ package view;
  * @author Patrick L Teixeira
  */
 public class Gridpanes {
+    private String nome;
     private Double leitura;
     private String alerta;
     private Double soma = 0.0;
@@ -21,6 +22,14 @@ public class Gridpanes {
         media = leitura;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public Double getLeitura() {
         return leitura;
     }
