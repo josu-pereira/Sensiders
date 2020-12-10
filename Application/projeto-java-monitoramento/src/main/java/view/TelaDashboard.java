@@ -61,7 +61,6 @@ public class TelaDashboard extends Application {
     //declaração das labels
     List<Double> somas = new ArrayList<>();
     List<List<Double>> last = new ArrayList<>();
-    
 
     Integer contLast = 0;
     Integer cont = 1;
@@ -77,8 +76,9 @@ public class TelaDashboard extends Application {
 
     GlobalStyles globalStyles = new GlobalStyles();
     Timer timer = new Timer();
+
     public void looping() {
-        
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -92,16 +92,16 @@ public class TelaDashboard extends Application {
                     System.out.println(last);
 
                     for (int i = 0; i < cmps.size(); i++) {
-                        
+
                         //System.out.println(cmps.get(i).getNomeComponente() + " " + leituras.get(i).get("nome_componente"));
-                        for(int j = 0; j < leituras.size(); j++){
-                            if(cmps.get(i).getNomeComponente().equals(leituras.get(j).get("nome_componente"))){
+                        for (int j = 0; j < leituras.size(); j++) {
+                            if (cmps.get(i).getNomeComponente().equals(leituras.get(j).get("nome_componente"))) {
                                 auxLeitura = Double.valueOf(leituras.get(j).get("leitura").toString());
                                 //System.out.println(cmps.get(i).getNomeComponente() + " " + leituras.get(j).get("nome_componente"));
                                 break;
-                            }    
+                            }
                         }
-                        
+
                         Gridpanes gp = new Gridpanes();
                         gp.setNome(cmps.get(i).getNomeComponente());
                         gp.setLeitura(auxLeitura);
@@ -110,18 +110,18 @@ public class TelaDashboard extends Application {
                         somas.set(i, gp.getSoma());
                         gp.calcMedia(cont);
                         gp.medirAlerta();
-                        
-                        for(int k = 0; k < last.size(); k++){
+
+                        for (int k = 0; k < last.size(); k++) {
                             contLast = 0;
-                            for(int l = 0; l < last.get(k).size(); l++){
+                            for (int l = 0; l < last.get(k).size(); l++) {
                                 auxString = String.valueOf(last.get(k).get(l));
-                                if(Double.valueOf(auxString) >= 70){
+                                if (Double.valueOf(auxString) >= 70) {
                                     contLast++;
                                 }
                             }
                             System.out.println(contLast);
-                            
-                            if(contLast>= 5){
+
+                            if (contLast >= 5) {
                                 last.get(k).removeAll(last.get(k));
                                 try {
                                     DemoDeUsoClienteApi.abrirChamdo(gp.getNome(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
@@ -129,11 +129,10 @@ public class TelaDashboard extends Application {
                                     Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
-                            
+
                         }
 
                         criarBox(gp);
-                        
 
                     }
 
@@ -165,11 +164,33 @@ public class TelaDashboard extends Application {
         lbComponenteDescricao.setStyle(globalStyles.getStyleLabels());
 
         lbSituacaoComponente.setText(String.format("%s em %s", gp.getNome(), gp.getAlerta()));
-        if(gp.getNome().length() <= 7) {
-            lbSituacaoComponente.setLayoutX(390);
-        } else {
-            lbSituacaoComponente.setLayoutX(330);
+        Integer tamanhoComponente = gp.getNome().length();
+        switch (tamanhoComponente) {
+            case 2:
+                lbSituacaoComponente.setLayoutX(380);
+                break;
+            case 3:
+                lbSituacaoComponente.setLayoutX(380);
+                break;
+            case 4:
+                lbSituacaoComponente.setLayoutX(380);
+                break;
+            case 5:
+                lbSituacaoComponente.setLayoutX(380);
+                break;
+            case 6:
+                lbSituacaoComponente.setLayoutX(350);
+                break;
+            case 7:
+                lbSituacaoComponente.setLayoutX(350);
+                break;
+            case 8:
+                lbSituacaoComponente.setLayoutX(330);
+                break;
+            case 11:
+                lbSituacaoComponente.setLayoutX(300);
         }
+
         lbSituacaoComponente.setLayoutY(25);
         lbSituacaoComponente.setStyle(globalStyles.getStyleLabels() + gp.getCor());
 
@@ -201,12 +222,16 @@ public class TelaDashboard extends Application {
 //        }
 
 //        BARRA DE PROGRESSO
-        pb.setProgress(gp.getLeitura()/ 100);
-        pb.setLayoutX(lbNomeComponente.getLayoutX());
-        pb.setLayoutY(200);
-        pb.setPrefWidth(470);
-        pb.prefHeight(30);
-        pb.setStyle("-fx-accent: #FF7D7D;");
+        if (gp.getNome().equals("UPLOAD") || gp.getNome().equals("DOWNLOAD") || gp.getNome().equals("TASKS")) {
+            pb.setVisible(false);
+        } else {
+            pb.setProgress(gp.getLeitura() / 100);
+            pb.setLayoutX(lbNomeComponente.getLayoutX());
+            pb.setLayoutY(200);
+            pb.setPrefWidth(470);
+            pb.prefHeight(30);
+            pb.setStyle("-fx-accent: #FF7D7D;");
+        }
 
         Rectangle boxMaquina = new Rectangle(posX, 200, 518, 260);
         boxMaquina.setStyle("-fx-fill: #FFF;");
@@ -279,14 +304,14 @@ public class TelaDashboard extends Application {
         cmps.forEach(c -> {
 
             //leituraComp = cDao.returnLeitura(user.getFkIdFilial(), c.getIdComponente(), idMaquina);
-            for(int i = 0; i< leituras.size(); i++){
-                if(leituras.get(i).get("nome_componente").equals(c.getNomeComponente())){
+            for (int i = 0; i < leituras.size(); i++) {
+                if (leituras.get(i).get("nome_componente").equals(c.getNomeComponente())) {
                     auxLeitura = Double.valueOf(leituras.get(i).get("leitura").toString());
                     //System.out.println(leituras.get(i).get("nome_componente"));
                     break;
                 }
             }
-            
+
             Gridpanes gp = new Gridpanes();
 
             gp.setNome(c.getNomeComponente());
