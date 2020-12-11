@@ -29,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import jira.clientejira.ClienteJiraApi;
 import jira.clientejira.DemoDeUsoClienteApi;
 import jira.clientejira.modelo.Issue;
@@ -111,30 +112,30 @@ public class TelaDashboard extends Application {
                         gp.calcMedia(cont);
                         gp.medirAlerta();
 
-                        for (int k = 0; k < last.size(); k++) {
+                        criarBox(gp);
+                    }
+                    
+                    for (int k = 0; k < last.size(); k++) {
                             contLast = 0;
                             for (int l = 0; l < last.get(k).size(); l++) {
                                 auxString = String.valueOf(last.get(k).get(l));
                                 if (Double.valueOf(auxString) >= 70) {
                                     contLast++;
+                                    if(cmps.get(k).getNomeComponente().equalsIgnoreCase("cpu") || cmps.get(k).getNomeComponente().equalsIgnoreCase("ram")
+                                            || cmps.get(k).getNomeComponente().equalsIgnoreCase("hd")|| cmps.get(k).getNomeComponente().equalsIgnoreCase("temperatura")){
+                                        if(contLast>=5){
+                                            last.get(k).removeAll(last.get(k));
+                                            try {
+                                                DemoDeUsoClienteApi.abrirChamdo(cmps.get(k).getNomeComponente(), "alto uso", leituras.get(k).get("leitura").toString(), user.getNomeUsuario(), descricaoMaquina);
+                                                JOptionPane.showMessageDialog(null, "Opps... O componente " + cmps.get(k).getNomeComponente() + " está tendo um alto uso, abriremos um chamado", "Atenção", JOptionPane.WARNING_MESSAGE);
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                            System.out.println(contLast);
-
-                            if (contLast >= 5) {
-                                last.get(k).removeAll(last.get(k));
-                                try {
-                                    DemoDeUsoClienteApi.abrirChamdo(gp.getNome(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
-                                } catch (IOException ex) {
-                                    Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            }
-
                         }
-
-                        criarBox(gp);
-
-                    }
 
                     cont++;
                     System.out.println("10 segundos");
@@ -204,7 +205,7 @@ public class TelaDashboard extends Application {
         lbLeituraAtual.setLayoutY(100);
         lbLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes());
 
-        lbValorMediaDeUso.setText(gp.getMedia().toString());
+        lbValorMediaDeUso.setText(String.format("%.2f", gp.getMedia()));
         lbValorMediaDeUso.setLayoutX(lbMediaDeUso.getLayoutX() + 140);
         lbValorMediaDeUso.setLayoutY(lbMediaDeUso.getLayoutY());
         lbValorMediaDeUso.setStyle(globalStyles.getStyleLabelsComponentes() + gp.getCor());
@@ -213,13 +214,6 @@ public class TelaDashboard extends Application {
         lbValorLeituraAtual.setLayoutX(lbLeituraAtual.getLayoutX() + 130);
         lbValorLeituraAtual.setLayoutY(lbLeituraAtual.getLayoutY());
         lbValorLeituraAtual.setStyle(globalStyles.getStyleLabelsComponentes() + gp.getCor());
-//        if(gp.getAlerta().equals("alto uso")) {
-//            try {
-//                DemoDeUsoClienteApi.abrirChamdo(lbNomeComponente.getText(), "alto uso", gp.getLeitura().toString(), user.getNomeUsuario(), descricaoMaquina);
-//            } catch (IOException ex) {
-//                Logger.getLogger(TelaDashboard.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
 
 //        BARRA DE PROGRESSO
         if (gp.getNome().equals("UPLOAD") || gp.getNome().equals("DOWNLOAD") || gp.getNome().equals("TASKS")) {
