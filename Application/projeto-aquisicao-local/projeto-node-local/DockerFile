@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-WORKDIR /usr/app
+WORKDIR /usr/backend
 COPY package.json package.lock.json ./
 
 RUN npm i
