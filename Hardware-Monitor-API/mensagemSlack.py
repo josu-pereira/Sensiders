@@ -1,5 +1,5 @@
-from requests import post
 def enviarMensagemSlack(mensagem):
+    from requests import post
     url = '' # canal do Slack
     #pload = {'text': mensagem}
     url = url + mensagem

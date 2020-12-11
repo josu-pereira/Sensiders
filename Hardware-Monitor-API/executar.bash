@@ -13,7 +13,7 @@ then
 
 	echo "voltando para a raiz do projeto"
 	echo "instalando as bibliotecas para o projeto"
-	python3 -m pip install psutil mysql-connector-python mysql-connector requests pyodbc getmac
+	python3 -m pip install psutil mysql-connector-python requests pyodbc getmac
 
 else
 	echo "esse nome de ambiente virtual nao existe entao vamos criar um novo"
@@ -24,7 +24,7 @@ else
 	source $nomeambiente/bin/activate
 
 	echo "instalando as bibliotecas para o projeto"
-	python3 -m pip install psutil mysql-connector-python mysql-connector requests pyodbc getmac
+	python3 -m pip install psutil mysql-connector-python requests pyodbc getmac
 
 fi
 

@@ -19,6 +19,8 @@ maquina_mysql = mysql.select_machine_name(maquina_hash)[0][0]
 
 assert maquina == maquina_mysql, "Nomes das máquinas diferentes entre os bancos Azure e MySQL."
 assert len(componentes) == len(componentes_mysql), "Componentes diferentes entre os bancos Azure e MySQL."
+for i in range(len(componentes)):
+    assert componentes[i][-1] == componentes_mysql[i][-1], "Componentes diferentes entre os bancos Azure e MySQL."
 
 print("\nIniciando leituras na Máquina:", maquina)
 time.sleep(0.5)
