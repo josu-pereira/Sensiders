@@ -8,9 +8,9 @@
 
 
 	<!-- JS -->
+	<script defer type="text/javascript" src="../../js/funcoes.js"></script>
 	<script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<script defer type="text/javascript" src="../../js/funcoes.js"></script>
 	<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
 	<script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
 	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
@@ -145,7 +145,7 @@
 								<header class="header-box-chart">
 									<span class="title-box">Movimentação atual nos setores</span>
 									<div class="filter" id="filter_heatmap_tempo" onclick="openFilter()">
-										<span>Filtrar</span>
+										<span>Filtrar</span> 
 										<i data-feather="filter"></i>
 									</div>
 								</header>
@@ -157,15 +157,13 @@
 							
 									<div class="heatmap-form-content">
 										<form id="heatmap_form">
-											<input type="date" name="dia" required />
-											<input type="time" name="hora_ini" min="00:00" max="23:59" required />
-											<input type="time" name="hora_fim" min="00:00" max="23:59" required />
+											<input type="date" name="dia" id="dia" required />
+											<input type="time" name="hora_ini" id="hora_ini" min="00:00" max="23:59" required />
+											<input type="time" name="hora_fim" id="hora_fim"min="00:00" max="23:59" required />
 											<br>
 										</form>
-										<button type="submit" onclick="buscarPresencasTempo()">Buscar</button>
+										<button type="button" onclick="buscarPresencasTempo()">Buscar</button>
 									</div>
-							
-							
 								</div>
 							</div>
 						</div>

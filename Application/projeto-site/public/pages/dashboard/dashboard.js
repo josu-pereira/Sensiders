@@ -304,7 +304,7 @@ function configurarGrafico() {
         stacked: false,
         title: {
             display: true,
-            text: 'Histórico recente de temperatura e umidade'
+            text: 'Histórico recente de fluxo de clientes'
         },
         scales: {
             yAxes: [{
@@ -320,16 +320,35 @@ function configurarGrafico() {
 }
 
 function buscarPresencasTempo() {
-    var formulario = new URLSearchParams(new FormData(heatmap_form));
+    //var formulario = new URLSearchParams(new FormData(heatmap_form));
+
+    const diaFiltro = document.getElementById('dia').value;
+    const horaIniFiltro = document.getElementById('hora_ini').value;
+    const horaFimFiltro = document.getElementById('hora_fim').value;
+
+
+    console.log(diaFiltro)
+    console.log(horaFimFiltro)
+    console.log(horaIniFiltro)
+    
+
     // Configuração minima, container padrão
     fetch("/dado/presenca-hora", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         method: "POST",
-        body: formulario,
+        body:  JSON.stringify({
+            dia: diaFiltro,
+            hora_ini: horaIniFiltro,
+            hora_fim: horaFimFiltro
+        }),
     }).then((resposta) => {
         if (resposta.ok) {
             resposta.json().then((json) => {
                 console.log("JSON AQUI", json);
-
+                
 
                 var points = [];
                 var max = 100;
@@ -417,9 +436,10 @@ function buscarPresencasTempo() {
                     }
                 ];
 
-                for (let i = 0; i < locais.length; i++) {
-                    locais[i].value = json[i].media
-                };
+                console.log(json[i])
+                // for (let i = 0; i < locais.length; i++) {
+                //     locais[i].value = json[i].media
+                // };
 
                 points = points.concat(locais);
 
@@ -452,8 +472,8 @@ const config = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -510,8 +530,8 @@ const config2 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -568,8 +588,8 @@ const config3 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -626,8 +646,8 @@ const config4 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -684,8 +704,8 @@ const config5 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -742,8 +762,8 @@ const config6 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -800,8 +820,8 @@ const config7 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -858,8 +878,8 @@ const config8 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -916,8 +936,8 @@ const config9 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -974,8 +994,8 @@ const config10 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -1032,8 +1052,8 @@ const config11 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
@@ -1090,8 +1110,8 @@ const config12 = {
         datasets: [{
             data: data,
             value: 0,
-            backgroundColor: ['#729fcf', 'orange', '#069a2e', 'orange', 'red'],
-            borderWidth: 1
+            backgroundColor: ['#729fcf', 'yellow', '#069a2e', 'orange', 'red'],
+            borderWidth: 0
         }]
     },
     options: {
