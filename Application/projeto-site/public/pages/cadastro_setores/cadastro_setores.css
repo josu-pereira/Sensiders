@@ -1,0 +1,220 @@
+
+/*
+* ==============================================================================
+*                               SETORES
+* ==============================================================================
+*/
+body {
+	background: var(--background-primary);
+}
+
+
+.header-container {
+	width: 100%;
+	height: 300px;
+	background: var(--color-in-primary);
+}
+
+.header-container .back-content {
+	width: 100%;
+	height: 50px;
+
+	padding-left: 10%;
+
+	display: flex;
+	align-items: center;
+}
+
+.header-container .back-content svg {
+	color: red;
+	position: relative;
+	top: 10px;
+}
+
+
+.list-container {
+	width: 70%;
+	height: auto;
+	/* background: red; */
+
+	margin: -200px auto;
+
+	display: block;
+	flex-direction: column;
+}
+
+.list-container .title-page {
+	position: relative;
+	display: block;
+	width: 300px;
+	left: 35px;
+	
+	font-size: 30px;
+	font-family: 'Archivo';
+	color: #FFFFFF;
+}
+
+
+.list-container .list-content {
+	width: 75%;
+	height: 100%;
+	margin: 80px auto;
+
+	/* background: blue; */
+}
+
+.list-container .list-content table {
+	width: 100%;
+	height: 100%;
+	
+	border-collapse: collapse;
+	border-style: hidden;
+}
+
+.list-container .list-content table thead th {
+	height: 35px;
+	color: #ECEAEA;
+	font-weight: 400;
+}
+
+.list-container .list-content tbody tr {
+	width: 100%;
+	height: 65px;
+
+	
+	background: #FFFFFF;
+	box-shadow: 0px 2px 5px rgba(255, 254, 254, 0.25);
+	border-radius: 8px ;
+
+	text-align: center;
+
+	border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.list-container .list-content tbody tr td svg {
+	width: 20px;
+	height: 20px;
+
+	font-size: 10px;
+	color: var(--color-in-primary);
+
+	cursor: pointer;
+}
+
+
+/* Estilização da div de editar os setores */ 
+.containerEdit {
+    padding: 16px;
+    border-radius: 18px;
+}
+  
+
+/* o modal (background) */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+  
+  /* Conteúdo do Modal */
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    border-radius: 18px;
+    width: 40%;
+    height: 60%;
+    padding: 5px 5%;
+    display: grid;
+  }
+
+
+  /* Título: Editar Setor */
+  #tituloEditar {
+      text-align: center;
+  }
+
+
+  /* Inputs */
+  .divInputNome, .divInputQtd {
+      width: 100%;
+  }
+  .modal input{
+      width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom-color: #C2C2C2;
+  }
+  
+
+  /* Estilo dos Botões Cancelar e Salvar */
+.containerbotoes{
+    margin-top: 10px;
+}
+
+.cancelbtn {
+    width: 100x;
+    padding: 10px 18px;
+    background: rgba(168, 168, 168, 0.24);
+    border: none;
+  cursor: pointer;
+  }
+  .savebtn{
+    width: 100px;
+    padding: 10px 18px;
+    background: #63EA60;
+    border: none;
+  cursor: pointer;
+  }
+
+
+  /* Animação de Zoom do modal */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+  
+/*
+* RESPONSIVIDADE
+*/
+
+
+@media screen and (max-width: 1039px) {
+	.list-container{
+		width: 80%;
+	}
+	.title-page {
+		font-size: 25px !important;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.list-container{
+		width: 95%;
+	}
+	.title-page {
+		font-size: 25px !important;
+	}
+}

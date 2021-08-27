@@ -11,8 +11,8 @@ const gerar_dados_aleatorios = true;
 const intervalo_geracao_aleatoria_segundos = 5; // intervalo, em segundos, no qual os dados aleatórios serão gerados
 
 // leitura dos dados do Arduino
-const porta_serial = require('serialport');
-const leitura_recebida = porta_serial.parsers.Readline;
+//const porta_serial = require('serialport');
+//const leitura_recebida = porta_serial.parsers.Readline;
 const banco = require(`./banco`);
 const { log } = require('console');
 
@@ -23,7 +23,7 @@ require('events').EventEmitter.defaultMaxListeners = 15;
 
 const registros_mantidos_tabela_leitura = 8;
 
-
+/*
 function iniciar_escuta() {
 
     porta_serial.list().then(entradas_seriais => {
@@ -77,7 +77,7 @@ function iniciar_escuta() {
         });
 
     }).catch(error => console.error(`Erro ao receber dados do Arduino ${error}`));
-}
+}*/
 
 // função que recebe valores de temperatura e umidade
 // e faz um insert no banco de dados

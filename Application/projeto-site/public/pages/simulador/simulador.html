@@ -1,0 +1,67 @@
+    <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/simulador.css">
+    <link rel="shortcut icon" href="../../img/Logo.ico">
+    <title>Simulador | Sensiders</title>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="../../index.html" class="back-page">
+            <img src="../../img/back.png" alt="Voltar para a página inicial">
+            <p>HOME</p>
+        </a>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <img src="../../img/Sensiders.svg">
+            <h1>Simulador</h1>
+            <form action="" onsubmit="calcular()">
+                <input type="number" id="sensorInp" placeholder="Quantidade de sensor:" required>
+                <input type="number" id="setorInp" placeholder="Numero de setores:" required>
+                <input type="number" id="entradaInp" placeholder="Quantidade de entrada/saida:" required>
+                <input type="number" id="caixasInp" placeholder="Quantidade de caixas:" required>
+                <button class="button-submit" id="myBtn">Calcular</button>
+            </form>
+            
+            <a class="download" href="../../manual.pdf" download>
+                <button>Download do Manual</button>
+            </a>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p> Valor de cada sensor: <i id="iPrecoSensor"></i>  <br>
+                Quantidade dos sensores multiplicado pelo valor: <i id="iValorSensor"></i> <br>
+                Quantidade de setores por mercado: <i id="iSetor"></i> <br>
+                Numeros de entrada e saida do mercado: <i id="iMercado"></i> <br>
+                Numeros de caixas no mercado: <i id="iCaixas"></i> <br>
+                Valor total: <i id="iTotal"></i>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../../js/simulador.js"></script>
+<script>
+        function calcular() {
+        var sensorPreco = 30;        
+        var sensor = parseInt(document.getElementById('sensorInp').value) *sensorPreco;
+        var setor = parseInt(document.getElementById('setorInp').value);
+        var entradaSaida = parseInt(document.getElementById('entradaInp').value);
+        var caixas = parseInt(document.getElementById('caixasInp').value);
+
+        iPrecoSensor.innerHTML = `R$ ${sensorPreco}`;
+        iValorSensor.innerHTML = `R$ ${sensor.toFixed(2)}`;
+        iSetor.innerHTML = `${setor}`;
+        iMercado.innerHTML = `${entradaSaida}, dois sensores  por cada dá: R$ ${((2*sensorPreco)*entradaSaida).toFixed(2)}`;
+        iCaixas.innerHTML = `${caixas}, um sensor por caixa: R$ ${(caixas*sensorPreco).toFixed(2)}`;
+        iTotal.innerHTML = `R$ ${(sensor + (caixas * sensorPreco) + (2*sensorPreco) * entradaSaida).toFixed(2)}`;
+    }
+</script>

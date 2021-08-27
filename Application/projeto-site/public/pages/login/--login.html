@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../img/Logo.ico">
+    <title>Login | Sensiders</title>
+    <link rel="stylesheet" href="../../css/loginStyle.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="back">
+            
+            <a href="../../index.html" style="font-weight: 600;">
+                <img src="../../img/back.png" alt="Imagem voltar">
+                HOME
+            </a>
+        </div>
+        <div class="formulario">
+            <img src="../../img/Sensiders.svg">
+            <form onsubmit="return entrar()" method="POST" id="form_login">
+                <input name="login" type="email" placeholder="Email" id="emailInp" required>
+                <input name="senha" type="password" placeholder="Senha" id="senhaInp" required>
+
+                <button id="btn_entrar" onsubmit="return loginValidationForm()">Entrar</button>
+            </form>
+            <img src="../../img/aguarde.gif" id="img_aguarde" style="display: none; height: 250px;">
+
+            <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+
+            </div>
+            <p><a href="../password/password.html">Esqueceu a senha?</a></p>
+            <p>Ainda não é cadastrado? <a href="../register/register.html">Registre-se</a></p>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script  src="../../js/validationForm.js"></script>
+<script>
+
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+            
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.emailUsuario;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
+                    
+                    window.location.href = '../dashboard/dashboard.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.display = 'block';
+        div_erro.style.display = 'none';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        img_aguarde.style.display= 'none';
+        div_erro.style.display = 'block';
+        div_erro.innerHTML = resposta;
+    }
+
+</script>

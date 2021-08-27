@@ -1,0 +1,17 @@
+br\com\bandtec\agoravai\App.class
+model\bean\Componente.class
+jira\clientejira\modelo\Fields.class
+model\dao\ComponenteDAO.class
+view\TelaDashboard$2.class
+jira\clientejira\ClienteJiraApi.class
+view\TelaDashboard$1.class
+connection\Connection.class
+jira\clientejira\modelo\Description.class
+model\dao\UsuarioDAO.class
+view\TelaLogin.class
+jira\clientejira\modelo\IssueField.class
+jira\clientejira\modelo\Issue.class
+model\bean\Usuario.class
+jira\clientejira\DemoDeUsoClienteApi.class
+view\TelaLogin$1.class
+view\TelaDashboard.class

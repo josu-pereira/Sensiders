@@ -13,6 +13,7 @@ router.post('/presenca-hora', function(req, res, next) {
 
 	console.log(`Hora inicio: ${hora_ini}`);
 	console.log(`Hora fim: ${hora_fim}`);
+	console.log(`Dia: ${dia}`);
 	
 	const instrucaoSql = `SELECT round(avg(grauMov), 1) as media, fkSetor
 	FROM dado, setor 
